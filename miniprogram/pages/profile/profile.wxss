@@ -41,8 +41,8 @@
   color:#434343;
 }
 .active{
-  color:#F65959;
-  border-bottom: 4rpx solid #F65959;
+  color:#4990e2;
+  border-bottom: 4rpx solid #4990e2;
 }
 swiper{
  text-align: center;
@@ -64,7 +64,7 @@ swiper{
 .round-click{
     height: 120rpx;
     width: 120rpx;
-    background-color: #d92a2a;
+    background-color: #4990e2;
     border-radius: 100%;
     position: fixed;
     bottom: 150rpx;
@@ -80,5 +80,5 @@ swiper{
 .swiper-box{
   height: 300rpx;
   width: 100%;
-  background-color: gray;
+  background-color: #87c1f1;
 }
