@@ -1,0 +1,26 @@
+/* miniprogram/pages/profile/profile.wxss */
+
+
+page{
+  height: 100%;
+  width: 100%;
+  background-color: ghostwhite;
+}
+
+.tab{
+  flex-flow: column nowrap;
+  height: 100%;
+  width: 100%;
+  background-color: rgb(231, 230, 230);
+}
+
+.vantabs{
+  flex-flow: column nowrap;
+  flex: 0 0 50%;
+  width: 100%;
+  height: 100%;
+  justify-content: top;
+  align-content: top;
+}
+
+

@@ -10,6 +10,7 @@ Page({
     hasUserInfo: false,
     currentTab: 0,
     active: 0,
+    windowHeight: wx.getSystemInfoSync().windowHeight,
 
   },
 

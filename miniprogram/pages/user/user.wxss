@@ -25,10 +25,6 @@ page{
   border-bottom-right-radius: 5%;
 }
 
-.text{
-  text-align: center;
-  color: wheat;
-}
 
 .button{
   width: 375rpx;

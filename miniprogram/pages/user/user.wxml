@@ -1,0 +1,19 @@
+<!--miniprogram/pages/index/index.wxml-->
+<view class='container'>
+  <view class='top'>
+    
+
+  </view>
+
+  <view>
+
+    <i-button type='info' size='small' shape='circle' bind:click="handleClick">click</i-button>
+    <i-card title="click">
+      <view slot="content">main</view>
+      <view slot="footer">foot</view>
+    </i-card>
+
+
+  </view>
+
+</view>

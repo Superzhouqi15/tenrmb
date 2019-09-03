@@ -3,7 +3,7 @@
     "van-tabs" : "../../vant/dist/tabs/index",
     "van-tab" : "../../vant/dist/tab/index"
   },
-  "navigationBarBackgroundColor": "#ffffff",
-  "navigationBarTitleText": "User",
-  "navigationBarTextStyle": "black"
+  "navigationBarBackgroundColor": "#4990e2",
+  "navigationBarTitleText": "Info",
+  "navigationBarTextStyle": "white"
 }
