@@ -2,13 +2,20 @@
 <view class='container'>
   <view class='top'>
     <view class='text'>
-      <text class='text'>123</text>
+      <text class='text'>page</text>
     </view>
 
   </view>
 
   <view>
-    <i-card type="primary" bind:click="handleClick">这是一个按钮</i-card>
+
+    <i-button type='primary' size='small' shape='circle'>click</i-button>
+    <i-card title="click">
+    <view slot="content">main</view>
+    <view slot="footer">foot</view>
+    </i-card>
+    
+
   </view>
 
 </view>
