@@ -1,0 +1,2 @@
+<!--miniprogram/pages/baidu/baidu.wxml-->
+<web-view src="https://www.baidu.com/"></web-view>

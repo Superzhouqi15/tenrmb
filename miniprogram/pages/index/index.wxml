@@ -1,0 +1,13 @@
+<!--miniprogram/pages/index/index.wxml-->
+<view class='container'>
+  <view class='top'>
+    <view class='text'>
+      <text class='text'>123</text>
+    </view>
+
+  </view>
+
+  <view>
+    <button class='button' plain='true'>click</button>
+  </view>
+</view>
