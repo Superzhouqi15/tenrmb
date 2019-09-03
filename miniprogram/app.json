@@ -12,16 +12,20 @@
     "navigationBarTextStyle": "white"
   },
   "tabBar": {
-    "color": "#000000",
-    "selectedColor": "#5cadff",
+    "color": "#8a8a8a",
+    "selectedColor": "#8a8a8a",
     "list": [
       {
         "pagePath": "pages/index/index",
-        "text": "首页"
+        "text": "首页",
+        "iconPath": "icon/info-gray.png",
+        "selectedIconPath": "icon/info-black.png"
       },
       {
         "pagePath": "pages/profile/profile",
-        "text": "我的"
+        "text": "我的",
+        "iconPath": "icon/my-gray.png",
+        "selectedIconPath": "icon/my-black.png"
       }
     ]
   },
