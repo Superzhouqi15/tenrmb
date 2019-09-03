@@ -1,4 +1,7 @@
 {
   "navigationBarTitleText": "shouye",
-  "usingComponents": {}
+  "usingComponents": {
+    "i-button": "../../iview/dist/button/index",
+    "i-card": "../../iview/dist/card/index"
+  }
 }

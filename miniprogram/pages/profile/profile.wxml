@@ -1,23 +1,7 @@
 <!--miniprogram/pages/profile/profile.wxml-->
-<!--
-<view class='container'>
-<view class='userinfo'>
-<block class="block" wx:if = "{{hasUserInfo}}">
-    <image class='userinfo-avatar' src="{{userInfo.avatarUrl}}" mode="cover"></image>
-    <text class="userinfo-nickname">{{userInfo.nickName}}</text>
-  </block>
-</view>
-
-  <button class="button" open-type='getUserInfo' bindgetuserinfo='getInfo'> click me!</button>
-
-  <view>
-   <text bindtap='click'>click</text>
-  </view>
-</view>
--->
 <view class="round-click">
-       <navigator url='/pages/baidu/baidu' >+</navigator >
-    </view>
+       <navigator url='../baidu/baidu' >+</navigator >
+</view>
 <view class="swiper-tab">
   <view class="swiper-tab-item {{currentTab==0?'active':''}}" data-current="0" bindtap="clickTab">推荐比赛</view>
   <view class="swiper-tab-item {{currentTab==1?'active':''}}" data-current="1" bindtap="clickTab">最近比赛</view>
