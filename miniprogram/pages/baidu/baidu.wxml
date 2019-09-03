@@ -15,4 +15,4 @@
     <i-input value="{{ value7 }}" type="number" right title="不参与优惠金额" mode="wrapped" placeholder="询问收银员后输入" />
 </i-panel>
 
-<i-button bind:click="handleClick" type="primary">Primary</i-button>
+<i-button bind:click="handleClick" type="primary">发布比赛</i-button>

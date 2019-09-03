@@ -14,6 +14,10 @@ Page({
     value7: ''
   },
 
+  handleClick: function (){
+    console.log("点击就送");
+  },
+
   /**
    * 生命周期函数--监听页面加载
    */

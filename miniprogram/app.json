@@ -12,14 +12,11 @@
     "navigationBarTextStyle": "white"
   },
   "tabBar": {
-<<<<<<< HEAD
-    "list": [{
-=======
     "color": "#000000",
     "selectedColor": "#5cadff",
     "list": [
       {
->>>>>>> 2f6dc4d64edc3452b066666ebd8063acf9312950
+
         "pagePath": "pages/index/index",
         "text": "首页"
       },
@@ -30,6 +27,5 @@
     ]
   },
   "sitemapLocation": "sitemap.json"
-
 
 }

@@ -1,4 +1,1 @@
 /* miniprogram/pages/baidu/baidu.wxss */
-.btn1{
-  background: black!important;
-}
