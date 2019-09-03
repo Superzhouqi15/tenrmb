@@ -9,7 +9,7 @@
 
   <view>
 
-    <i-button type='primary' size='small' shape='circle'>click</i-button>
+    <i-button type='info' size='small' shape='circle' bind:click="handleClick" >click</i-button>
     <i-card title="click">
     <view slot="content">main</view>
     <view slot="footer">foot</view>

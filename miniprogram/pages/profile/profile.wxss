@@ -82,3 +82,8 @@ swiper{
   width: 100%;
   background-color: #87c1f1;
 }
+
+.tab{
+  height: 10rpx;
+  background-color: blue;
+}

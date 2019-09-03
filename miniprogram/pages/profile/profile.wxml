@@ -1,4 +1,5 @@
 <!--miniprogram/pages/profile/profile.wxml-->
+<!--
 <view class="round-click">
        <navigator url='../baidu/baidu' >+</navigator >
 </view>
@@ -19,4 +20,13 @@
   <scroll-view><view class='test_text' bindtap='click_the_text'>this is a test text!!!</view></scroll-view>
   </swiper-item>
 </swiper>
+-->
+<van-tabs active="{{ active }}" bind:change="onChange" swipeable type='card'>
+  <van-tab title="标签 1" ><view class='tab'>all</view></van-tab>
+  <van-tab title="标签 2">内容 2</van-tab>
+  <van-tab title="标签 3">内容 3</van-tab>
+  <van-tab title="标签 4">内容 4</van-tab>
+</van-tabs> 
+
+
 
