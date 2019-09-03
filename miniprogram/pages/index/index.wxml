@@ -15,7 +15,6 @@
     <view slot="footer">foot</view>
     </i-card>
     
-    <i-card type="primary" bind:click="handleClick">这是一个按钮</i-card>
 
   </view>
 
