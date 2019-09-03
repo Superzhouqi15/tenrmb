@@ -10,4 +10,5 @@
   <view>
     <button class='button' plain='true'>click</button>
   </view>
+  
 </view>
