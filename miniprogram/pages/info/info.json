@@ -1,0 +1,9 @@
+{
+  "usingComponents": {
+    "van-tabs" : "../../vant/dist/tabs/index",
+    "van-tab" : "../../vant/dist/tab/index"
+  },
+  "navigationBarBackgroundColor": "#4990e2",
+  "navigationBarTitleText": "Info",
+  "navigationBarTextStyle": "white"
+}
