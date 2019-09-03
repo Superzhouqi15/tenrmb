@@ -2,6 +2,7 @@
   "navigationBarTitleText": "shouye",
   "usingComponents": {
     "i-button": "../../iview/dist/button/index",
-    "i-card": "../../iview/dist/card/index"
+    "i-card": "../../iview/dist/card/index",
+    "i-icon": "../../iview/dist/icon/index"
   }
 }
