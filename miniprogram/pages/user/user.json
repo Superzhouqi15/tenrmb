@@ -1,7 +1,8 @@
 {
   "navigationBarTitleText": "User",
   "usingComponents": {
-    "i-card": "../../iview/dist/card/index",
-    "i-button": "../../iview/dist/button/index"
+    "i-row": "../../iview/dist/row/index",
+    "i-col": "../../iview/dist/col/index",
+    "i-icon": "../../iview/dist/icon/index"
   }
 }

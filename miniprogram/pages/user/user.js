@@ -62,6 +62,10 @@ Page({
    */
   onShareAppMessage: function () {
 
+  },
+
+  mine_func: function(){
+    console.log("我是图标");
   }
 
 

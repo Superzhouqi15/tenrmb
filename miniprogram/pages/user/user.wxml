@@ -1,19 +1,28 @@
 <!--miniprogram/pages/index/index.wxml-->
-<view class='container'>
-  <view class='top'>
-    
-
-  </view>
-
-  <view>
-
-    <i-button type='info' size='small' shape='circle' bind:click="handleClick">click</i-button>
-    <i-card title="click">
-      <view slot="content">main</view>
-      <view slot="footer">foot</view>
-    </i-card>
-
-
-  </view>
-
-</view>
+<i-row></i-row>
+<i-row></i-row>
+<i-row>
+  <i-col offset="9">
+    <i-icon type="mine" size="80" bindtap="mine_func" />
+  </i-col>
+</i-row>
+<i-row></i-row>
+<i-row></i-row>
+<i-row></i-row>
+<i-row></i-row>
+<i-row></i-row>
+<i-row></i-row>
+<i-row></i-row>
+<i-row></i-row>
+<i-row></i-row>
+<i-row></i-row>
+<i-row></i-row>
+<i-row>
+  <i-col offset="5">
+    <view>
+      <i-icon type="collection_fill" size="50" color="red" />
+      <br/>
+  
+    </view>
+  </i-col>
+</i-row>
