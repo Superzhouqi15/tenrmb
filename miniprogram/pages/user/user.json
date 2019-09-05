@@ -1,5 +1,6 @@
 {
   "navigationBarTitleText": "User",
+  "navigationBarBackgroundColor": "#7474bf",
   "usingComponents": {
     "vtransition": "../../vant/dist/transition/index",
     "vrow": "../../vant/dist/row/index",

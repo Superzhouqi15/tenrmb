@@ -1,11 +1,11 @@
-// miniprogram/pages/index/index.js
+// miniprogram/pages/aboutUs/aboutUs.js
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-   
+
   },
 
   /**
@@ -62,17 +62,5 @@ Page({
    */
   onShareAppMessage: function () {
 
-  },
-
-  mine_func: function(){
-    console.log("我是图标");
-  },
-
-  aboutUs: function(){
-    wx.navigateTo({
-      url: '../aboutUs/aboutUs',
-    })
   }
-
-
 })
