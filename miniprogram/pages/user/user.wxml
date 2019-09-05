@@ -1,28 +1,19 @@
 <!--miniprogram/pages/index/index.wxml-->
-<i-row></i-row>
-<i-row></i-row>
-<i-row>
-  <i-col offset="9">
-    <i-icon type="mine" size="80" bindtap="mine_func" />
-  </i-col>
-</i-row>
-<i-row></i-row>
-<i-row></i-row>
-<i-row></i-row>
-<i-row></i-row>
-<i-row></i-row>
-<i-row></i-row>
-<i-row></i-row>
-<i-row></i-row>
-<i-row></i-row>
-<i-row></i-row>
-<i-row></i-row>
-<i-row>
-  <i-col offset="5">
-    <view>
-      <i-icon type="collection_fill" size="50" color="red" />
-      <br/>
-  
+<view class="top">
+  <view class="box">
+    <view class="vitem">
+      <view class="avatar">
+        <open-data type="userAvatarUrl" ></open-data> 
+      </view>
+      <view class="text">
+        <open-data type="userNickName" lang="zh_CN"></open-data>  
+      </view>
+
+
     </view>
-  </i-col>
-</i-row>
+
+  </view>
+</view>
+
+ 
+    
