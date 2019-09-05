@@ -1,20 +1,18 @@
 <!--miniprogram/pages/index/index.wxml-->
 <view class="container">
-  <view class="top">
-    <view class="box">
-      <view class="vitem">
-        <view class="avatar">
-          <open-data type="userAvatarUrl"></open-data>
+    <view class="top">
+      <view class="box">
+        <view class="vitem">
+          <view class="avatar">
+            <open-data type="userAvatarUrl"></open-data>
+          </view>
+          <view class="text">
+            <open-data type="userNickName" lang="zh_CN"></open-data>
+          </view>
         </view>
-        <view class="text">
-          <open-data type="userNickName" lang="zh_CN"></open-data>
-        </view>
-
-
       </view>
-
     </view>
-  </view>
+
 
   <view style="padding: 200rpx 0rpx">
     <view class="box">
@@ -35,10 +33,10 @@
 
         </view>
       </view>
-     
+
     </view>
     <view class="box">
-       <view class="vitem1" bindtap="aboutUs">
+      <view class="vitem1" bindtap="aboutUs">
         <view>
           <vicon name="info" color="white" size="40px"></vicon>
           <view>
@@ -48,5 +46,5 @@
       </view>
     </view>
   </view>
-  
+
 </view>
