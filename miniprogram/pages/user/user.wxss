@@ -1,8 +1,58 @@
 /* miniprogram/pages/index/index.wxss */
 
-page {
-  height: 100%;
-  width: 100%;
-  background-color: ghostwhite;
-}
+page { 
+  height: 100%; 
+  width: 100%; 
+  background-color: ghostwhite; 
+} 
+ 
+ 
+ 
+.top-Nav{ 
+display: flex; 
+padding: 24rpx 0; 
+justify-content:space-around; 
+/* border-bottom: 1px solid #eee; */ 
+} 
+ 
+ 
+ 
+.top-item{ 
+text-align: center; 
+} 
+ 
+ 
+.top-item image{ 
+width: 88rpx; 
+height: 88rpx; 
+} 
+ 
+.top-item text{ 
+line-height: 20rpx; 
+font-size: 28rpx; 
+color: #4c4c4c; 
+font-weight: 500; 
+} 
+ 
+.userinfo {   
+  position: relative;   
+  width: 750rpx;   
+  height: 320rpx;   
+  color: black;   
+  display: flex;   
+  flex-direction: column;   
+  align-items: center;   
+}   
+   
+.userinfo-avatar {   
+  overflow:hidden;   
+  display: block;   
+  width: 160rpx;   
+  height: 160rpx;   
+  margin: 20rpx;   
+  margin-top: 50rpx;   
+  border-radius: 50%;   
+  border: 2px solid #fff;   
+  box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.2);   
+}  
 
