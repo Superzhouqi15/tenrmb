@@ -1,8 +1,10 @@
 {
   "navigationBarTitleText": "User",
+  "navigationBarBackgroundColor": "#7474bf",
   "usingComponents": {
-    "i-row": "../../iview/dist/row/index",
-    "i-col": "../../iview/dist/col/index",
-    "i-icon": "../../iview/dist/icon/index"
+    "vtransition": "../../vant/dist/transition/index",
+    "vrow": "../../vant/dist/row/index",
+    "vcol": "../../vant/dist/col/index",
+    "vicon": "../../vant/dist/icon/index"
   }
 }

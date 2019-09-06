@@ -1,35 +1,76 @@
-<view class="userinfo"> 
-  <view class="userinfo-avatar" > 
-    <open-data  type="userAvatarUrl" ></open-data> 
-  </view> 
-    <open-data type="userNickName"></open-data> 
-</view> 
- 
-<view class="top-Nav"> 
-  <block> 
-    <view class="top-item"> 
-      <view> 
-        <image src="../../icon/shoucang.png"></image> 
-      </view> 
-      <view> 
-        <text>收藏</text> 
-      </view> 
-    </view> 
-    <view class="top-item"> 
-      <view> 
-        <image src="../../icon/关于我们.png"></image> 
-      </view> 
-      <view> 
-        <text>关于我们</text> 
-      </view> 
-    </view> 
-    <view class="top-item"> 
-      <view> 
-        <image src="../../icon/反馈.png"></image> 
-      </view> 
-      <view> 
-        <text>意见反馈</text> 
-      </view> 
-    </view> 
-  </block> 
+<!--miniprogram/pages/index/index.wxml-->
+<view class="container">
+    <view class="top">
+      <view class="box">
+        <view class="vitem">
+          <view class="avatar">
+            <open-data type="userAvatarUrl"></open-data>
+          </view>
+          <view class="text">
+            <open-data type="userNickName" lang="zh_CN"></open-data>
+          </view>
+        </view>
+      </view>
+    </view>
+
+
+  <view style="padding: 20px 20rpx">
+  <view class="box">
+      <view class="vitem1">
+        <view>
+          <vicon name="star" color="white" size="40px"></vicon>
+          <view>
+            <text style="color:white;font-size: 20px;">发布比赛</text>
+          </view>
+        </view>
+      </view>
+      <view class="vitem1">
+        <view>
+          <vicon name="star" color="white" size="40px"></vicon>
+          <view>
+            <text style="color:white;font-size: 20px;">收藏</text>
+          </view>
+        </view>
+      </view>
+      <view class="vitem1">
+        <view>
+          <vicon name="comment" color="white" size="40px"></vicon>
+          <view>
+            <text style="color:white;font-size: 20px;">反馈</text>
+          </view>
+
+        </view>
+      </view>
+    </view>
+    <view class="box">
+      <view class="vitem1">
+        <view>
+          <vicon name="star" color="white" size="40px"></vicon>
+          <view>
+            <text style="color:white;font-size: 20px;">收藏</text>
+          </view>
+        </view>
+      </view>
+      <view class="vitem1">
+        <view>
+          <vicon name="comment" color="white" size="40px"></vicon>
+          <view>
+            <text style="color:white;font-size: 20px;">反馈</text>
+          </view>
+
+        </view>
+      </view>
+    </view>
+    <view class="box">
+      <view class="vitem1" bindtap="aboutUs">
+        <view>
+          <vicon name="info" color="white" size="40px"></vicon>
+          <view>
+            <text style="color:white;font-size: 20px;">关于我们</text>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+
 </view>

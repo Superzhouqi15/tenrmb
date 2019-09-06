@@ -39,10 +39,6 @@ Page({
       userInfo: app.globalData.userInfo,
       hasUserInfo: true
     })
-
-
-
-
   },
 
   //swipe to switch

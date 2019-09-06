@@ -3,10 +3,10 @@
 <view class="vantabs">
 
   <van-tabs active="{{ active }}" bind:change="onChange" swipeable color='#4990e2' type="card" class='tab'>
-    <van-tab title="All" class='tab'>
+    <van-tab title="推荐赛事" class='tab'>
       <scroll-view class='tab' scroll-y style='height:{{windowHeight-30}}px;'></scroll-view>
     </van-tab>
-    <van-tab title="Recommand">
+    <van-tab title="全部赛事">
       <scroll-view class='tab' scroll-y style='height:{{windowHeight-30}}px;'></scroll-view>
     </van-tab>
   </van-tabs>

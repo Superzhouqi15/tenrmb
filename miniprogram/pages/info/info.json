@@ -4,6 +4,6 @@
     "van-tab" : "../../vant/dist/tab/index"
   },
   "navigationBarBackgroundColor": "#4990e2",
-  "navigationBarTitleText": "Info",
+  "navigationBarTitleText": "",
   "navigationBarTextStyle": "white"
 }
