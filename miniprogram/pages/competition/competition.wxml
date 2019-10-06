@@ -1,0 +1,19 @@
+<!--miniprogram/pages/baidu/baidu.wxml-->
+<i-panel title="基础用法">
+    <i-input value="{{ value1 }}" title="比赛名称" autofocus placeholder="请输入比赛名称" />
+    <i-input value="{{ value2 }}" type="textarea" title="组织单位" placeholder="请输入组织单位(最多50字)" maxlength="50"/>
+    <i-input value="{{ value3 }}" type="textarea" title="参赛对象" placeholder="请输入参赛对象(最多50字)" maxlength="50" />
+    <i-input value="{{ value4 }}" title="比赛内容" placeholder="描述比赛内容" maxlength="1000" />
+</i-panel>
+
+<i-panel title="基础用法">
+    <i-input value="{{ value5 }}" title= "参赛报名" placeholder="请输入报名方式(最多100字)" maxlength="100" />
+    <i-input value="{{ value6 }}" type="textarea" title= "备注" placeholder="比赛的注意事项或备注(如参赛费用等)" maxlength="100" />
+</i-panel>
+
+<i-panel title="基础用法">
+    <i-input value="{{ value7 }}" title="截止时间" placeholder="当前时间" />
+</i-panel>
+
+<i-button bind:click="handleClick" type="info" >发布比赛</i-button>
+<i-toast id="toast" />

@@ -1,4 +1,6 @@
 // miniprogram/pages/baidu/baidu.js
+const { $Toast } = require('../../iview/dist/base/index');
+
 Page({
 
   /**
@@ -8,15 +10,12 @@ Page({
     value1: '',
     value2: '',
     value3: '',
-    value4: '输入框已禁用',
+    value4: '',
     value5: '',
     value6: '',
     value7: ''
   },
 
-  handleClick: function (){
-    console.log("点击就送");
-  },
 
   /**
    * 生命周期函数--监听页面加载
@@ -72,5 +71,14 @@ Page({
    */
   onShareAppMessage: function () {
 
+  },
+
+  handleClick: function(){
+    $Toast({
+      content: '发布比赛成功',
+      type: 'success'
+    });
   }
+
+
 })

@@ -2,7 +2,7 @@
 
 <view class="vantabs">
 
-  <van-tabs active="{{ active }}" bind:change="onChange" swipeable color='#4990e2' type="card" class='tab'>
+  <van-tabs active="{{ active }}"  swipeable color='#4990e2' type="card" class='tab'>
     <van-tab title="推荐赛事" class='tab'>
       <scroll-view class='tab' scroll-y style='height:{{windowHeight-30}}px;'>
         <i-card title="金点子" extra="" thumb="/icon/timg.jpg" bindtap="InToGame">

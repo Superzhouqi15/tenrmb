@@ -16,7 +16,7 @@
 
   <view style="padding: 20px 20rpx">
   <view class="box">
-      <view class="vitem1">
+      <view class="vitem1"  bindtap="launchGame">
         <view>
           <vicon name="star" color="white" size="40px"></vicon>
           <view>

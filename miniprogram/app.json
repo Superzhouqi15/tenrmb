@@ -2,7 +2,7 @@
   "pages": [
     "pages/info/info",
     "pages/user/user",
-    "pages/baidu/baidu",
+    "pages/competition/competition",
     "pages/aboutUs/aboutUs"
   ],
   "window": {

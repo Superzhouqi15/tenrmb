@@ -65,13 +65,13 @@ Page({
 
   click_the_text: function(e){
     wx.navigateTo({
-      url: '../baidu/baidu',
+      url: '../competition/competition',
     })
   },
 
   InToGame:function(){
     wx.navigateTo({
-      url: '../baidu/baidu',
+      url: '../competition/competition',
     })
   }
 

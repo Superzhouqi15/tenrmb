@@ -75,7 +75,14 @@ Page({
     wx.navigateTo({
       url: '../aboutUs/aboutUs',
     })
+  },
+
+  launchGame:function(){
+    wx.navigateTo({
+      url: '../competition/competition',
+    })
   }
+
 
 
 })
