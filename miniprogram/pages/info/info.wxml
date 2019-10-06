@@ -4,10 +4,35 @@
 
   <van-tabs active="{{ active }}" bind:change="onChange" swipeable color='#4990e2' type="card" class='tab'>
     <van-tab title="推荐赛事" class='tab'>
-      <scroll-view class='tab' scroll-y style='height:{{windowHeight-30}}px;'></scroll-view>
+      <scroll-view class='tab' scroll-y style='height:{{windowHeight-30}}px;'>
+        <i-card title="金点子" extra="" thumb="/icon/timg.jpg" bindtap="InToGame">
+          <view slot="content">值得参加的一场比赛</view>
+          <view slot="footer">计算机</view>
+        </i-card>
+        <i-card title="全国数学建模大赛" extra="" thumb="/icon/math.jpg" bindtap="InToGame">
+          <view slot="content">数学建模的标杆</view>
+          <view slot="footer">数学</view>
+        </i-card>
+      </scroll-view>
+
+
+
     </van-tab>
     <van-tab title="全部赛事">
-      <scroll-view class='tab' scroll-y style='height:{{windowHeight-30}}px;'></scroll-view>
+      <scroll-view class='tab' scroll-y style='height:{{windowHeight-30}}px;'>
+        <i-card title="金点子" extra="" thumb="/icon/timg.jpg" bindtap="InToGame">
+          <view slot="content">值得参加的一场比赛</view>
+          <view slot="footer">计算机</view>
+        </i-card>
+        <i-card title="全国数学建模大赛" extra="" thumb="/icon/math.jpg" bindtap="InToGame">
+          <view slot="content">数学建模的标杆</view>
+          <view slot="footer">数学</view>
+        </i-card>
+        <i-card title="ACM程序设计大赛" extra="" thumb="/icon/acm.png" bindtap="InToGame">
+          <view slot="content">算法大赛</view>
+          <view slot="footer">计算机</view>
+        </i-card>
+      </scroll-view>
     </van-tab>
   </van-tabs>
 </view>

@@ -53,7 +53,7 @@ Page({
   //click to switch
   clickTab: function (e) {
     var that = this;
-    console.log(e);
+    
     if (this.data.currentTab === e.target.dataset.current) {
       return false;
     } else {
@@ -67,8 +67,13 @@ Page({
     wx.navigateTo({
       url: '../baidu/baidu',
     })
-  }
+  },
 
+  InToGame:function(){
+    wx.navigateTo({
+      url: '../baidu/baidu',
+    })
+  }
 
 
 })

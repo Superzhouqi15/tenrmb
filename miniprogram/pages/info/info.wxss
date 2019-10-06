@@ -11,7 +11,7 @@ page{
   flex-flow: column nowrap;
   height: 100%;
   width: 100%;
-  background-color: rgb(231, 230, 230);
+  background-color: rgba(231, 231, 230, 0.062);
 }
 
 .vantabs{
