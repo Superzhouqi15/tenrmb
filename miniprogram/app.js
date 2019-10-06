@@ -12,8 +12,21 @@ App({
       })
     }
 
-    this.globalData = {}
-  
+    this.globalData = {
+      competitionData : [],
+      
+      allCompetitionData: [
+        { 
+          "title":"金点子", "organization":"计算机学院", "thumb":"/icon/timg.jpg", "time":"2019-12", "footer":"计算机"
+        },
+        {
+          "title":"全国数学建模大赛", "organization":"中国数学发展协会", "thumb":"/icon/math.jpg", "time":"2019-12-9", "footer":"数学"
+        },
+        {
+          "title":"ACM程序设计大赛", "organization":"中国计算机协会", "thumb":"/icon/acm.png", "time":"2019-12-9", "footer":"计算机"
+        }
+        ]
+    }
   },
 
   /**

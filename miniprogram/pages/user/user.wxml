@@ -32,15 +32,6 @@
           </view>
         </view>
       </view>
-      <view class="vitem1">
-        <view>
-          <vicon name="comment" color="white" size="40px"></vicon>
-          <view>
-            <text style="color:white;font-size: 20px;">反馈</text>
-          </view>
-
-        </view>
-      </view>
     </view>
     <view class="box">
       <view class="vitem1">

@@ -2,6 +2,9 @@
   "usingComponents": {
     "i-input": "../../iview/dist/input/index",
     "i-button": "../../iview/dist/button/index",
-    "i-toast": "../../iview/dist/toast/index"
+    "i-toast": "../../iview/dist/toast/index",
+    "van-field": "../../vant/dist/field/index",
+    "van-cell": "../../vant/dist/cell/index",
+    "van-cell-group": "../../vant/dist/cell-group/index"
   }
 }

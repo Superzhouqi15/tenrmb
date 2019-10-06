@@ -1,17 +1,20 @@
 // miniprogram/pages/profile/profile.js
 const app = getApp()
+
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
+    emptyFlag: true,
     userInfo: {},
     hasUserInfo: false,
     currentTab: 0,
     active: 0,
     windowHeight: wx.getSystemInfoSync().windowHeight,
-
+    competition: app.globalData.competitionData,
+    allCompetition: app.globalData.allCompetitionData,
   },
 
   onChange(event) {
@@ -26,11 +29,29 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
-
     console.log(this.data)
   },
 
 
+  onShow: function () {
+
+    console.log(app.globalData.competitionData)
+    this.setData({
+      competition: app.globalData.competitionData,
+      allCompetition: app.globalData.allCompetitionData
+    })
+    console.log(this.data.allCompetition)
+    if (this.data.competition.length != 0){
+      this.setData({
+        emptyFlag : false
+      })
+    }else{
+      this.setData({
+        emptyFlag: true
+      })
+    }
+   
+  },
 
   getInfo: function(e) {
     console.log(e.detail.userInfo)
