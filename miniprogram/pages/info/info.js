@@ -62,13 +62,23 @@ Page({
 
 
 
-  InToGame:function(e){
+
+  InToGame1:function(e){
     var id = e.currentTarget.dataset.id
-  
+ 
     wx.navigateTo({
-      url: '../showCompetition/showCompetition?id=' + id  ,
+      url: '../showRecCompetition/showRecCompetition?id=' + id,
     })
     
+  },
+
+  InToGame2: function (e) {
+    var id = e.currentTarget.dataset.id
+
+    wx.navigateTo({
+      url: '../showCompetition/showCompetition?id=' + id,
+    })
+
   }
 
 
