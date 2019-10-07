@@ -1,0 +1,24 @@
+<!--pages/showCompetition/showCompetition.wxml-->
+<view>
+  <text class="text">赛事详情</text>
+  <van-cell-group>
+    <van-cell title="赛事名称" icon="bisai" value="内容"/>
+    <van-cell title="举办单位" icon="/icon/组织机构.png" value="内容" />
+    <van-cell title="发布者" icon="/icon/publisher.png" value="内容" />
+  </van-cell-group>
+  <text class="text">赛事内容</text>
+  <van-cell-group>
+    <van-cell value="内容" />
+  </van-cell-group>
+  <text class="text">赛事相关时间</text>
+  <van-cell-group>
+    <van-cell title="发布时间" icon="/icon/时间.png" value="内容" />
+    <van-cell title="截止时间" icon="/icon/时间.png" value="内容" />
+    <van-cell title="时间标签" icon="/icon/标签.png" value="内容" />
+  </van-cell-group>
+  <text class="text">赛事配图</text>
+  <van-cell-group>
+    <van-cell value="内容" />
+  </van-cell-group>
+
+</view>

@@ -1,0 +1,21 @@
+/* pages/showCompetition/showCompetition.wxss */
+page{
+  background: #f9f9f9
+
+}
+
+.text{
+  color: #d4d1d1;
+  font-size: 12px
+}
+
+.c1{
+  width: 0.625rem;
+  height: 0.625rem;
+}
+
+
+.custom-text{
+  font-size: 1.2rem;
+  margin-left: 4.3rem;
+}

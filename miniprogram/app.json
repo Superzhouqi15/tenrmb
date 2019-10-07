@@ -4,7 +4,8 @@
     "pages/user/user",
     "pages/competition/competition",
     "pages/aboutUs/aboutUs",
-    "pages/forum/forum"
+    "pages/forum/forum",
+    "pages/showCompetition/showCompetition"
   ],
   "window": {
     "backgroundColor": "#F6F6F6",
@@ -34,7 +35,6 @@
         "iconPath": "icon/my-gray.png",
         "selectedIconPath": "icon/my-black.png"
       }
-      
     ]
   },
   "sitemapLocation": "sitemap.json"

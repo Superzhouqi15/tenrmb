@@ -1,10 +1,11 @@
 {
   "usingComponents": {
+  
     "van-tabs" : "../../vant/dist/tabs/index",
     "van-tab" : "../../vant/dist/tab/index",
     "i-card": "../../iview/dist/card/index"
   },
   "navigationBarBackgroundColor": "#4990e2",
-  "navigationBarTitleText": "",
+  "navigationBarTitleText": "比赛信息",
   "navigationBarTextStyle": "white"
 }
