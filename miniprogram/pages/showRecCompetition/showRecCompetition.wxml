@@ -1,4 +1,4 @@
-<!--pages/showCompetition/showCompetition.wxml-->
+<!--pages/showRecCompetition/showRecCompetition.wxml-->
 <view>
   <text class="text">赛事详情</text>
   <van-cell-group>

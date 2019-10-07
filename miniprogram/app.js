@@ -30,7 +30,8 @@ App({
         },
         {
           "title": "ACM程序设计大赛", "organization": "中国计算机协会", "thumb": "/icon/acm.png", "time": "2019-12-9", "footer": "计算机"
-        }],
+        }
+        ],
       
       allCompetitionData: [
         { 
