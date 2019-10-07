@@ -1,1 +1,59 @@
 /* miniprogram/pages/forum/forum.wxss */
+
+page{
+  background: #f9f9f9;
+  height: 100%;
+  width: 100%;
+}
+
+.all{
+  position: fixed;
+  width: 100%;
+  height: 100%;
+}
+.slide-image{
+  width: 100%;
+}
+
+.swipe{
+  height: 25%;
+}
+
+.fixbox{
+  margin-top: 5px;
+  position: fixed;
+  bottom: 30rpx;
+  font-size: 30rpx;
+  background: #84b8f3;
+  border-radius: 5px;
+  width: 90%;
+  height: 45px;
+  left: 5px;
+  right: 5px;
+  display: flex;
+  justify-content: center;
+  align-content: center;
+
+  
+  
+}
+
+.font{
+  color: #ffffff;
+  
+}
+
+.box{
+  width: 100%;
+  height: 75%;
+  background-color: #f9f9f9;
+}
+
+.scroll{
+  height: 100%;
+  width: 100%;
+}
+
+.fill{
+  height: 70px;
+}

@@ -1,2 +1,42 @@
 <!--miniprogram/pages/forum/forum.wxml-->
-<text>miniprogram/pages/forum/forum.wxml</text>
+
+<view class="all">
+  <view class="swipe">
+    <swiper indicator-dots="true" autoplay="true" interval="5000" duration="1000">
+    <block wx:for="{{picList}}" wx:key="index">
+      <swiper-item>
+        <image src="{{item}}" class="slide-image" mode="aspectFill" bindtap='previewImg' data-previewurl='{{picList}}' data-currenturl='{{item}}' />
+      </swiper-item>
+    </block>
+  </swiper>
+  </view>
+  
+  <view class="box">
+    <scroll-view  class="scroll" scroll-y >
+    <i-card title='asdasd' bindtap="InToGame">
+      <view slot="content">content</view>
+      <view slot="footer">content</view>
+    </i-card>
+    <i-card title='asdasd' bindtap="InToGame">
+      <view slot="content">content</view>
+      <view slot="footer">content</view>
+    </i-card>
+    <i-card title='asdasd' bindtap="InToGame">
+      <view slot="content">content</view>
+      <view slot="footer">content</view>
+    </i-card>
+    <i-card title='asdasd' bindtap="InToGame">
+      <view slot="content">content</view>
+      <view slot="footer">content</view>
+    </i-card>
+    <view class="fill"></view>
+  </scroll-view>
+  </view>
+  
+
+  <button class="fixbox">
+    <text class="font">发布帖子</text>
+  </button>
+
+
+</view>
