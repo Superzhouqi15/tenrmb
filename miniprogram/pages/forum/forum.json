@@ -1,3 +1,7 @@
 {
-  "usingComponents": {}
+  "usingComponents": {
+    "i-button": "../../iview/dist/button/index",
+    "i-card": "../../iview/dist/card2/index"
+  },
+  "navigationBarBackgroundColor": "#4990e2"
 }

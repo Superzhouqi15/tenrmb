@@ -5,6 +5,6 @@
     "i-card": "../../iview/dist/card/index"
   },
   "navigationBarBackgroundColor": "#4990e2",
-  "navigationBarTitleText": "",
+  "navigationBarTitleText": "比赛",
   "navigationBarTextStyle": "white"
 }

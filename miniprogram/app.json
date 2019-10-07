@@ -19,20 +19,20 @@
       {
         "pagePath": "pages/info/info",
         "text": "首页",
-        "iconPath": "icon/info-gray.png",
-        "selectedIconPath": "icon/info-black.png"
+        "iconPath": "icon/info-g.png",
+        "selectedIconPath": "icon/info-b.png"
       },
       {
         "pagePath": "pages/forum/forum",
         "text": "论坛",
-        "iconPath": "icon/my-gray.png",
-        "selectedIconPath": "icon/my-black.png"
+        "iconPath": "icon/forum-gray.png",
+        "selectedIconPath": "icon/forum-black.png"
       },
       {
         "pagePath": "pages/user/user",
         "text": "我的",
-        "iconPath": "icon/my-gray.png",
-        "selectedIconPath": "icon/my-black.png"
+        "iconPath": "icon/tubiaolunkuo-g.png",
+        "selectedIconPath": "icon/tubiaolunkuo-b.png"
       }
       
     ]

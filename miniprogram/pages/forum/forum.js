@@ -5,6 +5,8 @@ Page({
    * 页面的初始数据
    */
   data: {
+    picList: ["../../icon/acm.png", "../../icon/math.png", "../../icon/timg.png"],
+    windowHeight: wx.getSystemInfoSync().windowHeight,
 
   },
 
