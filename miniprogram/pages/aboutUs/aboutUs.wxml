@@ -1,2 +1,10 @@
-<!--miniprogram/pages/aboutUs/aboutUs.wxml-->
-<text>你若军训，便是晴天</text>
+<view class="all">
+  <view class="text1">
+    <text>这是一个计算机学院的小团队的一个项目，目前仍然在加急上线中</text>
+  </view>
+
+  <view class="text2">
+    <text>如果觉得不错的，可以赞赏鼓励一下作者哦，我们一定会好好维护好这个小程序！！</text>
+  </view>
+  <image src="/icon/money.jpg" class="image" bindtap="preview" data-src="/icon/money.jpg"></image>
+</view>
