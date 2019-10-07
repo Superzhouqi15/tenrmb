@@ -13,28 +13,16 @@
   
   <view class="box">
     <scroll-view  class="scroll" scroll-y >
-    <i-card title='asdasd' bindtap="InToGame">
-      <view slot="content">content</view>
-      <view slot="footer">content</view>
-    </i-card>
-    <i-card title='asdasd' bindtap="InToGame">
-      <view slot="content">content</view>
-      <view slot="footer">content</view>
-    </i-card>
-    <i-card title='asdasd' bindtap="InToGame">
-      <view slot="content">content</view>
-      <view slot="footer">content</view>
-    </i-card>
-    <i-card title='asdasd' bindtap="InToGame">
-      <view slot="content">content</view>
-      <view slot="footer">content</view>
+    <i-card wx:for='{{allPost}}' title='{{itme.title}}' bindtap="InToGame" wx:key="*this">
+      <view slot="content">{{item.title}}</view>
+      <view slot="footer">{{item.time}}</view>
     </i-card>
     <view class="fill"></view>
   </scroll-view>
   </view>
   
 
-  <button class="fixbox">
+  <button class="fixbox" bindtap="clickToPost">
     <text class="font">发布帖子</text>
   </button>
 

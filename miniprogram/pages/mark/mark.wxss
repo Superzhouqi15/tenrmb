@@ -1,0 +1,12 @@
+/* miniprogram/pages/mark/mark.wxss */
+page{
+  width: 100%;
+  height: 100%;
+}
+
+.tab{
+  flex-flow: column nowrap;
+  height: 100%;
+  width: 100%;
+  background-color: rgba(231, 231, 230, 0.062);
+}
