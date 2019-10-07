@@ -35,12 +35,10 @@ Page({
 
   onShow: function () {
 
-    console.log(app.globalData.competitionData)
     this.setData({
       competition: app.globalData.competitionData,
       allCompetition: app.globalData.allCompetitionData
     })
-    console.log(this.data.allCompetition)
     if (this.data.competition.length != 0){
       this.setData({
         emptyFlag : false
@@ -54,7 +52,6 @@ Page({
   },
 
   getInfo: function(e) {
-    console.log(e.detail.userInfo)
     app.globalData.userInfo = e.detail.userInfo
     this.setData({
       userInfo: app.globalData.userInfo,
@@ -84,16 +81,15 @@ Page({
     }
   },
 
-  click_the_text: function(e){
-    wx.navigateTo({
-      url: '../competition/competition',
-    })
-  },
 
-  InToGame:function(){
+
+  InToGame:function(e){
+  
+    console.log(e.target)
     wx.navigateTo({
-      url: '../competition/competition',
+      url: '../showCompetition/showCompetition',
     })
+    
   }
 
 
