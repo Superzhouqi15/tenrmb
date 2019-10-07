@@ -1,1 +1,15 @@
 /* miniprogram/pages/baidu/baidu.wxss */
+.picker{
+  width: 100%;
+  display: fixed;
+  left: 90px;
+  font-size: 24rpx;
+  text-align: left;
+}
+
+.van-cell__title{
+  
+  flex: 1;
+  color: #333;
+  text-align: left;
+}
