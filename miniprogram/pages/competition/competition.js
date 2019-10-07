@@ -2,7 +2,10 @@
 const {
   $Toast
 } = require('../../iview/dist/base/index');
+var util = require('../../utils/util.js');
 const app = getApp()
+
+
 Page({
 
   /**
@@ -16,7 +19,13 @@ Page({
     value5: '',
     value6: '',
     value7: '',
+    date: util.formatTime(new Date()),
+    time: '12:00',
+    
   },
+  
+
+
 
 
   /**
@@ -74,6 +83,13 @@ Page({
   onShareAppMessage: function() {
 
   },
+  bindDateChange: function (e) {
+    console.log('picker发送选择改变，携带值为', e.detail.value)
+    this.setData({
+      value3: e.detail.value,
+      date: e.detail.value
+    })
+  },
 
   handleClick: function() {
 
@@ -97,8 +113,8 @@ Page({
     wx.switchTab({
       url: '../info/info',
     })
-    
-     
+
+
   },
 
 

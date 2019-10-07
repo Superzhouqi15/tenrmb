@@ -1,61 +1,23 @@
 <!--miniprogram/pages/baidu/baidu.wxml-->
 <van-cell-group>
-  <van-field
-    value="{{ value1 }}"
-    placeholder="比赛名称"
-    border="{{ false }}"
-    bind:change="onChange1"
-    label="比赛名称"
-    clearable="true"
-  />
-  <van-field
-    value="{{ value2 }}"
-    placeholder="举办组织"
-    border="{{ false }}"
-    bind:change="onChange2"
-    label="举办组织"
-    clearable="true"
-  />
-  <van-field
-    value="{{ value3 }}"
-    placeholder="时间"
-    border="{{ false }}"
-    bind:change="onChange3"
-    label="时间"
-    clearable="true"
-  />
-  <van-field
-    value="{{ value4 }}"
-    placeholder="比赛对象"
-    border="{{ false }}"
-    bind:change="onChange4"
-    label="比赛对象"
-    clearable="true"
-  />
-  <van-field
-    value="{{ value5 }}"
-    placeholder="比赛简介"
-    border="{{ false }}"
-    bind:change="onChange5"
-    label="比赛简介"
-    clearable="true"
-  />
-  <van-field
-    value="{{ value6 }}"
-    placeholder="比赛类别"
-    border="{{ false }}"
-    bind:change="onChange6"
-    label="比赛类别"
-    clearable="true"
-  />
-  <van-field
-    value="{{ value7 }}"
-    placeholder="报名方式"
-    border="{{ false }}"
-    bind:change="onChange7"
-    label="报名方式"
-    clearable="true"
-  />
+  <van-field value="{{ value1 }}" placeholder="比赛名称" border="{{ false }}" bind:change="onChange1" label="比赛名称" clearable="true" />
+  <van-field value="{{ value2 }}" placeholder="举办组织" border="{{ false }}" bind:change="onChange2" label="举办组织" clearable="true" />
+
+
+  <van-cell title="截止时间"   border="{{ false }}" >
+  
+  <picker Slot="default" mode="date" value="{{date}}" start="2000-01-01" end="2050-12-31" bindchange="bindDateChange">
+    <view class="picker">
+      {{date}}
+    </view>
+  </picker>
+ 
+  </van-cell>
+
+  <van-field value="{{ value4 }}" placeholder="比赛对象" border="{{ false }}" bind:change="onChange4" label="比赛对象" clearable="true" />
+  <van-field value="{{ value5 }}" placeholder="比赛简介" border="{{ false }}" bind:change="onChange5" label="比赛简介" clearable="true" />
+  <van-field value="{{ value6 }}" placeholder="比赛类别" border="{{ false }}" bind:change="onChange6" label="比赛类别" clearable="true" />
+  <van-field value="{{ value7 }}" placeholder="报名方式" border="{{ false }}" bind:change="onChange7" label="报名方式" clearable="true" />
 </van-cell-group>
-<i-button bind:click="handleClick" type="info" >发布比赛</i-button>
+<i-button bind:click="handleClick" type="info">发布比赛</i-button>
 <i-toast id="toast" />
