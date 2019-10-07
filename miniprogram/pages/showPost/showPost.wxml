@@ -1,0 +1,13 @@
+<!--miniprogram/pages/showPost/showPost.wxml-->
+<view>
+  <text class="text">帖子详情</text>
+  <van-cell-group>
+    <van-cell title="帖子主题"value="内容"/>
+    <van-cell title="发布时间"value="内容" />
+    <van-cell title="发布者" value="内容" />
+  </van-cell-group>
+  <text class="text">内容</text>
+  <van-cell-group>
+    <van-cell value="内容" />
+  </van-cell-group>
+</view>

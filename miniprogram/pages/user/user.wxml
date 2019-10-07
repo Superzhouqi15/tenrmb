@@ -24,7 +24,7 @@
           </view>
         </view>
       </view>
-      <view class="vitem1">
+      <view class="vitem1" bindtap="lanuchMark">
         <view>
           <vicon name="star" color="white" size="40px"></vicon>
           <view>

@@ -1,8 +1,9 @@
-// miniprogram/pages/baidu/baidu.js
+// miniprogram/pages/post/post.js
+const app = getApp();
+var util = require('../../utils/util.js');
 const {
   $Toast
 } = require('../../iview/dist/base/index');
-const app = getApp()
 Page({
 
   /**
@@ -10,20 +11,14 @@ Page({
    */
   data: {
     value1: '',
-    value2: '',
-    value3: '',
-    value4: '',
-    value5: '',
-    value6: '',
-    value7: '',
+    value2: ''
   },
-
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
-    console.log(this.data)
+
   },
 
   /**
@@ -74,31 +69,26 @@ Page({
   onShareAppMessage: function() {
 
   },
+  handleClick: function(e) {
 
-  handleClick: function() {
-
-
-    app.globalData.allCompetitionData.push({
+    console.log(e.detail)
+    app.globalData.allPostData.push({
       title: this.data.value1,
-      organization: this.data.value2,
-      time: this.data.value3,
-      member: this.data.value4,
-      content: this.data.value5,
-      footer: this.data.value6,
-      method: this.data.value7
+      content: this.data.value2,
+      user: e.detail.userInfo.nickName,
+      time: util.formatTime(new Date())
 
     })
 
     $Toast({
-      content: '发布比赛成功',
+      content: '发布帖子成功',
       type: 'success'
     });
 
     wx.switchTab({
-      url: '../info/info',
+      url: '../forum/forum',
     })
-    
-     
+
   },
 
 
@@ -115,43 +105,5 @@ Page({
     this.setData({
       value2: e.detail
     })
-  },
-
-  onChange3: function(e) {
-
-    console.log(e.detail)
-    this.setData({
-      value3: e.detail
-    })
-  },
-  onChange4: function(e) {
-
-    console.log(e.detail)
-    this.setData({
-      value4: e.detail
-    })
-  },
-  onChange5: function(e) {
-
-    console.log(e.detail)
-    this.setData({
-      value5: e.detail
-    })
-  },
-
-  onChange6: function(e) {
-
-    console.log(e.detail)
-    this.setData({
-      value6: e.detail
-    })
-  },
-  onChange7: function(e) {
-
-    console.log(e.detail)
-    this.setData({
-      value7: e.detail
-    })
   }
-
 })

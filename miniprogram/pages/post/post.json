@@ -7,5 +7,5 @@
     "van-cell": "../../vant/dist/cell/index",
     "van-cell-group": "../../vant/dist/cell-group/index"
   },
-  "navigationBarTitleText": "赛事内容"
+  "navigationBarTitleText": "发布帖子"
 }

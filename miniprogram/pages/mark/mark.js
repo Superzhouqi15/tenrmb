@@ -1,11 +1,13 @@
-// miniprogram/pages/index/index.js
+// miniprogram/pages/mark/mark.js
+const app = getApp()
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-   
+    competition: app.globalData.competitionData
+
   },
 
   /**
@@ -26,6 +28,9 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
+    this.setData({
+      competition: app.globalData.competitionData
+    })
 
   },
 
@@ -62,33 +67,5 @@ Page({
    */
   onShareAppMessage: function () {
 
-  },
-
-
-
-  mine_func: function(){
-    console.log("我是图标");
-  },
-
-  //关于我们的弹窗
-  aboutUs: function(){
-    wx.navigateTo({
-      url: '../aboutUs/aboutUs',
-    })
-  },
-
-  launchGame:function(){
-    wx.navigateTo({
-      url: '../competition/competition',
-    })
-  },
-
-  lanuchMark: function(){
-    wx.navigateTo({
-      url: '../mark/mark',
-    })
   }
-
-
-
 })

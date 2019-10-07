@@ -1,4 +1,5 @@
 // miniprogram/pages/forum/forum.js
+const app = getApp()
 Page({
 
   /**
@@ -7,7 +8,7 @@ Page({
   data: {
     picList: ["../../icon/acm.png", "../../icon/math.png", "../../icon/timg.png"],
     windowHeight: wx.getSystemInfoSync().windowHeight,
-
+    allPost: app.globalData.allPostData
   },
 
   /**
@@ -28,7 +29,9 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+    this.setData({
+      allPost: app.globalData.allPostData
+    })
   },
 
   /**
@@ -64,5 +67,17 @@ Page({
    */
   onShareAppMessage: function () {
 
+  },
+
+  InToGame: function(){
+    wx.navigateTo({
+      url: '../showPost/showPost',
+    })
+  },
+
+  clickToPost: function(){
+    wx.navigateTo({
+      url: '../post/post',
+    })
   }
 })

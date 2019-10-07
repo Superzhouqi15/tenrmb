@@ -5,12 +5,15 @@
     "pages/competition/competition",
     "pages/aboutUs/aboutUs",
     "pages/forum/forum",
-    "pages/showCompetition/showCompetition"
+    "pages/showCompetition/showCompetition",
+    "pages/post/post",
+    "pages/showPost/showPost",
+    "pages/mark/mark"
   ],
   "window": {
     "backgroundColor": "#F6F6F6",
     "backgroundTextStyle": "light",
-    "navigationBarBackgroundColor": "#7474bf",
+    "navigationBarBackgroundColor": "#4990e2",
     "navigationBarTextStyle": "white"
   },
   "tabBar": {
