@@ -5,6 +5,7 @@ page{
 }
 
 .text{
+  padding-left: 5px;
   color: #d4d1d1;
   font-size: 12px
 }

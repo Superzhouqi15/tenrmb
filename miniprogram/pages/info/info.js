@@ -59,35 +59,14 @@ Page({
     })
   },
 
-  //swipe to switch
-  swiperTab: function (e) {
-    var that = this;
-    console.log(e);
-    that.setData({
-      currentTab: e.detail.current
-    });
-  },
-
-  //click to switch
-  clickTab: function (e) {
-    var that = this;
-    
-    if (this.data.currentTab === e.target.dataset.current) {
-      return false;
-    } else {
-      that.setData({
-        currentTab: e.target.dataset.current
-      })
-    }
-  },
 
 
 
   InToGame:function(e){
+    var id = e.currentTarget.dataset.id
   
-    console.log(e.target)
     wx.navigateTo({
-      url: '../showCompetition/showCompetition',
+      url: '../showCompetition/showCompetition?id=' + id  ,
     })
     
   }

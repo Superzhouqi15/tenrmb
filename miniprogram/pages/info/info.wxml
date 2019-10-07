@@ -8,7 +8,7 @@
         <view wx:if="{{emptyFlag}}">
           <text>当前没有比赛哟，快去参加吧</text>
         </view>
-        <i-card wx:for='{{competition}}' title='{{item.title}}' thumb="{{item.thumb}}" bindtap="InToGame" wx:key="*this" data-i   d='{{item.id}}'>
+        <i-card wx:for='{{competition}}' title='{{item.title}}' thumb="{{item.thumb}}"  wx:key="*this">
           <view slot="content">{{item.content}}</view>
           <view slot="footer">{{item.footer}}</view>
         </i-card>
@@ -19,11 +19,12 @@
     </van-tab>  
     <van-tab title="全部赛事">
       <scroll-view class='tab' scroll-y style='height:{{windowHeight-30}}px;'>
-       <i-card wx:for='{{allCompetition}}' title='{{item.title}}' thumb="{{item.thumb}}" bindtap="InToGame" wx:key="*this">
+       <i-card wx:for='{{allCompetition}}' title='{{item.title}}' thumb="{{item.thumb}}" wx:key="*this" data-id="{{index}}" bindtap="InToGame" >
           <view slot="content">{{item.time}}</view>
           <view slot="footer">{{item.footer}}</view>
         </i-card>
       </scroll-view>
+      
     </van-tab>
   </van-tabs>
 </view>

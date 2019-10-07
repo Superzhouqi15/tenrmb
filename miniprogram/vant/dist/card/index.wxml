@@ -2,7 +2,7 @@
 
 <view class="custom-class van-card">
   <view class="{{ utils.bem('card__header', { center: centered }) }}">
-    <view class="van-card__thumb" bind:tap="onClickThumb">
+    <view class="van-card__thumb" bind:tap="onClickThumb" >
       <image
         wx:if="{{ thumb }}"
         src="{{ thumb }}"
