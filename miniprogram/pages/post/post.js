@@ -72,7 +72,7 @@ Page({
   handleClick: function(e) {
 
     console.log(e.detail)
-    app.globalData.allPostData.push({
+    app.globalData.allPostData.unshift({
       title: this.data.value1,
       content: this.data.value2,
       user: e.detail.userInfo.nickName,
