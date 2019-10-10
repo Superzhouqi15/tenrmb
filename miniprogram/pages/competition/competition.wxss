@@ -1,4 +1,8 @@
 /* miniprogram/pages/baidu/baidu.wxss */
+page{
+ background-color: ghostwhite;
+}
+
 .picker{
   width: 100%;
   display: fixed;
@@ -7,9 +11,6 @@
   text-align: left;
 }
 
-.van-cell__title{
-  
-  flex: 1;
-  color: #333;
-  text-align: left;
+.submit{
+  margin-top:  30px;
 }

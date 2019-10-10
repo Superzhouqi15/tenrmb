@@ -1,23 +1,77 @@
-<!--miniprogram/pages/baidu/baidu.wxml-->
-<van-cell-group>
-  <van-field value="{{ value1 }}" placeholder="比赛名称" border="{{ false }}" bind:change="onChange1" label="比赛名称" clearable="true" />
-  <van-field value="{{ value2 }}" placeholder="举办组织" border="{{ false }}" bind:change="onChange2" label="举办组织" clearable="true" />
+<view class="page">
+
+  <view class="page__bd">
+    <wux-cell-group title="赛事详情">
+      <wux-cell hover-class="none">
+        <wux-input placeholder="请输入赛事名称" label="赛事名称" bind:change="onChange1">
+          <image style="width: 20px; height: 20px; margin-right: 5px" src="/icon/competition.png" />
+        </wux-input>
+      </wux-cell>
+      <wux-cell hover-class="none">
+        <wux-input placeholder="请输入举办单位" label="举办单位" bind:change="onChange2">
+          <image style="width: 20px; height: 20px; margin-right: 5px" src="/icon/organization.png" />
+        </wux-input>
+      </wux-cell>
+    </wux-cell-group>
+  </view>
+
+  <view class="page__bd">
+    <wux-cell-group title="赛事时间">
+      <wux-date-picker mode="datetime" value="{{ startTime }}" lang="zh_CN" data-index="1" data-mode="datetime" bind:confirm="onConfirm1" minDate="2000-01-01 00:00:00"  maxDate="2050-01-01 23:59:59">
+        <wux-cell thumb="/icon/time.png" title="开始时间" is-link extra="{{ displayValue1 }}">
+        </wux-cell>
+      </wux-date-picker>
+
+      <wux-date-picker mode="datetime" value="{{ endTime }}" lang="zh_CN" data-index="3" data-mode="datetime" bind:confirm="onConfirm2" minDate="2000-01-01 00:00:00" maxDate="2050-01-01 23:59:59">
+        <wux-cell thumb="/icon/time.png" title="截止时间" is-link extra="{{ displayValue3 }}">
+        </wux-cell>
+      </wux-date-picker>
+
+    </wux-cell-group>
+  </view>
+
+  <view class="page__bd">
+    <wux-cell-group title="比赛对象">
+      <wux-cell hover-class="none">
+        <wux-input placeholder="请输入比赛对象" label="比赛对象" bind:change="onChange3">
+          <image style="width: 20px; height: 20px; margin-right: 5px" src="/icon/time.png" />
+        </wux-input>
+      </wux-cell>
+    </wux-cell-group>
 
 
-  <van-cell title="截止时间"   border="{{ false }}" >
-  
-  <picker Slot="default" mode="date" value="{{date}}" start="2000-01-01" end="2050-12-31" bindchange="bindDateChange">
-    <view class="picker">
-      {{date}}
-    </view>
-  </picker>
- 
-  </van-cell>
+    <wux-cell-group title="报名方式">
+      <wux-cell hover-class="none">
+        <wux-field name="textarea">
+          <wux-textarea rows="3" placeholder="请输入报名方式" maxlength="1000"  bindlinechange="onChange4"/>
+        </wux-field>
+      </wux-cell>
+    </wux-cell-group>
 
-  <van-field value="{{ value4 }}" placeholder="比赛对象" border="{{ false }}" bind:change="onChange4" label="比赛对象" clearable="true" />
-  <van-field value="{{ value5 }}" placeholder="比赛简介" border="{{ false }}" bind:change="onChange5" label="比赛简介" clearable="true" />
-  <van-field value="{{ value6 }}" placeholder="比赛类别" border="{{ false }}" bind:change="onChange6" label="比赛类别" clearable="true" />
-  <van-field value="{{ value7 }}" placeholder="报名方式" border="{{ false }}" bind:change="onChange7" label="报名方式" clearable="true" />
-</van-cell-group>
-<i-button bind:click="handleClick" type="info">发布比赛</i-button>
-<i-toast id="toast" />
+  <wux-cell-group title="比赛类别">
+        <wux-popup-select value="{{ label}}" options="{{ options3 }}" multiple max="3" data-index="3" bind:confirm="onConfirm" bind:valueChange="onValueChange">
+          <wux-cell thumb="/icon/label.png"  title="比赛类别" is-link extra="{{ displayValue2 }}"></wux-cell>
+        </wux-popup-select>
+      </wux-cell-group>
+      
+
+
+
+   <wux-cell-group title="比赛简介">
+      <wux-cell hover-class="none">
+        <wux-field name="textarea">
+          <wux-textarea rows="3" placeholder="请输入比赛简介" maxlength="1000" bindlinechange="onChange5"/>
+        </wux-field>
+      </wux-cell>
+    </wux-cell-group>
+
+     <wux-cell-group title="相关配图(最多4张)">
+        <wux-upload listType="picture-card" defaultFileList="{{ fileList }}" max="4" url="https://www.skyvow.cn/api/common/file" bind:change="onChange6" bind:complete="onComplete" bind:preview="onPreview">
+            <image src="/icon/add.png"  ></image>
+        </wux-upload>
+  </wux-cell-group>
+
+  </view>
+  <wux-toast id="wux-toast" />
+  <wux-button block type="positive" class="submit" bind:click="showToast">发布比赛</wux-button>
+</view>

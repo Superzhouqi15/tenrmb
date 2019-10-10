@@ -1,4 +1,5 @@
 // pages/showCompetition/showCompetition.js
+
 var app = getApp();
 Page({
 
