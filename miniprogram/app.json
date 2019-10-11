@@ -9,7 +9,8 @@
     "pages/post/post",
     "pages/showPost/showPost",
     "pages/mark/mark",
-    "pages/showRecCompetition/showRecCompetition"
+    "pages/showRecCompetition/showRecCompetition",
+    "pages/feedback/feedback"
   ],
   "window": {
     "backgroundColor": "#F6F6F6",

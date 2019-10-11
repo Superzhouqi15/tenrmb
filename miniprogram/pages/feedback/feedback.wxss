@@ -1,0 +1,10 @@
+/* pages/feedback/feedback.wxss */
+
+page{
+ background-color: ghostwhite;
+}
+
+.btn {
+  margin-top: 30px ;
+}
+

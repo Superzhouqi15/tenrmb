@@ -77,6 +77,13 @@ Page({
     })
   },
 
+  //反馈 弹窗
+  feedback:function(){
+    wx.navigateTo({
+      url: '../feedback/feedback',
+    })
+  },
+
   launchGame:function(){
     wx.navigateTo({
       url: '../competition/competition',

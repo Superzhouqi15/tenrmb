@@ -18,5 +18,6 @@
     clearable="true"
   />
 </van-cell-group>
+
 <button open-type="getUserInfo" bindgetuserinfo="handleClick" >发布帖子</button>
 <i-toast id="toast" />

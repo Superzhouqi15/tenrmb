@@ -1,0 +1,31 @@
+<!--pages/feedback/feedback.wxml-->
+
+<wux-cell-group title="反馈主题">
+  <wux-cell hover-class=" none ">
+    <wux-field name="textarea ">
+      <wux-textarea style="height:15px" placeholder="请输入反馈主题 " maxlength="50 " bindlinechange="onChange1" />
+    </wux-field>
+  </wux-cell>
+</wux-cell-group>
+
+<wux-cell-group title="反馈内容 ">
+  <wux-cell hover-class="none ">
+    <wux-field name="textarea ">
+      <wux-textarea rows="5" placeholder="请输入反馈内容 " maxlength="-1 " bindlinechange="onChange2" />
+    </wux-field>
+  </wux-cell>
+</wux-cell-group>
+
+<view class="page__bd ">
+  <wux-cell-group title="联系方式 ">
+    <wux-cell hover-class="none ">
+      <wux-input placeholder="请输入您的联系邮箱 " label="邮箱 " bind:change="onChange3">
+        <image style="width: 20px; height: 20px; margin-right: 5px " src="/icon/mail.png " />
+      </wux-input>
+    </wux-cell>
+
+  </wux-cell-group>
+</view>
+
+<wux-toast id="toast" />
+<wux-button block type="positive" class="btn" bind:click="upload">上传反馈</wux-button>
