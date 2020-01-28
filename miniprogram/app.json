@@ -1,0 +1,45 @@
+{
+  "pages": [
+    "pages/info/info",
+    "pages/user/user",
+    "pages/competition/competition",
+    "pages/aboutUs/aboutUs",
+    "pages/forum/forum",
+    "pages/showCompetition/showCompetition",
+    "pages/post/post",
+    "pages/showPost/showPost",
+    "pages/mark/mark",
+    "pages/showRecCompetition/showRecCompetition"
+  ],
+  "window": {
+    "backgroundColor": "#F6F6F6",
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#4990e2",
+    "navigationBarTextStyle": "white"
+  },
+  "tabBar": {
+    "color": "#8a8a8a",
+    "selectedColor": "#8a8a8a",
+    "list": [
+      {
+        "pagePath": "pages/info/info",
+        "text": "首页",
+        "iconPath": "icon/info-g.png",
+        "selectedIconPath": "icon/info-b.png"
+      },
+      {
+        "pagePath": "pages/forum/forum",
+        "text": "论坛",
+        "iconPath": "icon/forum-gray.png",
+        "selectedIconPath": "icon/forum-black.png"
+      },
+      {
+        "pagePath": "pages/user/user",
+        "text": "我的",
+        "iconPath": "icon/tubiaolunkuo-g.png",
+        "selectedIconPath": "icon/tubiaolunkuo-b.png"
+      }
+    ]
+  },
+  "sitemapLocation": "sitemap.json"
+}

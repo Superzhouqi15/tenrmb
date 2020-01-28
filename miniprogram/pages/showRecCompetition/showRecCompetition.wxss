@@ -1,0 +1,11 @@
+/* pages/showRecCompetition/showRecCompetition.wxss */
+page{
+  background: #f9f9f9
+
+}
+
+.text{
+  padding-left: 5px;
+  color: #d4d1d1;
+  font-size: 12px
+}
