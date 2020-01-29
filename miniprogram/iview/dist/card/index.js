@@ -10,9 +10,9 @@ Component({
   data: {
     collectLogoUrl: "../../../icon/shoucang.png"
   },
-  
+
   methods:{
-    clickCollect:function() {
+    clickCollect: function() {
       if (isCollect) {
         this.setData({
           collectLogoUrl: "../../../icon/shoucang.png"
