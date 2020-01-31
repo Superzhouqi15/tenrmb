@@ -1,5 +1,6 @@
 {
   "pages": [
+    "pages/login/login",
     "pages/info/info",
     "pages/user/user",
     "pages/competition/competition",
@@ -10,6 +11,7 @@
     "pages/showPost/showPost",
     "pages/mark/mark",
     "pages/showRecCompetition/showRecCompetition"
+    
   ],
   "window": {
     "backgroundColor": "#F6F6F6",
