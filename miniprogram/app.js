@@ -23,8 +23,8 @@ App({
               "code": res.code
             },
             success: res => {
-              console.log(res.data)
-              that.globalData.openId = res.data
+              console.log(res.data);
+              that.globalData.openId = res.data;
               wx.request({
                 url: that.globalData.url + '/judgeUser',
                 method: 'POST',
@@ -37,15 +37,23 @@ App({
                 success: res => {
                   console.log(res.data == "")
                   if(res.data == ""){
-                    that.globalData.newUser = true
+                    that.globalData.newUser = true;
                   }
                 }
-              })
+              });
+              wx.request({
+                url: that.globalData.url + '/findAll',
+                method: 'GET',
+                success: res => {
+                  console.log(res.data);
+                  that.globalData.allCompetitionData = res.data;
+                }
+              });
             },
             fail: res => {
-              console.log(res)
+              console.log(res);
             }
-          })
+          });
         } else {
           console.log('获取用户登录态失败！' + res.errMsg)
         }
