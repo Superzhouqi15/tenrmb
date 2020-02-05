@@ -1,0 +1,12 @@
+<!-- <image src="../../icon/logo.png"></image> -->
+<view class="vitem">
+    <view class="avatar">
+        <open-data type="userAvatarUrl"></open-data>
+    </view>
+    <view class="text">
+        <text>欢迎</text>
+    </view>
+    <view class="vitem">
+        <button open-type="getUserInfo" bindgetuserinfo="click" type="primary"> 进入 </button>
+    </view>
+</view>

@@ -1,0 +1,46 @@
+<!--miniprogram/pages/profile/profile.wxml-->
+
+<view class="vantabs">
+
+  <van-tabs active="{{ active }}" swipeable color='#4990e2' type="card" class='tab'>
+    <van-tab title="推荐赛事" class='tab'>
+      <scroll-view class='tab' scroll-y style='height:{{windowHeight-30}}px;'>
+        <view wx:if="{{emptyFlag}}">
+          <text>当前没有比赛哟，快去参加吧</text>
+        </view>
+        <i-card wx:for='{{competition}}' title='{{item.title}}' thumb="{{item.thumb}}" wx:key="*this" data-id="{{index}}" bindtap="InToGame1">
+          <view slot="content">{{item.endTime}}</view>
+          <view slot="footer">{{item.label}}</view>
+        </i-card>
+      </scroll-view>
+
+
+
+    </van-tab>
+    <van-tab title="全部赛事">
+      <view class="weui-search-bar">
+        <view class="weui-search-bar__form">
+          <view class="weui-search-bar__box">
+            <icon class="weui-icon-search_in-box" type="search" size="14"></icon>
+            <input type="text" class="weui-search-bar__input" placeholder="搜索" value="{{inputVal}}" focus="{{inputShowed}}" bindinput="inputTyping" />
+            <view class="weui-icon-clear" wx:if="{{inputVal.length > 0}}" bindtap="clearInput">
+              <icon type="clear" size="14"></icon>
+            </view>
+          </view>
+          <label class="weui-search-bar__label" hidden="{{inputShowed}}" bindtap="showInput">
+            <icon class="weui-icon-search" type="search" size="14"></icon>
+            <view class="weui-search-bar__text">搜索</view>
+          </label>
+        </view>
+        <view class="weui-search-bar__cancel-btn" hidden="{{!inputShowed}}" bindtap="hideInput">取消</view>
+      </view>
+      <scroll-view class='tab' scroll-y style='height:{{windowHeight-30}}px;'>
+        <i-card wx:for='{{allCompetition}}' title='{{item.title}}' thumb="{{item.thumb}}" wx:key="*this" data-id="{{index}}" bindtap="InToGame2" wx:if='{{!item.isHidden}}'>
+          <view slot="content">{{item.endTime}}</view>
+          <view slot="footer">{{item.label}}</view>
+        </i-card>
+      </scroll-view>
+
+    </van-tab>
+  </van-tabs>
+</view>
