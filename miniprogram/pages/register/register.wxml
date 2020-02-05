@@ -1,0 +1,54 @@
+<view class = "the-label">
+  <form>
+
+  <view class = "btn-area">
+    <button class="primary" hover-class="btn-primary-hover" bindtap='onSubmit'>提交</button>
+  </view>
+  
+    <view class = "th">
+      <view class = "title">请选择您感兴趣的标签</view>
+      <label class="tt">（最多选择3个） </label> 
+    </view>
+    
+  <view class='list'>
+    <view class = "th">
+      <view class = "ti">计算机学科</view>
+    </view>
+    <block wx:for="{{items}}" wx:for-item="v" wx:key="k" wx:for-index="index">
+    <block wx:if="{{index<5}}">
+      <view class="li {{v.checked?'cur':''}}" data-index="{{index}}" data-value="{{v.value}}" bindtap="checkLabs">
+        <label class='ti'>{{v.value}}</label>
+      </view>
+    </block>
+    </block>
+  </view>
+  
+    <view class='list'>
+    <view class = "th">
+      <view class = "ti">文娱活动</view>
+    </view>
+    <block wx:for="{{items}}" wx:for-item="v" wx:key="k" wx:for-index="index">
+    <block wx:if="{{index>4 && index<9}}">
+      <view class="li {{v.checked?'cur':''}}" data-index="{{index}}" data-value="{{v.value}}" bindtap="checkLabs">
+        <label class='ti'>{{v.value}}</label>
+      </view>
+    </block>
+    </block>
+  </view>
+
+  <view class='list'>
+    <view class = "th">
+      <view class = "ti">其他学科</view>
+    </view>
+    <block wx:for="{{items}}" wx:for-item="v" wx:key="k" wx:for-index="index">
+    <block wx:if="{{index>8 && index<13}}">
+      <view class="li {{v.checked?'cur':''}}" data-index="{{index}}" data-value="{{v.value}}" bindtap="checkLabs">
+        <label class='ti'>{{v.value}}</label>
+      </view>
+    </block>
+    </block>
+  </view>
+
+  </form>
+</view>
+

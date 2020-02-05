@@ -1,0 +1,30 @@
+miniprogram/pages/profile/profile.wxml
+
+<view class="vantabs">
+
+  <van-tabs active="{{ active }}" swipeable color='#4990e2' type="card" class='tab'>
+    <van-tab title="推荐赛事" class='tab'>
+      <scroll-view class='tab' scroll-y style='height:{{windowHeight-30}}px;'>
+        <view wx:if="{{emptyFlag}}">
+          <text>当前没有比赛哟，快去参加吧</text>
+        </view>
+        <i-card wx:for='{{competition}}' title='{{item.title}}' thumb="{{item.thumb}}" wx:key="*this" data-id="{{index}}" bindtap="InToGame1">
+          <view slot="content">{{item.endTime}}</view>
+          <view slot="footer">{{item.label}}</view>
+        </i-card>
+      </scroll-view>
+
+
+
+    </van-tab>
+    <van-tab title="全部赛事">
+      <scroll-view class='tab' scroll-y style='height:{{windowHeight-30}}px;'>
+        <i-card wx:for='{{allCompetition}}' title='{{item.title}}' thumb="{{item.thumb}}" wx:key="*this" data-id="{{index}}" bindtap="InToGame2">
+          <view slot="content">{{item.endTime}}</view>
+          <view slot="footer">{{item.label}}</view>
+        </i-card>
+      </scroll-view>
+
+    </van-tab>
+  </van-tabs>
+</view>
