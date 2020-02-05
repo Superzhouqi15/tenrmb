@@ -5,11 +5,7 @@
     "pages/user/user",
     "pages/competition/competition",
     "pages/aboutUs/aboutUs",
-    "pages/forum/forum",
     "pages/showCompetition/showCompetition",
-    "pages/post/post",
-    "pages/showPost/showPost",
-    "pages/mark/mark",
     "pages/showRecCompetition/showRecCompetition"
     
   ],
@@ -28,12 +24,6 @@
         "text": "首页",
         "iconPath": "icon/info-g.png",
         "selectedIconPath": "icon/info-b.png"
-      },
-      {
-        "pagePath": "pages/forum/forum",
-        "text": "论坛",
-        "iconPath": "icon/forum-gray.png",
-        "selectedIconPath": "icon/forum-black.png"
       },
       {
         "pagePath": "pages/user/user",
