@@ -1,8 +1,11 @@
 {
   "usingComponents": {
+    "wux-search-bar": "../../dist/search-bar/index",
     "wux-tabs": "../../dist/tabs/index",
     "wux-tab": "../../dist/tab/index",
-    "wux-badge": "../../dist/badge/index"
+    "wux-card": "../../dist/card/index",
+    "wux-wing-blank": "../../dist/wing-blank/index",
+    "wux-icon": "../../dist/icon/index"
   },
   "navigationBarBackgroundColor": "#4990e2",
   "navigationBarTitleText": "比赛信息",

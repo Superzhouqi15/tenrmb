@@ -18,7 +18,7 @@
   <view class="box">
       <view class="vitem1"  bindtap="launchGame">
         <view>
-          <vicon name="star" color="white" size="40px"></vicon>
+          <!-- <vicon name="star" color="white" size="40px"></vicon> -->
           <view>
             <text style="color:white;font-size: 20px;">发布比赛</text>
           </view>
@@ -26,7 +26,7 @@
       </view>
       <view class="vitem1" bindtap="lanuchMark">
         <view>
-          <vicon name="star" color="white" size="40px"></vicon>
+          <!-- <vicon name="star" color="white" size="40px"></vicon> -->
           <view>
             <text style="color:white;font-size: 20px;">收藏</text>
           </view>
@@ -45,7 +45,7 @@
       </view>
       <view class="vitem1" bindtap="aboutUs">
         <view>
-          <vicon name="info" color="white" size="40px"></vicon>
+          <!-- <vicon name="info" color="white" size="40px"></vicon> -->
           <view>
             <text style="color:white;font-size: 20px;">关于我们</text>
           </view>
