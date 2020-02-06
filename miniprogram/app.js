@@ -1,8 +1,10 @@
 App({
+  globalData: {
+    url: "http://www.tuppy.pub:8099",
+    openId: "",
+    newUser: false
+  },
 
-  /**
-   * 当小程序初始化完成时，会触发 onLaunch（全局只触发一次）
-   */
   onLaunch: function () {
     if (!wx.cloud) {
       console.error('请使用 2.2.3 或以上的基础库以使用云能力')
@@ -11,154 +13,195 @@ App({
         traceUser: true,
       })
     }
-    var that = this
-    wx.login({
-      success: function (res) {
-        if (res.code) {
-          console.log("res.code:" + res.code);
-          wx.request({
-            url: that.globalData.url + '/getOpenId',
-            method: 'POST',
-            data: {
-              "code": res.code
-            },
-            success: res => {
-              console.log(res.data);
-              that.globalData.openId = res.data;
-              wx.request({
-                url: that.globalData.url + '/judgeUser',
-                method: 'POST',
-                header: {
-                  'Content-Type': 'application/json;charset=UTF-8'
-                },
-                data: {
-                  "openId": res.data
-                },
-                success: res => {
-                  console.log(res.data == "")
-                  if (res.data == "") {
-                    that.globalData.newUser = true;
-                  }
-                }
-              });
-              wx.request({
-                url: that.globalData.url + '/findAll',
-                method: 'GET',
-                success: res => {
-                  console.log(res.data);
-                  that.globalData.allCompetitionData = res.data;
-                }
-              });
-            },
-            fail: res => {
-              console.log(res);
-            }
-          });
-        } else {
-          console.log('获取用户登录态失败！' + res.errMsg)
-        }
-      }
+    
+    this.init();
+  },
 
+  init: function () {
+    var that = this
+    var onGetUserInfo = this.onGetUserInfo()
+    var onGetCompetition = this.onGetCompetition()
+    Promise.all([onGetUserInfo, onGetCompetition]).then(res => {
+      var openId = that.globalData.openId
+      that.getFavorite().then(res => {
+        that.pretreatData()
+        // page callback
+        that.globalData.initDone = true
+        if (that.initCallback) {
+          console.log("init: Callback")
+          that.initCallback(true)
+        }
+      })
     })
   },
 
-  /**
-   * 当小程序启动，或从后台进入前台显示，会触发 onShow
-   */
-  onShow: function (options) {
-
+  // UserInfo start
+  onGetUserInfo: function () {
+    var that = this
+    return new Promise(function (resolve, reject) {
+      that.getOpenId().then(res => {
+        var openId = res
+        that.judgeUser(openId).then(res => {
+          resolve("onGetUserInfo : success")
+        })
+      }).catch(err => {
+        console.log("onGetUserInfo : fail | ", err)
+      })
+    })
   },
-
-  /**
-   * 当小程序从前台进入后台，会触发 onHide
-   */
-  onHide: function () {
-
+  getOpenId: function () {
+    var that = this
+    return new Promise(function (resolve, reject) {
+      wx.login({
+        success: function (res) {
+          if (res.code) {
+            wx.request({
+              url: that.globalData.url + '/getOpenId',
+              method: 'POST',
+              data: {
+                "code": res.code
+              },
+              success: res => {
+                that.globalData.openId = res.data
+                resolve(res.data)
+              },
+              fail: res => {
+                console.log(res)
+                reject("getOpenId : fail")
+              }
+            })
+          }
+        }
+      })
+    })
   },
-
-  /**
-   * 当小程序发生脚本错误，或者 api 调用失败时，会触发 onError 并带上错误信息
-   */
-  onError: function (msg) {
-
+  judgeUser: function (openId) {
+    var that = this
+    return new Promise(function (resolve, reject) {
+      wx.request({
+        url: that.globalData.url + '/judgeUser',
+        method: 'POST',
+        header: {
+          'Content-Type': 'application/json;charset=UTF-8'
+        },
+        data: {
+          "openId": openId
+        },
+        success: res => {
+          if (res.data == "") {
+            that.globalData.newUser = true;
+          }
+          resolve(that.globalData.newUser)
+        },
+        fail: res => {
+          reject("judgeUser : fail")
+        }
+      });
+    })
   },
-  globalData: {
-    competitionData: [{
-      "title": "金点子",
-      "organization": "计算机学院",
-      "thumb": "/icon/timg.png",
-      "startTime": "2019-12-15 12:00",
-      "endTime": "2019-12-30 20:00",
-      "label": "计算机",
-      "member": "全体本科生",
-      "introduction": "学院的创意大赛",
-      "method": "填写报名表发送给指定邮箱"
-    },
-    {
-      "title": "全国数学建模大赛",
-      "organization": "中国数学发展协会",
-      "thumb": "/icon/math.png",
-      "startTime": "2019-12-15 12:00",
-      "endTime": "2019-12-30 12:00",
-      "label": "数学",
-      "member": "全国本科生",
-      "introduction": "全国的建模大赛",
-      "method": "填写报名表发送给指定邮箱"
-    },
-    {
-      "title": "ACM程序设计大赛",
-      "organization": "中国计算机协会",
-      "thumb": "/icon/acm.png",
-      "startTime": "2019-12-9 08:00",
-      "endTime": "2019-12-15 20:00",
-      "label": "计算机",
-      "member": "全体本科生",
-      "introduction": "学院的算法设计大赛",
-      "method": "填写报名表发送给指定邮箱"
+  // UserInfo end
+
+  // Competition start
+  findAll: function () {
+    return this.onGetCompetition()
+  },
+  onGetCompetition: function () {
+    var that = this
+    return new Promise(function (resolve, reject) {
+      wx.request({
+        url: that.globalData.url + '/findAll',
+        method: 'GET',
+        data: {},
+        success: res => {
+          that.globalData.allCompetitionData = res.data
+          resolve(res.data)
+        },
+        fail: res => {
+          reject("onGetCompetition : fail")
+        }
+      })
+    })
+  },
+  pretreatData: function () { // fav->visable
+    var that = this
+    var data = that.globalData.allCompetitionData
+    var fav = that.globalData.myFavorite
+    var isCollect = that.globalData.isCollect = {}
+    for (let i = 0; i < data.length; ++i) {
+      var oId = that.getObjectId(data[i].id)
+      data[i].objectId = oId
     }
-
-    ],
-
-    allCompetitionData: [{
-      "title": "金点子",
-      "organization": "计算机学院",
-      "thumb": "/icon/timg.png",
-      "startTime": "2019-12-15 12:00",
-      "endTime": "2019-12-30 20:00",
-      "label": "计算机",
-      "member": "全体本科生",
-      "introduction": "学院的创意大赛",
-      "method": "填写报名表发送给指定邮箱",
-      "publisher": "sam"
-    },
-    {
-      "title": "全国数学建模大赛",
-      "organization": "中国数学发展协会",
-      "thumb": "/icon/math.png",
-      "startTime": "2019-12-15 12:00",
-      "endTime": "2019-12-30 12:00",
-      "label": "数学",
-      "member": "全国本科生",
-      "introduction": "全国的建模大赛",
-      "method": "填写报名表发送给指定邮箱",
-      "publisher": "sam"
-    },
-    {
-      "title": "ACM程序设计大赛",
-      "organization": "中国计算机协会",
-      "thumb": "/icon/acm.png",
-      "startTime": "2019-12-9 08:00",
-      "endTime": "2019-12-15 20:00",
-      "label": "计算机",
-      "member": "全体本科生",
-      "introduction": "学院的算法设计大赛",
-      "method": "填写报名表发送给指定邮箱",
-      "publisher": "sam"
+    for (let i = 0; i < fav.length; ++i) {
+      var oId = that.getObjectId(fav[i].id)
+      isCollect[oId] = true
     }
-    ],
-    url: "http://www.tuppy.pub:8099",
-    openId: "",
-    newUser: false
-  }
+    // console.log(isCollect)
+  },
+  // Competition end
 
+  // Favorite start
+  getFavorite: function () {
+    var that = this
+    return new Promise(function (resolve, reject) {
+      wx.request({
+        url: that.globalData.url + '/getFavorite',
+        method: 'POST',
+        data: {
+          'openId': that.globalData.openId,
+        },
+        success: res => {
+          that.globalData.myFavorite = res.data
+          resolve(res.data)
+        },
+        fail: res => {
+          reject("getFavorite : fail")
+        }
+      })
+    })
+  },
+  addFavorite: function (objectId) {
+    var that = this
+    var openId = this.globalData.openId
+    return new Promise(function (resolve, reject) {
+      wx.request({
+        url: that.globalData.url + '/addFavorite',
+        method: 'POST',
+        data: {
+          'openId': openId,
+          'objectId': objectId,
+        },
+        success: res => {
+          console.log(res)
+          resolve("addFavorite : done")
+        }
+      })
+    })
+  },
+  delFavorite: function (objectId) {
+    var that = this
+    var openId = this.globalData.openId
+    return new Promise(function (resolve, reject) {
+      wx.request({
+        url: that.globalData.url + '/delFavorite',
+        method: 'POST',
+        data: {
+          'openId': openId,
+          'objectId': objectId,
+        },
+        success: res => {
+          console.log(res)
+          resolve("delFavorite : done")
+        }
+      })
+    })
+  },
+  // Favorite end
+
+  getObjectId: function (id) {
+    var oId = id.timeSecond.toString(16) +
+      id.machineIdentifier.toString(16) +
+      id.processIdentifier.toString(16) +
+      id.counter.toString(16);
+    return oId
+  },
 })
