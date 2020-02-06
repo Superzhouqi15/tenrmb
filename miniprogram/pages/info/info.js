@@ -65,13 +65,13 @@ Page({
 
 
 
-  InToGame1: function (e) {
+  InToGame1:function(e){
     var id = e.currentTarget.dataset.id
-
+ 
     wx.navigateTo({
       url: '../showRecCompetition/showRecCompetition?id=' + id,
     })
-
+    
   },
 
   InToGame2: function (e) {

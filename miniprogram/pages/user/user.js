@@ -87,11 +87,14 @@ Page({
     wx.navigateTo({
       url: '../mark/mark',
     })
+<<<<<<< HEAD
   },
   feedback: function () {
     wx.navigateTo({
       url: '../feedback/feedback',
     })
+=======
+>>>>>>> 9010518e1eff8136c98da8dfff2206f1e1adb0bd
   }
 
 
