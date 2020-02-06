@@ -50,6 +50,6 @@ Page({
       wx.navigateTo({
         url: '../signUp/signUp',
       })
-    }
+    } 
   }
 })

@@ -1,13 +1,17 @@
 {
   "pages": [
-    "pages/login/login",
     "pages/info/info",
+    "pages/login/login",
     "pages/user/user",
     "pages/competition/competition",
     "pages/aboutUs/aboutUs",
+    "pages/forum/forum",
     "pages/showCompetition/showCompetition",
-    "pages/showRecCompetition/showRecCompetition"
-    
+    "pages/post/post",
+    "pages/showPost/showPost",
+    "pages/mark/mark",
+    "pages/showRecCompetition/showRecCompetition",
+    "pages/feedback/feedback"
   ],
   "window": {
     "backgroundColor": "#F6F6F6",

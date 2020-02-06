@@ -87,6 +87,11 @@ Page({
     wx.navigateTo({
       url: '../mark/mark',
     })
+  },
+  feedback: function () {
+    wx.navigateTo({
+      url: '../feedback/feedback',
+    })
   }
 
 

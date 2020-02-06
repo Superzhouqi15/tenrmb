@@ -23,4 +23,16 @@ page{
   align-content: top;
 }
 
+/* search bar */
+.searchbar-result{
+    margin-top: 0;
+    font-size: 14px;
+}
+.searchbar-result:before{
+    display: none;
+}
+.weui-cell{
+    padding: 12px 15px 12px 35px;
+}
+
 

@@ -1,5 +1,6 @@
 // miniprogram/pages/baidu/baidu.js
 
+var that = this 
 import { $wuxToast } from '../../dist/index'
 
 var util = require('../../utils/util.js');
@@ -136,6 +137,45 @@ Page({
 
 
   showToast() {
+   
+    if (this.data.title == '') {
+      wx.showToast({
+        title: '赛事名称不能为空',
+        icon: "none"
+      })
+      return;
+    }
+    else if (this.data.organization == '') {
+      wx.showToast({
+        title: '举办单位不能为空',
+        icon: "none"
+      })
+      return;
+    }
+    else if (this.data.member == '') {
+      wx.showToast({
+        title: '参赛对象不能为空',
+        icon: "none"
+      })
+      return;
+    }
+
+
+    wx.request({
+      url: app.globalData.url + '/addCompetition',
+      method: 'POST',
+      data: {
+        'competitionName':this.data.title,
+        'introduction':this.data.introduction,
+        'member':this.data.member,
+        'method':this.data.method,
+        'organization': this.data.organization,
+        'type':this.data.label,
+      },
+      success: res => {
+        console.log(res.data)
+      }
+    })
    
     app.globalData.allCompetitionData.push({
       title: this.data.title,
