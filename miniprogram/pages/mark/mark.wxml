@@ -1,7 +1,0 @@
-<!--miniprogram/pages/mark/mark.wxml-->
-<scroll-view class='tab' scroll-y style='height:{{windowHeight-30}}px;'>
-       <i-card wx:for='{{competition}}' title='{{item.title}}' thumb="{{item.thumb}}" bindtap="InToGame" wx:key="*this">
-          <view slot="content">{{item.endTime}}</view>
-          <view slot="footer">{{item.label}}</view>
-        </i-card>
-      </scroll-view>

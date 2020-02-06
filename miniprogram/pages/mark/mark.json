@@ -1,6 +1,0 @@
-{
-  "usingComponents": {
-    "i-card": "../../iview/dist/card/index"
-  },
-  "navigationBarTitleText": "我的收藏"
-}

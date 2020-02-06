@@ -10,7 +10,7 @@ Page({
     emptyFlag: true,
     userInfo: {},
     hasUserInfo: false,
-    currentTab: 0,
+    current: 'tab1',
     active: 0,
     windowHeight: wx.getSystemInfoSync().windowHeight,
     competition: app.globalData.competitionData,
@@ -20,11 +20,11 @@ Page({
     inputVal: "",
   },
 
-  onChange(event) {
-    wx.showToast({
-      title: `切换到标签 ${event.detail.index + 1}`,
-      icon: 'none'
-    });
+  onChange(e) {
+    console.log('onChange', e)
+    this.setData({
+      current: e.detail.key,
+    })
   },
 
   /**

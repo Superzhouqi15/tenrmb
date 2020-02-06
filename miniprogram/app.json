@@ -1,15 +1,11 @@
 {
   "pages": [
-    "pages/info/info",
     "pages/login/login",
+    "pages/info/info",
     "pages/user/user",
     "pages/competition/competition",
     "pages/aboutUs/aboutUs",
-    "pages/forum/forum",
     "pages/showCompetition/showCompetition",
-    "pages/post/post",
-    "pages/showPost/showPost",
-    "pages/mark/mark",
     "pages/showRecCompetition/showRecCompetition",
     "pages/feedback/feedback",
     "pages/register/register"

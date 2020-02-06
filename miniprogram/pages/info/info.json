@@ -1,9 +1,8 @@
 {
   "usingComponents": {
-  
-    "van-tabs" : "../../vant/dist/tabs/index",
-    "van-tab" : "../../vant/dist/tab/index",
-    "i-card": "../../iview/dist/card/index"
+    "wux-tabs": "../../dist/tabs/index",
+    "wux-tab": "../../dist/tab/index",
+    "wux-badge": "../../dist/badge/index"
   },
   "navigationBarBackgroundColor": "#4990e2",
   "navigationBarTitleText": "比赛信息",
