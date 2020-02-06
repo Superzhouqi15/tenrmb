@@ -1,95 +1,27 @@
-/* miniprogram/pages/index/index.wxss */
 
-page { 
-  height: 100%; 
-  width: 100%; 
-  background-color: ghostwhite; 
-} 
- 
-.top-item text{ 
-line-height: 20rpx; 
-font-size: 28rpx; 
-color: #4c4c4c; 
-font-weight: 500; 
-} 
- 
-.userinfo {   
-  position: relative;   
-  width: 750rpx;   
-  height: 320rpx;   
-  color: black;   
-  display: flex;   
-  flex-direction: column;   
-  align-items: center;   
-}   
-   
-.userinfo-avatar {   
-  overflow:hidden;   
-  display: block;   
-  width: 160rpx;   
-  height: 160rpx;   
-  margin: 20rpx;   
-  margin-top: 50rpx;   
-  border-radius: 50%;   
-  border: 2px solid #fff;   
+.userinfo {  
+  position: relative;  
+  width: 750rpx;  
+  height: 300rpx;  
+  background: linear-gradient(#4990e2,#87c1f1);
+  display: flex;  
+  flex-direction: column;  
+  align-items: center;  
+}  
+  
+.userinfo-avatar {  
+  overflow:hidden;  
+  display: block;  
+  width: 160rpx;  
+  height: 160rpx;  
+  margin: 20rpx;  
+  margin-top: 50rpx;  
+  border-radius: 50%;  
+  border: 2px solid #fff;  
   box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.2);   
 }  
-
-.container {
-  height: 100%;
-  width: 100%;
-  background: #fff;
+  
+.userinfo{  
+  font-size: 14px;  
 }
-
-.box {
-  display: flex;
-  justify-content: space-around;
-  padding: 20rpx 0;
-}
-
-
-.vitem {
-  text-align: center;
-  display: flex;  
-  flex-direction: column;  
-  align-items: center; 
-
-}
-
-.vitem1 {
-  text-align: center;
-  position: relative;  
-  width: 40%;
-  height: 15%;
-  display: flex;  
-  flex-direction: column;  
-
-  border-radius: 15px;
-  background: linear-gradient(45deg,#1FA2FF,#12D8FA);
-  box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.2);
-}
-
-.top {
-  height: 30%;
-  width: 100%;
-  background: linear-gradient(#7474bf, #348ac7);
-  border-bottom-right-radius: 50%;
-  border-bottom-left-radius: 50%;
-  box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.2);
-}
-
-.avatar{
-  overflow: hidden;
-  border-radius: 50%;
-  height: 150rpx;
-  width: 150rpx;
-  border: 2px solid #fff;  
-  box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.2);
-}
-
-.text{
-  color: whitesmoke;
-  font-weight: blod;
-}
-
 

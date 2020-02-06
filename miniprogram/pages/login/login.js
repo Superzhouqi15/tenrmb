@@ -48,8 +48,8 @@ Page({
     } else {
       console.log(app.globalData.userInfo)
       wx.navigateTo({
-        url: '../signUp/signUp',
+        url: '../register/register',
       })
-    }
+    } 
   }
 })

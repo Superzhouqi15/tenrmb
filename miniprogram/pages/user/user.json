@@ -1,10 +1,9 @@
 {
   "navigationBarTitleText": "User",
-  "navigationBarBackgroundColor": "#7474bf",
+  "navigationBarBackgroundColor": "#4990e2",
   "usingComponents": {
-    "vtransition": "../../vant/dist/transition/index",
-    "vrow": "../../vant/dist/row/index",
-    "vcol": "../../vant/dist/col/index",
-    "vicon": "../../vant/dist/icon/index"
+      "wux-cell-group": "../../dist/cell-group/index",
+      "wux-cell": "../../dist/cell/index"
+    
   }
 }

@@ -33,9 +33,9 @@
   </view>
 
   <view class="page__bd">
-    <wux-cell-group title="参赛对象">
+    <wux-cell-group title="比赛对象">
       <wux-cell hover-class="none">
-        <wux-input placeholder="请输入参赛对象" label="参赛对象" bind:change="onChange3">
+        <wux-input placeholder="请输入比赛对象" label="比赛对象" bind:change="onChange3">
           <image style="width: 20px; height: 20px; margin-right: 5px" src="/icon/student.png" />
         </wux-input>
       </wux-cell>

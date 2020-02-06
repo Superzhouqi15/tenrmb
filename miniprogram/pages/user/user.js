@@ -66,34 +66,6 @@ Page({
 
 
 
-  mine_func: function(){
-    console.log("我是图标");
-  },
-
-  //关于我们的弹窗
-  aboutUs: function(){
-    wx.navigateTo({
-      url: '../aboutUs/aboutUs',
-    })
-  },
-
-  launchGame:function(){
-    wx.navigateTo({
-      url: '../competition/competition',
-    })
-  },
-
-  lanuchMark: function(){
-    wx.navigateTo({
-      url: '../mark/mark',
-    })
-  },
-  feedback: function () {
-    wx.navigateTo({
-      url: '../feedback/feedback',
-    })
-  }
-
 
 
 })
