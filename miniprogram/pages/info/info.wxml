@@ -1,30 +1,53 @@
-<!--miniprogram/pages/profile/profile.wxml-->
+<!--index.wxml-->
+<wux-tabs controlled current="{{ current }}" bind:change="onChangeTab" class="page__hd">
+  <wux-tab key="0">
+    <text>推荐比赛</text>
+  </wux-tab>
+  <wux-tab key="1">
+    <text>全部比赛</text>
+  </wux-tab>
+</wux-tabs>
 
-<view class="vantabs">
-
-  <van-tabs active="{{ active }}" swipeable color='#4990e2' type="card" class='tab'>
-    <van-tab title="推荐赛事" class='tab'>
-      <scroll-view class='tab' scroll-y style='height:{{windowHeight-30}}px;'>
-        <view wx:if="{{emptyFlag}}">
-          <text>当前没有比赛哟，快去参加吧</text>
-        </view>
-        <i-card wx:for='{{competition}}' title='{{item.title}}' thumb="{{item.thumb}}" wx:key="*this" data-id="{{index}}" bindtap="InToGame1">
-          <view slot="content">{{item.endTime}}</view>
-          <view slot="footer">{{item.label}}</view>
-        </i-card>
-      </scroll-view>
+<wux-wing-blank size="default">
 
 
+  <!-- 推荐比赛 start -->
+  <view wx:if="{{current == 0}}">
+    <wux-card wx:for="{{competition}}" title="{{item.title}}" thumb="{{item.thumb}}" thumb-style="border-radius: 50%;" bindtap="InToGame1" data-id="{{index}}">
+      <!-- 收藏 -->
+      <view slot="extra" class="column center" catchtap="clickCollect" data-id="{{index}}">
+        <wux-icon type="md-star" size="28" color="{{item.isCollect? '#F1E821': 'gray'}}"/>
+        <text style="font-size:12px; color:gray;">收藏</text>
+      </view>
+      <view slot="body">
+        <text style="font-size:15px; color:red;">截止时间：</text>
+        <text style="color:gray;">{{item.endTime}}</text>
+      </view>
+      <view slot="footer">{{item.label}}</view>
+    </wux-card>
+  </view>
+  <!-- 推荐比赛 end -->
 
-    </van-tab>
-    <van-tab title="全部赛事">
-      <scroll-view class='tab' scroll-y style='height:{{windowHeight-30}}px;'>
-        <i-card wx:for='{{allCompetition}}' title='{{item.title}}' thumb="{{item.thumb}}" wx:key="*this" data-id="{{index}}" bindtap="InToGame2">
-          <view slot="content">{{item.endTime}}</view>
-          <view slot="footer">{{item.label}}</view>
-        </i-card>
-      </scroll-view>
 
-    </van-tab>
-  </van-tabs>
-</view>
+  <!-- 全部比赛 start -->
+  <view wx:else>
+    <!-- 搜索框 -->
+    <wux-search-bar clear value="{{ value }}" controlled placeholder="Search" bind:change="onChange" bind:focus="onFocus" bind:blur="onBlur" bind:confirm="onConfirm" bind:clear="onClear" bind:cancel="onCancel" />
+
+    <wux-card wx:for="{{allCompetition}}" title="{{item.title}}" thumb="{{item.thumb}}" thumb-style="border-radius: 50%;" bindtap="InToGame2" data-id="{{index}}" wx:if='{{!item.isHidden}}'>
+      <!-- 收藏 -->
+      <view slot="extra" class="column center" catchtap="clickCollect" data-id="{{index}}">
+        <wux-icon type="md-star" size="28" color="{{item.isCollect? '#F1E821': 'gray'}}"/>
+        <text style="font-size:11px; color:gray;">收藏</text>
+      </view>
+      <view slot="body">
+        <text style="font-size:15px; color:red;">截止时间：</text>
+        <text style="color:gray;">{{item.endTime}}</text>
+      </view>
+      <view slot="footer">{{item.label}}</view>
+    </wux-card>
+  </view>
+  <!-- 全部比赛 start -->
+
+
+</wux-wing-blank>
