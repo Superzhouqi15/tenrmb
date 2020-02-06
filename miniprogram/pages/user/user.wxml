@@ -1,57 +1,15 @@
-<!--miniprogram/pages/index/index.wxml-->
-<view class="container">
-    <view class="top">
-      <view class="box">
-        <view class="vitem">
-          <view class="avatar">
-            <open-data type="userAvatarUrl"></open-data>
-          </view>
-          <view class="text">
-            <open-data type="userNickName" lang="zh_CN"></open-data>
-          </view>
-        </view>
-      </view>
+ <view class="userinfo">
+    <view class="userinfo-avatar">
+       <open-data  type="userAvatarUrl"></open-data>
     </view>
-
-
-  <view style="padding: 20px 20rpx">
-  <view class="box">
-      <view class="vitem1"  bindtap="launchGame">
-        <view>
-          <!-- <vicon name="star" color="white" size="40px"></vicon> -->
-          <view>
-            <text style="color:white;font-size: 20px;">发布比赛</text>
-          </view>
-        </view>
-      </view>
-      <view class="vitem1" bindtap="lanuchMark">
-        <view>
-          <!-- <vicon name="star" color="white" size="40px"></vicon> -->
-          <view>
-            <text style="color:white;font-size: 20px;">收藏</text>
-          </view>
-        </view>
-      </view>
+    <view class="text">
+        <open-data type="userNickName" lang="zh_CN"></open-data>
     </view>
-    <view class="box">
-     <view class="vitem1" bindtap="feedback">
-        <view>
-          <vicon name="comment" color="white" size="40px"></vicon>
-          <view>
-            <text style="color:white;font-size: 20px;">反馈</text>
-          </view>
-
-        </view>
-      </view>
-      <view class="vitem1" bindtap="aboutUs">
-        <view>
-          <!-- <vicon name="info" color="white" size="40px"></vicon> -->
-          <view>
-            <text style="color:white;font-size: 20px;">关于我们</text>
-          </view>
-        </view>
-      </view>
-    </view>
-  </view>
-
 </view>
+ 
+  <wux-cell-group>
+            <wux-cell thumb="../../icon/发布比赛.png" title="发布比赛" is-link url="/pages/competition/competition"open-type="navigateTo"></wux-cell>
+             <wux-cell thumb="../../icon/我的收藏.png" title="我的收藏" is-link url="/pages/mark/mark"open-type="navigateTo"></wux-cell>
+              <wux-cell thumb="../../icon/我要反馈.png" title="我要反馈" is-link url="/pages/feedback/feedback"open-type="navigateTo"></wux-cell>
+               <wux-cell thumb="../../icon/关于我们.png" title="关于我们" is-link url="/pages/aboutUs/aboutUs"open-type="navigateTo"></wux-cell>
+    </wux-cell-group>

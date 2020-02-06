@@ -1,6 +1,6 @@
 // miniprogram/pages/baidu/baidu.js
 
-var that = this 
+var that = this
 import { $wuxToast } from '../../dist/index'
 
 var util = require('../../utils/util.js');
@@ -34,20 +34,48 @@ Page({
       title: '计算机',
       value: '1',
     }, {
-      title: '文学',
+      title: '金融',
       value: '2',
     }, {
-      title: '体育',
+      title: '文学',
       value: '3',
     }, {
       title: '数学',
       value: '4',
     }, {
-      title: '金融',
+      title: '外语',
       value: '5',
     }, {
-      title: '美术',
+      title: '地理',
       value: '6',
+    }, {
+      title: '生物',
+      value: '7',
+    }, {
+      title: '历史',
+      value: '8',
+    }, {
+      title: '政治',
+      value: '9',
+    }, {
+      title: '物理',
+      value: '10',
+    }, {
+      title: '化学',
+      value: '11',
+    }, {
+      title: '心理',
+      value: '12',
+    }, {
+      title: '体育',
+      value: '13',
+    }, {
+      title: '美术',
+      value: '14',
+    }, {
+      title: '音乐',
+      value: '15',
+
     }],
 
     fileList: []
@@ -91,7 +119,7 @@ Page({
     console.log(`onConfirm${index}`, e.detail)
 
   },
-  
+
   onConfirm2(e) {
     const { index } = e.currentTarget.dataset
     this.setValue2(e.detail, index)
@@ -106,11 +134,11 @@ Page({
 
   setValue1(values, key, mode) {
     this.setData({
-     time1: values.value,
+      time1: values.value,
       [`displayValue${key}`]: values.label,
       startTime: values.label
     })
-  
+
   },
 
   setValue2(values, key, mode) {
@@ -137,7 +165,7 @@ Page({
 
 
   showToast() {
-   
+
     if (this.data.title == '') {
       wx.showToast({
         title: '赛事名称不能为空',
@@ -159,24 +187,26 @@ Page({
       })
       return;
     }
-
-
+    
     wx.request({
       url: app.globalData.url + '/addCompetition',
       method: 'POST',
       data: {
-        'competitionName':this.data.title,
-        'introduction':this.data.introduction,
-        'member':this.data.member,
-        'method':this.data.method,
+        'competitionName': this.data.title,
         'organization': this.data.organization,
-        'type':this.data.label,
+        'startTime': this.data.startTime,
+        'endTime': this.data.endTime,
+        'type': this.data.label,
+        'member': this.data.member,
+        'introduction': this.data.introduction,
+        'method': this.data.method,
+
       },
       success: res => {
         console.log(res.data)
       }
     })
-   
+
     app.globalData.allCompetitionData.push({
       title: this.data.title,
       organization: this.data.organization,

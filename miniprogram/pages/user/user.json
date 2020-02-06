@@ -1,6 +1,9 @@
 {
   "navigationBarTitleText": "User",
-  "navigationBarBackgroundColor": "#7474bf",
+  "navigationBarBackgroundColor": "#4990e2",
   "usingComponents": {
+      "wux-cell-group": "../../dist/cell-group/index",
+      "wux-cell": "../../dist/cell/index"
+    
   }
 }
