@@ -1,4 +1,3 @@
-// miniprogram/pages/profile/profile.js
 const app = getApp()
 
 Page({
@@ -12,7 +11,7 @@ Page({
     hasUserInfo: false,
 
     // card start
-    competition: [],
+    competition: [[]],
     allCompetition: [],
     // card end
 

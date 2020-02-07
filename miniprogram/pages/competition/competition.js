@@ -31,51 +31,41 @@ Page({
     displayValue3: '请选择',
     displayValue4: '最多选择3项',
     options3: [{
-      title: '计算机',
+      title: '创业',
       value: '1',
     }, {
-      title: '金融',
+      title: '算法',
       value: '2',
     }, {
-      title: '文学',
+      title: '网络安全',
       value: '3',
     }, {
-      title: '数学',
+      title: '师范技能',
       value: '4',
     }, {
-      title: '外语',
+      title: '美术设计',
       value: '5',
     }, {
-      title: '地理',
+      title: '体育竞技',
       value: '6',
     }, {
-      title: '生物',
+      title: '知识竞赛',
       value: '7',
     }, {
-      title: '历史',
+      title: '歌唱比赛',
       value: '8',
     }, {
-      title: '政治',
+      title: '文学知识',
       value: '9',
     }, {
-      title: '物理',
+      title: '高等数学',
       value: '10',
     }, {
-      title: '化学',
+      title: '外语比赛',
       value: '11',
     }, {
-      title: '心理',
+      title: '理科知识',
       value: '12',
-    }, {
-      title: '体育',
-      value: '13',
-    }, {
-      title: '美术',
-      value: '14',
-    }, {
-      title: '音乐',
-      value: '15',
-
     }],
 
     fileList: []
@@ -205,7 +195,6 @@ Page({
         'member': this.data.member,
         'introduction': this.data.introduction,
         'method': this.data.method,
-
       },
       success: res => {
         console.log(res.data)
