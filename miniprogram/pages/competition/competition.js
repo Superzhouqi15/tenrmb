@@ -83,6 +83,11 @@ Page({
 
   onChange(e) {
     console.log('onChange', e)
+    this.setData({
+      fileList: e.detail.fileList
+    })
+    console.log(this.data.fileList)
+    console.log(this.data.fileList[0].url)
     const { file } = e.detail
     if (file.status === 'uploading') {
       this.setData({
@@ -187,7 +192,7 @@ Page({
       })
       return;
     }
-    
+
     wx.request({
       url: app.globalData.url + '/addCompetition',
       method: 'POST',
@@ -207,6 +212,25 @@ Page({
       }
     })
 
+    // for (var i = 0; i < this.data.fileList.length; i++) {
+    //   console.log(this.data.fileList[i].url)
+    //   wx.uploadFile({
+    //     url: app.globalData.url + '/upload',
+    //     filePath: this.data.fileList[i].url,
+    //     name: 'file',
+    //     formData: {
+    //       'competitionName': this.data.title,
+    //       'introduction': this.data.introduction
+    //     },
+    //     success: (result) => {
+    //       console.log(result)
+    //     },
+    //     fail: (result) => {console.log(result) },
+    //     complete: (result) => {console.log(result) }
+    //   });
+
+
+    // }
     app.globalData.allCompetitionData.push({
       title: this.data.title,
       organization: this.data.organization,
