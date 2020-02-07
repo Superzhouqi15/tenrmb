@@ -12,7 +12,7 @@ Page({
     hasUserInfo: false,
 
     // card start
-    competition: [[]],
+    competition: [],
     allCompetition: [],
     // card end
 
@@ -41,28 +41,30 @@ Page({
   /**
    * 生命周期函数--监听页面加载
    */
- onLoad: function (options) {
-    var that = this;
-    new Promise(function (resolve, reject) {
-      wx.request({
-        url: app.globalData.url + '/recommend',
-        method: 'POST',
-        data: {
-          'openId':app.globalData.openId
-        },
-        success: res => {
-          that.setData({
-            competition:res.data
-          })
-          resolve(res.data)
-        },
-        fail: res => {
-          reject("onGetRecCompetition : fail")
-        }
-      })
-    }),
+  onLoad: function (options) {
     // console.log(this.data)
-    this.pageInit();
+    var that = this
+
+    // 样式
+    this.setData({
+      windowHeight: wx.getSystemInfoSync().windowHeight,
+    })
+    var query = wx.createSelectorQuery();
+    query.select("#tabs").boundingClientRect(function (rect) {
+      console.log(rect.height)
+      that.setData({
+        tabsHeight: rect.height
+      })
+    }).exec();
+    query.select("#search_bar").boundingClientRect(function (rect) {
+      console.log(rect.height)
+      that.setData({
+        searchHeight: rect.height
+      })
+    }).exec();
+
+    // 数据初始化
+    this.pageInit()
   },
 
   onShow: function () {
@@ -71,24 +73,27 @@ Page({
 
   pageInit: function () {
     var that = this
-    if (app.globalData.initDone) {
-      that.setData({
-        competition: app.globalData.allCompetitionData,
-        allCompetition: app.globalData.allCompetitionData,
-        isCollect: app.globalData.isCollect,
-      })
-    } else {
-      app.initCallback = res => {
-        if (res) {
-          console.log(app.globalData.allCompetitionData)
-          that.setData({
-            competition: app.globalData.allCompetitionData,
-            allCompetition: app.globalData.allCompetitionData,
-            isCollect: app.globalData.isCollect,
-          })
+    return new Promise(function (resolve, reject) {
+      if (app.globalData.initDone) {
+        that.setData({
+          allCompetition: app.globalData.allCompetitionData,
+          competition: app.globalData.competitionData,
+          isCollect: app.globalData.isCollect,
+        })
+        resolve("pageInit : done")
+      } else {
+        app.initCallback = res => {
+          if (res) {
+            that.setData({
+              allCompetition: app.globalData.allCompetitionData,
+              competition: app.globalData.competitionData,
+              isCollect: app.globalData.isCollect,
+            })
+            resolve("pageInit : done")
+          }
         }
       }
-    }
+    });
   },
 
   // card start
@@ -115,7 +120,7 @@ Page({
     var current = this.data.current
     var isCollect = app.globalData.isCollect;
     // console.log(objectId)
-    new Promise(function(resolve, reject){
+    new Promise(function (resolve, reject) {
       if (isCollect[objectId]) {
         app.delFavorite(objectId).then(res => {
           delete isCollect[objectId]
@@ -131,7 +136,7 @@ Page({
         }).catch(err => {
           reject("fail")
         })
-        
+
       }
     }).then(res => {
       this.setData({
@@ -148,8 +153,8 @@ Page({
         icon: 'none',
       })
     })
-    
-    
+
+
   },
   // collect end
 

@@ -23,7 +23,9 @@ App({
     var onGetCompetition = this.onGetCompetition()
     Promise.all([onGetUserInfo, onGetCompetition]).then(res => {
       var openId = that.globalData.openId
-      that.getFavorite().then(res => {
+      var onGetRecCompetition = that.onGetRecCompetition()
+      var getFavorite = that.getFavorite()
+      Promise.all([onGetRecCompetition, getFavorite]).then(res => {
         that.pretreatData()
         // page callback
         that.globalData.initDone = true
@@ -102,8 +104,25 @@ App({
   // UserInfo end
 
   // Competition start
-  findAll: function () {
-    return this.onGetCompetition()
+  onGetRecCompetition: function () {
+    var that = this;
+    return new Promise(function (resolve, reject) {
+      wx.request({
+        url: that.globalData.url + '/recommend',
+        method: 'POST',
+        data: {
+          'openId': that.globalData.openId
+        },
+        success: res => {
+          console.log(res.data)
+          that.globalData.competitionData = res.data
+          resolve(res.data)
+        },
+        fail: res => {
+          reject("onGetRecCompetition : fail")
+        }
+      })
+    })
   },
   onGetCompetition: function () {
     var that = this
@@ -125,11 +144,16 @@ App({
   pretreatData: function () { // fav->visable
     var that = this
     var data = that.globalData.allCompetitionData
+    var rec = that.globalData.competitionData
     var fav = that.globalData.myFavorite
     var isCollect = that.globalData.isCollect = {}
     for (let i = 0; i < data.length; ++i) {
       var oId = that.getObjectId(data[i].id)
       data[i].objectId = oId
+    }
+    for (let i = 0; i < rec.length; ++i) {
+      var oId = that.getObjectId(rec[i].id)
+      rec[i].objectId = oId
     }
     for (let i = 0; i < fav.length; ++i) {
       var oId = that.getObjectId(fav[i].id)
