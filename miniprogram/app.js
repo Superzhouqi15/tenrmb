@@ -17,13 +17,16 @@ App({
     this.init();
   },
 
+  
   init: function () {
     var that = this
     var onGetUserInfo = this.onGetUserInfo()
     var onGetCompetition = this.onGetCompetition()
     Promise.all([onGetUserInfo, onGetCompetition]).then(res => {
       var openId = that.globalData.openId
-      that.getFavorite().then(res => {
+      var onGetRecCompetition = that.onGetRecCompetition()
+      var getFavorite = that.getFavorite()
+      Promise.all([onGetRecCompetition, getFavorite]).then(res => {
         that.pretreatData()
         // page callback
         that.globalData.initDone = true
@@ -102,8 +105,25 @@ App({
   // UserInfo end
 
   // Competition start
-  findAll: function () {
-    return this.onGetCompetition()
+  onGetRecCompetition: function () {
+    var that = this;
+    return new Promise(function (resolve, reject) {
+      wx.request({
+        url: that.globalData.url + '/recommend',
+        method: 'POST',
+        data: {
+          'openId': that.globalData.openId
+        },
+        success: res => {
+          console.log(res.data)
+          that.globalData.competitionData = res.data
+          resolve(res.data)
+        },
+        fail: res => {
+          reject("onGetRecCompetition : fail")
+        }
+      })
+    })
   },
   onGetCompetition: function () {
     var that = this
@@ -125,11 +145,16 @@ App({
   pretreatData: function () { // fav->visable
     var that = this
     var data = that.globalData.allCompetitionData
+    var rec = that.globalData.competitionData
     var fav = that.globalData.myFavorite
     var isCollect = that.globalData.isCollect = {}
     for (let i = 0; i < data.length; ++i) {
       var oId = that.getObjectId(data[i].id)
       data[i].objectId = oId
+    }
+    for (let i = 0; i < rec.length; ++i) {
+      var oId = that.getObjectId(rec[i].id)
+      rec[i].objectId = oId
     }
     for (let i = 0; i < fav.length; ++i) {
       var oId = that.getObjectId(fav[i].id)
@@ -196,6 +221,27 @@ App({
     })
   },
   // Favorite end
+  
+  addSearch: function (history) {
+    var that = this
+    var openId = this.globalData.openId
+    console.log(openId)
+    console.log(history)
+    return new Promise(function (resolve, reject) {
+      wx.request({
+        url: that.globalData.url + '/addSearch',
+        method: 'POST',
+        data: {
+          'openId': openId,
+          'type': history,
+        },
+        success: res => {
+          console.log(res)
+          resolve("addSearch : done")
+        }
+      })
+    })
+  },
 
   getObjectId: function (id) {
     var oId = id.timeSecond.toString(16) +
