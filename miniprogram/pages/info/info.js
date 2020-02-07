@@ -12,7 +12,7 @@ Page({
     hasUserInfo: false,
 
     // card start
-    competition: [],
+    competition: [[]],
     allCompetition: [],
     // card end
 
@@ -41,11 +41,29 @@ Page({
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function (options) {
+ onLoad: function (options) {
+    var that = this;
+    new Promise(function (resolve, reject) {
+      wx.request({
+        url: app.globalData.url + '/recommend',
+        method: 'POST',
+        data: {
+          'openId':app.globalData.openId
+        },
+        success: res => {
+          that.setData({
+            competition:res.data
+          })
+          resolve(res.data)
+        },
+        fail: res => {
+          reject("onGetRecCompetition : fail")
+        }
+      })
+    }),
     // console.log(this.data)
     this.pageInit();
   },
-
 
   onShow: function () {
 
