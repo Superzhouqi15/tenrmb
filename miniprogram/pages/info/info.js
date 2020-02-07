@@ -73,6 +73,10 @@ Page({
 
   onHide:function () {
     this.addSearHis();
+    for (var key in this.data.history) {
+      delete (this.data.history[key]);
+    }
+    console.log(this.data.history)
   },
 
   pageInit: function () {
