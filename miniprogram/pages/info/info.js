@@ -71,6 +71,10 @@ Page({
 
   },
 
+  onHide:function () {
+    this.addSearHis();
+  },
+
   pageInit: function () {
     var that = this
     return new Promise(function (resolve, reject) {
@@ -159,6 +163,20 @@ Page({
   // collect end
 
   // search-bar start
+  addSearHis: function () {
+    var that = this
+    var his = []
+    his = Object.keys(this.data.history)
+    console.log(his)
+    return new Promise(function (resolve, reject) {
+      app.addSearch(his).then(res => {
+        resolve("success")
+      }).catch(err => {
+        reject("fail")
+      })
+    })
+  },
+
   onChange(e) {
     // console.log('onChange', e)
     this.setData({
@@ -176,12 +194,14 @@ Page({
     // console.log(this.data.value)
     this.filter();
     this.saveHistory();
+   // this.addSearHis();
   },
   onClear(e) {
     // console.log('onClear', e)
     this.setData({
       value: '',
     })
+    this.filter();
   },
   onCancel(e) {
     // console.log('onCancel', e)
@@ -227,9 +247,11 @@ Page({
       }
     }
     for (let i = 0; i < tmp.length; ++i) {
-      if (his[tmp[i]] == undefined) {
+      if (tmp[i] == "") {
+        continue
+      }else if (his[tmp[i]] == undefined) {
         his[tmp[i]] = 1
-      } else {
+      } else  {
         his[tmp[i]] += 1
       }
     }

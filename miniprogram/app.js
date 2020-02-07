@@ -17,6 +17,7 @@ App({
     this.init();
   },
 
+  
   init: function () {
     var that = this
     var onGetUserInfo = this.onGetUserInfo()
@@ -220,6 +221,27 @@ App({
     })
   },
   // Favorite end
+  
+  addSearch: function (history) {
+    var that = this
+    var openId = this.globalData.openId
+    console.log(openId)
+    console.log(history)
+    return new Promise(function (resolve, reject) {
+      wx.request({
+        url: that.globalData.url + '/addSearch',
+        method: 'POST',
+        data: {
+          'openId': openId,
+          'type': history,
+        },
+        success: res => {
+          console.log(res)
+          resolve("addSearch : done")
+        }
+      })
+    })
+  },
 
   getObjectId: function (id) {
     var oId = id.timeSecond.toString(16) +
