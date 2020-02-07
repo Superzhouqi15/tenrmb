@@ -1,6 +1,5 @@
 // miniprogram/pages/mark/mark.js
 const app = getApp()
-var that=this
 
 Page({
 
@@ -8,15 +7,70 @@ Page({
    * 页面的初始数据
    */
   data: {
-    competition: app.globalData.competitionData,
-    feedbackList: [],
+
+    right: [{
+      text: 'Delete',
+      style: 'background-color: #F4333C; color: white',
+    }],
+
+    myFavoriteList: [],
+   
   },
+
+  del: function (res) {
+    var that = this
+    wx.showModal({
+      title: '提示',
+      content: '确定删除吗？',
+      cancelText: '否',
+      confirmText: '是',
+    success(res){
+       if(res.confirm)
+      {
+        console.log('成功')
+
+        //有问题
+         var openId = this.globalData.openId
+         return new Promise(function (resolve, reject) {
+           wx.request({
+             url: that.globalData.url + '/delFavorite',
+             method: 'POST',
+             data: {
+               'openId': openId,
+               'objectId': objectId,
+             },
+             success: res => {
+               console.log(res)
+               resolve("delFavorite : done")
+             }
+           })
+         })
+      }
+    }
+  })
+},
+    
+   
+  
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    var that = this;
+    new Promise(function (resolve, reject) {
+      wx.request({
+        url: that.globalData.url + '/getFavorite',
+        method: 'POST',
+        data: {
+          'openId': that.globalData.openId,
+        },
+        success: res => {
+          that.globalData.myFavorite = res.data
+          resolve(res.data)
+        }
+      })
+    })
   },
 
   /**
@@ -31,24 +85,17 @@ Page({
    */
   onShow: function () {
 
-    wx.request({
-      url: app.globalData.url + '/getFavorite',
-      method: 'POST',
-      data: {
-        'openId': app.globalData.openId,
-      },
-      success: res => {
-        console.log(res.data)
-        that.setData({
-          feedbackList:res.list,
-        })
-      }
-    })
-
     this.setData({
-      competition: app.globalData.competitionData
+      myFavoriteList: app.globalData.myFavorite
     })
+  },
 
+  InToGame2: function (e) {
+    var id = e.currentTarget.dataset.id
+    console.log(id)
+    wx.navigateTo({
+      url: '../showCompetition/showCompetition?id=' + id,
+    })
   },
 
   /**

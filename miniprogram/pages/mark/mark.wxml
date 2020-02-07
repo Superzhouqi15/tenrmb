@@ -1,13 +1,29 @@
 <!--miniprogram/pages/mark/mark.wxml-->
- <wux-card wx:for="{{competition}}" title="{{item.title}}" thumb="{{item.thumb}}" thumb-style="border-radius: 50%;" bindtap="InToGame1" data-id="{{index}}">
-      <!-- 收藏 -->
-      <view slot="extra" class="column center" catchtap="clickCollect" data-id="{{index}}">
-        <wux-icon type="md-star" size="28" color="{{item.isCollect? '#F1E821': 'gray'}}"/>
-        <text style="font-size:12px; color:gray;">收藏</text>
-      </view>
-      <view slot="body">
-        <text style="font-size:15px; color:red;">截止时间：</text>
-        <text style="color:gray;">{{item.endTime}}</text>
-      </view>
-      <view slot="footer">{{item.label}}</view>
-    </wux-card>
+<wux-wing-blank size="default">
+  <view wx:for="{{myFavoriteList}}">
+
+<wux-swipe-action autoClose right="{{ right }}" bind:click="del">
+                <view class="demo-item">  
+
+      <wux-card title="{{item.competitionName}}" thumb="{{item.thumb}}" thumb-style="border-radius: 50%;" bindtap="InToGame2" data-id="{{index}}" wx:if='{{!item.isHidden}}'>
+        <view slot="body">
+          <text style="font-size:15px; color:red;">截止时间：</text>
+          <text style="color:gray;">{{item.endTime}}</text>
+        </view>
+        <view slot="footer">
+          <text wx:for="{{item.type}}" wx:for-item="label" style="margin-right:5px;">{{label}}</text>
+        </view>
+      </wux-card>
+      <wux-white-space size="small" />
+  
+</view>
+
+</wux-swipe-action>
+
+</view>
+
+    
+</wux-wing-blank>
+
+
+  

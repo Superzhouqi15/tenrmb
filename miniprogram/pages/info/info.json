@@ -1,5 +1,6 @@
 {
   "usingComponents": {
+    "wux-white-space": "../../dist/white-space/index",
     "wux-search-bar": "../../dist/search-bar/index",
     "wux-tabs": "../../dist/tabs/index",
     "wux-tab": "../../dist/tab/index",
