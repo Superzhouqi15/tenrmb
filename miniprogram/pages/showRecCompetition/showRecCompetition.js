@@ -6,7 +6,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-    dat: app.globalData.competitionData,
+    dat: [],
     index: null
   },
 
@@ -17,7 +17,8 @@ Page({
     var id = options.id
     this.setData({
       index: id
-    })
+    }),
+      this.pageInit();
   },
 
   /**
@@ -67,5 +68,24 @@ Page({
    */
   onShareAppMessage: function() {
 
+  },
+
+  pageInit: function () {
+    var that = this;
+    wx.request({
+      url: app.globalData.url + '/recommend',
+      method: 'POST',
+      data: {
+        'openId': app.globalData.openId,
+      },
+      success: res => {
+        that.setData({
+          dat: res.data
+        })
+      },
+      fail: res => {
+        reject("onGetRecCompetition : fail")
+      }
+    })
   }
 })

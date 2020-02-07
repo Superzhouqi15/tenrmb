@@ -145,7 +145,7 @@ Page({
     })
 
   },
-
+ 
   setValue2(values, key, mode) {
     this.setData({
       time2: values.value,
