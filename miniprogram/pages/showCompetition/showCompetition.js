@@ -7,7 +7,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-    dat: app.globalData.allCompetitionData,
+    dat: [],
     index: null
   },
 
@@ -15,10 +15,11 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    var id = options.id
+    var id = options.id;
     this.setData({
       index: id
-    })
+    });
+    this.pageInit();
   },
 
   /**
@@ -68,5 +69,25 @@ Page({
    */
   onShareAppMessage: function () {
 
+  },
+
+  pageInit: function () {
+    var that = this
+    if (app.globalData.initDone) {
+      that.setData({
+        dat: app.globalData.allCompetitionData,
+      })
+    } else {
+      app.initCallback = res => {
+        if (res) {
+          console.log(app.globalData.allCompetitionData)
+          that.setData({
+            competition: app.globalData.allCompetitionData,
+            allCompetition: app.globalData.allCompetitionData,
+            isCollect: app.globalData.isCollect,
+          })
+        }
+      }
+    }
   }
 })
