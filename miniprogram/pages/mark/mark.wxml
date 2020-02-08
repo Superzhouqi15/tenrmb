@@ -2,10 +2,11 @@
 <wux-wing-blank size="default">
   <view wx:for="{{myFavoriteList}}">
 
-<wux-swipe-action autoClose right="{{ right }}" bind:click="del">
-                <view class="demo-item">  
-
-      <wux-card title="{{item.competitionName}}" thumb="{{item.thumb}}" thumb-style="border-radius: 50%;" bindtap="InToGame2" data-id="{{index}}" wx:if='{{!item.isHidden}}'>
+  <!-- 右滑动删除 -->
+  <wux-swipe-action autoClose right="{{ right }}" bind:click="del" data-id="{{index}}" data-objectId="{{item.objectId}}" >
+     
+      <view class="demo-item">  
+      <wux-card title="{{item.competitionName}}" thumb="{{item.thumb}}" thumb-style="border-radius: 50%;" bindtap="InToGame2"  >
         <view slot="body">
           <text style="font-size:15px; color:red;">截止时间：</text>
           <text style="color:gray;">{{item.endTime}}</text>
@@ -15,14 +16,9 @@
         </view>
       </wux-card>
       <wux-white-space size="small" />
-  
-</view>
-
+   </view>
 </wux-swipe-action>
-
 </view>
-
-    
 </wux-wing-blank>
 
 
