@@ -36,4 +36,9 @@
   <wux-cell-group title="赛事配图">
     <wux-cell extra="内容"></wux-cell>
   </wux-cell-group>
+  <wux-cell-group title="赛事文件">
+    <wux-cell extra="内容">
+    <button bindtap="downloadFile">下载文件</button>
+    </wux-cell>
+  </wux-cell-group>
 </view>

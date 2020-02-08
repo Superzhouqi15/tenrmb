@@ -209,16 +209,31 @@ console.log(this.data.fileList.length)
         name: 'file',
         formData: {
           'competitionName': this.data.title,
-          'introduction': this.data.introduction
+          'introduction': this.data.introduction,
+          'fileName':'',
+          'type': 'image'
         },
         success: (result) => {
           console.log(result)
         },
         fail: (result) => {console.log(result) }
       });
-
-
     }
+    wx.uploadFile({
+      url: app.globalData.url + '/upload',
+      filePath: this.data.filePath,
+      name: 'file',
+      formData: {
+        'competitionName': this.data.title,
+        'introduction': this.data.introduction,
+        'fileName': this.data.fileName,
+        'type': 'file'
+      },
+      success: (result) => {
+        console.log(result)
+      },
+      fail: (result) => { console.log(result) }
+    });
     app.globalData.allCompetitionData.push({
       title: this.data.title,
       organization: this.data.organization,
@@ -308,6 +323,23 @@ console.log(this.data.fileList.length)
     this.setData({
       value3: e.detail.value,
       date: e.detail.value
+    })
+  },
+
+  uploadFile: function(){
+    var that = this
+    wx.chooseMessageFile({
+      count: 1,
+      type: "file",
+      success(res){
+        console.log(res)
+        var temp = res.tempFiles[0];
+        console.log(temp)
+        that.setData({
+          filePath: temp.path,
+          fileName: temp.name
+        })
+      }
     })
   },
 
