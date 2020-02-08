@@ -67,7 +67,7 @@ Page({
   },
 
   onShow: function () {
-
+  
   },
 
   onHide: function () {
