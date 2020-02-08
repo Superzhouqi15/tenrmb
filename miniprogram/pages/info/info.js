@@ -43,27 +43,31 @@ Page({
   onLoad: function (options) {
     // console.log(this.data)
     var that = this
-
+    
     // 样式
     this.setData({
       windowHeight: wx.getSystemInfoSync().windowHeight,
     })
     var query = wx.createSelectorQuery();
     query.select("#tabs").boundingClientRect(function (rect) {
-      console.log(rect.height)
+      //console.log(rect.height)
       that.setData({
         tabsHeight: rect.height
       })
     }).exec();
     query.select("#search_bar").boundingClientRect(function (rect) {
-      console.log(rect.height)
+      //console.log(rect.height)
       that.setData({
         searchHeight: rect.height
       })
     }).exec();
 
     // 数据初始化
+    //getRecCompetition
+    
+    this.recInit()
     this.pageInit()
+    
   },
 
   onShow: function () {
@@ -83,7 +87,7 @@ Page({
     for (var key in this.data.history) {
       delete (this.data.history[key]);
     }
-    console.log(this.data.history)
+   // console.log(this.data.history)
   },
 
   pageInit: function () {
@@ -92,7 +96,7 @@ Page({
       if (app.globalData.initDone) {
         that.setData({
           allCompetition: app.globalData.allCompetitionData,
-          competition: app.globalData.competitionData,
+          //competition: app.globalData.competitionData,
           isCollect: app.globalData.isCollect,
         })
         resolve("pageInit : done")
@@ -101,7 +105,7 @@ Page({
           if (res) {
             that.setData({
               allCompetition: app.globalData.allCompetitionData,
-              competition: app.globalData.competitionData,
+              //competition: app.globalData.competitionData,
               isCollect: app.globalData.isCollect,
             })
             resolve("pageInit : done")
@@ -109,6 +113,21 @@ Page({
         }
       }
     });
+  },
+
+  recInit:function(){
+    var that = this
+    var onGetRecCompetition = app.onGetRecCompetition()
+    Promise.all([onGetRecCompetition]).then(res => {
+      var rec = app.globalData.competitionData
+      for (let i = 0; i < rec.length; ++i) {
+        var oId = app.getObjectId(rec[i].id)
+        rec[i].objectId = oId
+      }
+      that.setData({
+        competition: app.globalData.competitionData,
+      })
+    })
   },
 
   // card start
