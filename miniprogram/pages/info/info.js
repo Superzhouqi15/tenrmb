@@ -41,53 +41,66 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    var that = this;
-    new Promise(function (resolve, reject) {
-      wx.request({
-        url: app.globalData.url + '/recommend',
-        method: 'POST',
-        data: {
-          'openId': app.globalData.openId
-        },
-        success: res => {
-          that.setData({
-            competition: res.data
-          })
-          resolve(res.data)
-        },
-        fail: res => {
-          reject("onGetRecCompetition : fail")
-        }
+    // console.log(this.data)
+    var that = this
+
+    // 样式
+    this.setData({
+      windowHeight: wx.getSystemInfoSync().windowHeight,
+    })
+    var query = wx.createSelectorQuery();
+    query.select("#tabs").boundingClientRect(function (rect) {
+      console.log(rect.height)
+      that.setData({
+        tabsHeight: rect.height
       })
-    }),
-      // console.log(this.data)
-      this.pageInit();
+    }).exec();
+    query.select("#search_bar").boundingClientRect(function (rect) {
+      console.log(rect.height)
+      that.setData({
+        searchHeight: rect.height
+      })
+    }).exec();
+
+    // 数据初始化
+    this.pageInit()
   },
 
   onShow: function () {
 
   },
 
+  onHide: function () {
+    this.addSearHis();
+    for (var key in this.data.history) {
+      delete (this.data.history[key]);
+    }
+    console.log(this.data.history)
+  },
+
   pageInit: function () {
     var that = this
-    if (app.globalData.initDone) {
-      that.setData({
-        competition: app.globalData.allCompetitionData,
-        allCompetition: app.globalData.allCompetitionData,
-        isCollect: app.globalData.isCollect,
-      })
-    } else {
-      app.initCallback = res => {
-        if (res) {
-          console.log(app.globalData.allCompetitionData)
-          that.setData({
-            competition: app.globalData.allCompetitionData,
-            allCompetition: app.globalData.allCompetitionData,
-            isCollect: app.globalData.isCollect,
-          })
+    return new Promise(function (resolve, reject) {
+      if (app.globalData.initDone) {
+        that.setData({
+          allCompetition: app.globalData.allCompetitionData,
+          competition: app.globalData.competitionData,
+          isCollect: app.globalData.isCollect,
+        })
+        resolve("pageInit : done")
+      } else {
+        app.initCallback = res => {
+          if (res) {
+            that.setData({
+              allCompetition: app.globalData.allCompetitionData,
+              competition: app.globalData.competitionData,
+              isCollect: app.globalData.isCollect,
+            })
+            resolve("pageInit : done")
+          }
         }
       }
-    }
+    });
   },
 
   // card start
@@ -153,6 +166,20 @@ Page({
   // collect end
 
   // search-bar start
+  addSearHis: function () {
+    var that = this
+    var his = []
+    his = Object.keys(this.data.history)
+    console.log(his)
+    return new Promise(function (resolve, reject) {
+      app.addSearch(his).then(res => {
+        resolve("success")
+      }).catch(err => {
+        reject("fail")
+      })
+    })
+  },
+
   onChange(e) {
     // console.log('onChange', e)
     this.setData({
@@ -170,12 +197,14 @@ Page({
     // console.log(this.data.value)
     this.filter();
     this.saveHistory();
+    // this.addSearHis();
   },
   onClear(e) {
     // console.log('onClear', e)
     this.setData({
       value: '',
     })
+    this.filter();
   },
   onCancel(e) {
     // console.log('onCancel', e)
@@ -221,7 +250,9 @@ Page({
       }
     }
     for (let i = 0; i < tmp.length; ++i) {
-      if (his[tmp[i]] == undefined) {
+      if (tmp[i] == "") {
+        continue
+      } else if (his[tmp[i]] == undefined) {
         his[tmp[i]] = 1
       } else {
         his[tmp[i]] += 1

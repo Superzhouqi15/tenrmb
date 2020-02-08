@@ -4,9 +4,7 @@
       "wux-card": "../../dist/card/index",
       "wux-wing-blank": "../../dist/wing-blank/index",
       "wux-icon": "../../dist/icon/index",
-      "wux-checkbox-group": "../../dist/checkbox-group/index",
-      "wux-checkbox": "../../dist/checkbox/index",
-
+      "wux-white-space": "../../dist/white-space/index",
         "wux-swipe-action-group": "../../dist/swipe-action-group/index",
         "wux-swipe-action": "../../dist/swipe-action/index",
         "wux-cell-group": "../../dist/cell-group/index",

@@ -1,6 +1,6 @@
 // miniprogram/pages/mark/mark.js
 const app = getApp()
-
+var that=this
 Page({
 
   /**
@@ -17,8 +17,11 @@ Page({
    
   },
 
-  del: function (res) {
-    var that = this
+  del: function (e) {
+  var self=this
+  var objectId = e.currentTarget.dataset.objectid
+    console.log('我', objectId)
+
     wx.showModal({
       title: '提示',
       content: '确定删除吗？',
@@ -26,51 +29,43 @@ Page({
       confirmText: '是',
     success(res){
        if(res.confirm)
-      {
-        console.log('成功')
-
-        //有问题
-         var openId = this.globalData.openId
-         return new Promise(function (resolve, reject) {
-           wx.request({
-             url: that.globalData.url + '/delFavorite',
-             method: 'POST',
-             data: {
-               'openId': openId,
-               'objectId': objectId,
-             },
-             success: res => {
-               console.log(res)
-               resolve("delFavorite : done")
-             }
-           })
-         })
+       {
+       
+        self.delFavorite(objectId)
+        self.onShow()
+         console.log('成功')
+       }
       }
-    }
-  })
-},
-    
-   
+    })
+  },
+
+  
+
+
+  delFavorite: function (objectId) {
+    var that = this
+    return new Promise(function (resolve, reject) {
+      wx.request({
+        url: app.globalData.url + '/delFavorite',
+        method: 'POST',
+        data: {
+          'openId': app.globalData.openId,
+          'objectId': objectId,
+        },
+        success: res => {
+          console.log(res)
+        }
+      })
+    })
+  },
+
   
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    var that = this;
-    new Promise(function (resolve, reject) {
-      wx.request({
-        url: that.globalData.url + '/getFavorite',
-        method: 'POST',
-        data: {
-          'openId': that.globalData.openId,
-        },
-        success: res => {
-          that.globalData.myFavorite = res.data
-          resolve(res.data)
-        }
-      })
-    })
+   
   },
 
   /**
@@ -84,10 +79,26 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
+    var that = this;
+    new Promise(function (resolve, reject) {
+      wx.request({
+        url: app.globalData.url + '/getFavorite',
+        method: 'POST',
+        data: {
+          'openId': app.globalData.openId,
+        },
+        success: res => {
+          app.globalData.myFavorite = res.data
+          resolve(res.data)
+        }
+      })
+    })
 
     this.setData({
       myFavoriteList: app.globalData.myFavorite
     })
+
+  
   },
 
   InToGame2: function (e) {
