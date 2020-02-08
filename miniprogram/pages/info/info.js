@@ -197,7 +197,7 @@ Page({
     // console.log(this.data.value)
     this.filter();
     this.saveHistory();
-   // this.addSearHis();
+   this.addSearHis();
   },
   onClear(e) {
     // console.log('onClear', e)
