@@ -17,16 +17,16 @@ App({
     this.init();
   },
 
-  
   init: function () {
     var that = this
     var onGetUserInfo = this.onGetUserInfo()
     var onGetCompetition = this.onGetCompetition()
     Promise.all([onGetUserInfo, onGetCompetition]).then(res => {
       var openId = that.globalData.openId
-     // var onGetRecCompetition = that.onGetRecCompetition()
+
       var getFavorite = that.getFavorite()
       Promise.all([getFavorite]).then(res => {
+
         that.pretreatData()
         // page callback
         that.globalData.initDone = true

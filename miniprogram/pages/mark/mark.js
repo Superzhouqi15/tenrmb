@@ -16,34 +16,13 @@ Page({
     myFavoriteList: [],
    
   },
-
-
   
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    var that = this;
-    new Promise(function (resolve, reject) {
-      wx.request({
-        url: app.globalData.url + '/getFavorite',
-        method: 'POST',
-        data: {
-          'openId': app.globalData.openId,
-        },
-        success: res => {
-          app.globalData.myFavorite = res.data
-          resolve(res.data)
-        }
-      })
-    })
-    this.setData({
-      myFavoriteList: app.globalData.myFavorite
-    })
-    that.pretreatData()
-    //console.log('你', this.data.myFavoriteList)
-    
+   
   },
 
   /**
@@ -54,32 +33,22 @@ Page({
   },
 
 
-
-
-  pretreatData: function () {
+  myfavInit: function () {
     var that = this
     var myfav = that.data.myFavoriteList
     for (let i = 0; i < myfav.length; ++i) {
-      var oId = that.getObjectId(myfav[i].id)
+      var oId = app.getObjectId(myfav[i].id)
       myfav[i].objectId = oId
     }
   },
 
-  getObjectId: function (id) {
-    var oId = id.timeSecond.toString(16) +
-      id.machineIdentifier.toString(16) +
-      id.processIdentifier.toString(16) +
-      id.counter.toString(16);
-    return oId
-  },
 
   del: function (e) {
-    var self = this
+    var that = this
     var id = e.currentTarget.dataset.id
-    //console.log(id)
     var objectId = this.data.myFavoriteList[id].objectId
-    //console.log('我', objectId)
-    
+    var isCollect = app.globalData.isCollect;
+   
     wx.showModal({
       title: '提示',
       content: '确定删除吗？',
@@ -87,42 +56,46 @@ Page({
       confirmText: '是',
       success(res) {
         if (res.confirm) {
-          self.delFavorite(objectId)
-          self.onLoad();//刷新页面
+        new Promise(function (resolve, reject) {
+        app.delFavorite(objectId).then(res => {
+          delete isCollect[objectId]
+          resolve("success")
+        }).catch(err => {
+          reject("fail")
+          }).then(res => {
+            that.setData({
+              isCollect: isCollect,
+            })
+          })
+    }),
+         that.onShow();
         }
       }
     })
   },
 
-  delFavorite: function (objectId) {
-    var that = this
-    return new Promise(function (resolve, reject) {
-      wx.request({
-        url: app.globalData.url + '/delFavorite',
-        method: 'POST',
-        data: {
-          'openId': app.globalData.openId,
-          'objectId': objectId,
-        },
-        success: res => {
-          console.log(res)
-        }
-      })
-    })
-  },
-
-
-
-
-
-
-
-
   /**
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-   
+    var that = this;
+    new Promise(function (resolve, reject) {
+      wx.request({
+        url: app.globalData.url + '/getFavorite',
+        method: 'POST',
+        data: {
+          'openId': app.globalData.openId,
+        },
+        success: res => {
+          resolve(res.data)
+          app.globalData.myFavorite = res.data
+          that.setData({
+            myFavoriteList: app.globalData.myFavorite
+          })
+          that.myfavInit()
+        }
+      })
+    })
   },
 
   InToGame2: function (e) {

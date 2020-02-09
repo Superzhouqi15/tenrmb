@@ -11,7 +11,7 @@ Page({
     hasUserInfo: false,
 
     // card start
-    competition: [[]],
+    competition: [],
     allCompetition: [],
     // card end
 
@@ -43,51 +43,48 @@ Page({
   onLoad: function (options) {
     // console.log(this.data)
     var that = this
-    
     // 样式
     this.setData({
       windowHeight: wx.getSystemInfoSync().windowHeight,
     })
     var query = wx.createSelectorQuery();
     query.select("#tabs").boundingClientRect(function (rect) {
-      //console.log(rect.height)
       that.setData({
         tabsHeight: rect.height
       })
     }).exec();
     query.select("#search_bar").boundingClientRect(function (rect) {
-      //console.log(rect.height)
       that.setData({
         searchHeight: rect.height
       })
     }).exec();
 
-    // 数据初始化
-    //getRecCompetition
-    
-    this.recInit()
-    this.pageInit()
-    
+    // 数据
+    this.pageInit().then(res => {
+      this.recInit()
+    })
   },
 
   onShow: function () {
-  
+    var that = this
+    if (app.globalData.initDone) { 
+      // isCollect
+      that.setData({
+        isCollect: app.globalData.isCollect,
+      })
+      // update allCom
+      app.onGetCompetition().then(res => {
+        console.log("all", res)
+        that.setData({
+          allCompetition: res,
+        })
+      })
+    }
   },
 
   onHide: function () {
     this.addSearHis();
-    for (var key in this.data.history) {
-      delete (this.data.history[key]);
-    }
-    console.log(this.data.history)
-  },
-
-  onHide:function () {
-    this.addSearHis();
-    for (var key in this.data.history) {
-      delete (this.data.history[key]);
-    }
-   // console.log(this.data.history)
+    // console.log(this.data.history)
   },
 
   pageInit: function () {
@@ -96,7 +93,6 @@ Page({
       if (app.globalData.initDone) {
         that.setData({
           allCompetition: app.globalData.allCompetitionData,
-          //competition: app.globalData.competitionData,
           isCollect: app.globalData.isCollect,
         })
         resolve("pageInit : done")
@@ -105,7 +101,6 @@ Page({
           if (res) {
             that.setData({
               allCompetition: app.globalData.allCompetitionData,
-              //competition: app.globalData.competitionData,
               isCollect: app.globalData.isCollect,
             })
             resolve("pageInit : done")
@@ -115,7 +110,7 @@ Page({
     });
   },
 
-  recInit:function(){
+  recInit: function () {
     var that = this
     var onGetRecCompetition = app.onGetRecCompetition()
     Promise.all([onGetRecCompetition]).then(res => {
@@ -176,6 +171,7 @@ Page({
       this.setData({
         isCollect: isCollect,
       })
+
       var text = isCollect[objectId] ? '已收藏' : '已取消收藏';
       wx.showToast({
         title: text,
@@ -200,6 +196,7 @@ Page({
     console.log(his)
     return new Promise(function (resolve, reject) {
       app.addSearch(his).then(res => {
+        that.data.history = {};
         resolve("success")
       }).catch(err => {
         reject("fail")
@@ -240,7 +237,7 @@ Page({
   },
   filter: function () {
     var that = this
-    var val = this.data.value
+    var val = this.data.value.trim()
     var ac = this.data.allCompetition
 
     for (let i = 0; i < ac.length; ++i) {
@@ -271,6 +268,8 @@ Page({
     var data = this.data.allCompetition
     var his = this.data.history
     var tmp = []
+    // 输入为空时不保存
+    if(this.data.value.trim()=='') return null;
     for (let i = 0; i < data.length; ++i) {
       if (!data[i].isHidden) {
         tmp = tmp.concat(data[i].type)
@@ -279,9 +278,10 @@ Page({
     for (let i = 0; i < tmp.length; ++i) {
       if (tmp[i] == "") {
         continue
-      }else if (his[tmp[i]] == undefined) {
+      } else if (his[tmp[i]] == undefined) {
+
         his[tmp[i]] = 1
-      } else  {
+      } else {
         his[tmp[i]] += 1
       }
     }
