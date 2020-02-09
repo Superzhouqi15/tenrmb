@@ -1,0 +1,20 @@
+/* miniprogram/pages/mark/mark.wxss */
+/* miniprogram/pages/profile/profile.wxss */
+
+
+
+page{
+  height: 100%;
+  width: 100%;
+  background-color: ghostwhite;
+}
+
+.column {
+  display:flex; 
+  flex-direction:column; 
+}
+
+.center {
+  text-align: center;
+}
+

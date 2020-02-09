@@ -31,51 +31,44 @@ Page({
     displayValue3: '请选择',
     displayValue4: '最多选择3项',
     options3: [{
-      title: '计算机',
+      title: '创业',
       value: '1',
     }, {
-      title: '金融',
+      title: '算法',
       value: '2',
     }, {
-      title: '文学',
+      title: '网络安全',
       value: '3',
     }, {
-      title: '数学',
+      title: '师范技能',
       value: '4',
     }, {
-      title: '外语',
+      title: '美术设计',
       value: '5',
     }, {
-      title: '地理',
+      title: '体育竞技',
       value: '6',
     }, {
-      title: '生物',
+      title: '知识竞赛',
       value: '7',
     }, {
-      title: '历史',
+      title: '歌唱比赛',
       value: '8',
     }, {
-      title: '政治',
+      title: '文学知识',
       value: '9',
     }, {
-      title: '物理',
+      title: '高等数学',
       value: '10',
     }, {
-      title: '化学',
+      title: '外语比赛',
       value: '11',
     }, {
-      title: '心理',
+      title: '理科知识',
       value: '12',
     }, {
-      title: '体育',
-      value: '13',
-    }, {
-      title: '美术',
-      value: '14',
-    }, {
-      title: '音乐',
-      value: '15',
-
+        title: '数学建模',
+        value: '13',
     }],
 
     fileList: []
@@ -83,6 +76,11 @@ Page({
 
   onChange(e) {
     console.log('onChange', e)
+    this.setData({
+      fileList: e.detail.fileList
+    })
+    console.log(this.data.fileList)
+    console.log(this.data.fileList[0].url)
     const { file } = e.detail
     if (file.status === 'uploading') {
       this.setData({
@@ -140,7 +138,7 @@ Page({
     })
 
   },
-
+ 
   setValue2(values, key, mode) {
     this.setData({
       time2: values.value,
@@ -187,7 +185,7 @@ Page({
       })
       return;
     }
-    
+
     wx.request({
       url: app.globalData.url + '/addCompetition',
       method: 'POST',
@@ -200,13 +198,45 @@ Page({
         'member': this.data.member,
         'introduction': this.data.introduction,
         'method': this.data.method,
-
       },
       success: res => {
         console.log(res.data)
       }
     })
-
+console.log(this.data.fileList.length)
+    for (var i = 0; i < this.data.fileList.length; i++) {
+      console.log(this.data.fileList[i].url)
+      wx.uploadFile({
+        url: app.globalData.url + '/upload',
+        filePath: this.data.fileList[i].url,
+        name: 'file',
+        formData: {
+          'competitionName': this.data.title,
+          'introduction': this.data.introduction,
+          'fileName':'',
+          'type': 'image'
+        },
+        success: (result) => {
+          console.log(result)
+        },
+        fail: (result) => {console.log(result) }
+      });
+    }
+    wx.uploadFile({
+      url: app.globalData.url + '/upload',
+      filePath: this.data.filePath,
+      name: 'file',
+      formData: {
+        'competitionName': this.data.title,
+        'introduction': this.data.introduction,
+        'fileName': this.data.fileName,
+        'type': 'file'
+      },
+      success: (result) => {
+        console.log(result)
+      },
+      fail: (result) => { console.log(result) }
+    });
     app.globalData.allCompetitionData.push({
       title: this.data.title,
       organization: this.data.organization,
@@ -296,6 +326,23 @@ Page({
     this.setData({
       value3: e.detail.value,
       date: e.detail.value
+    })
+  },
+
+  uploadFile: function(){
+    var that = this
+    wx.chooseMessageFile({
+      count: 1,
+      type: "file",
+      success(res){
+        console.log(res)
+        var temp = res.tempFiles[0];
+        console.log(temp)
+        that.setData({
+          filePath: temp.path,
+          fileName: temp.name
+        })
+      }
     })
   },
 
