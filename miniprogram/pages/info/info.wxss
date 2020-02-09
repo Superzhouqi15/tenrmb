@@ -1,10 +1,11 @@
 /* miniprogram/pages/profile/profile.wxss */
-
+@import '../../dist/styles/index.wxss';
 
 page{
   height: 100%;
   width: 100%;
   background-color: ghostwhite;
+  /* position: fixed; */
 }
 
 .column {
@@ -15,3 +16,6 @@ page{
 .center {
   text-align: center;
 }
+
+
+

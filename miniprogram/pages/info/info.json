@@ -7,6 +7,7 @@
     "wux-card": "../../dist/card/index",
     "wux-wing-blank": "../../dist/wing-blank/index",
     "wux-icon": "../../dist/icon/index"
+    
   },
   "navigationBarBackgroundColor": "#4990e2",
   "navigationBarTitleText": "比赛信息",

@@ -1,7 +1,7 @@
 <!--pages/showRecCompetition/showRecCompetition.wxml-->
 <view>
   <wux-cell-group title="赛事详情">
-    <wux-cell thumb="/icon/competition.png" title="赛事名称" extra="{{dat[index].title}}"></wux-cell>
+    <wux-cell thumb="/icon/competition.png" title="赛事名称" extra="{{dat[index].competitionName}}"></wux-cell>
     <wux-cell thumb="/icon/organization.png" title="举办单位" extra="{{dat[index].organization}}"></wux-cell>
     <wux-cell thumb="/icon/publisher.png" title="发布者" extra="{{dat[index].publisher}}"></wux-cell>
   </wux-cell-group>

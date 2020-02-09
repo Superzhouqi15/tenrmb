@@ -76,6 +76,11 @@ Page({
 
   onChange(e) {
     console.log('onChange', e)
+    this.setData({
+      fileList: e.detail.fileList
+    })
+    console.log(this.data.fileList)
+    console.log(this.data.fileList[0].url)
     const { file } = e.detail
     if (file.status === 'uploading') {
       this.setData({
@@ -133,7 +138,7 @@ Page({
     })
 
   },
-
+ 
   setValue2(values, key, mode) {
     this.setData({
       time2: values.value,
@@ -198,7 +203,40 @@ Page({
         console.log(res.data)
       }
     })
-
+console.log(this.data.fileList.length)
+    for (var i = 0; i < this.data.fileList.length; i++) {
+      console.log(this.data.fileList[i].url)
+      wx.uploadFile({
+        url: app.globalData.url + '/upload',
+        filePath: this.data.fileList[i].url,
+        name: 'file',
+        formData: {
+          'competitionName': this.data.title,
+          'introduction': this.data.introduction,
+          'fileName':'',
+          'type': 'image'
+        },
+        success: (result) => {
+          console.log(result)
+        },
+        fail: (result) => {console.log(result) }
+      });
+    }
+    wx.uploadFile({
+      url: app.globalData.url + '/upload',
+      filePath: this.data.filePath,
+      name: 'file',
+      formData: {
+        'competitionName': this.data.title,
+        'introduction': this.data.introduction,
+        'fileName': this.data.fileName,
+        'type': 'file'
+      },
+      success: (result) => {
+        console.log(result)
+      },
+      fail: (result) => { console.log(result) }
+    });
     app.globalData.allCompetitionData.push({
       title: this.data.title,
       organization: this.data.organization,
@@ -288,6 +326,23 @@ Page({
     this.setData({
       value3: e.detail.value,
       date: e.detail.value
+    })
+  },
+
+  uploadFile: function(){
+    var that = this
+    wx.chooseMessageFile({
+      count: 1,
+      type: "file",
+      success(res){
+        console.log(res)
+        var temp = res.tempFiles[0];
+        console.log(temp)
+        that.setData({
+          filePath: temp.path,
+          fileName: temp.name
+        })
+      }
     })
   },
 

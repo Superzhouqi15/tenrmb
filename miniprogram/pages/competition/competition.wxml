@@ -68,9 +68,18 @@
     </wux-cell-group>
 
     <wux-cell-group title="相关配图(最多4张)">
-      <wux-upload listType="picture-card" defaultFileList="{{ fileList }}" max="4"  url="/saveImage"  bind:change="onChange" bind:complete="onComplete" bind:preview="onPreview">
+      <wux-upload listType="picture-card" defaultFileList="{{ fileList }}" max="4" url="/saveImage" bind:change="onChange" bind:complete="onComplete" bind:preview="onPreview">
         <image src="/icon/add.png"></image>
       </wux-upload>
+    </wux-cell-group>
+
+    <wux-cell-group title="比赛文件">
+      <wux-cell hover-class="none">
+        <wux-field name="textarea">
+          <wux-textarea rows="1" maxlength="1000" disabled placeholder="{{fileName}}"/>
+        </wux-field>
+      </wux-cell>
+      <wux-button block class="submit" bind:click="uploadFile">上传文件</wux-button>
     </wux-cell-group>
 
   </view>

@@ -13,10 +13,9 @@ App({
         traceUser: true,
       })
     }
-
+    
     this.init();
   },
-
 
   init: function () {
     var that = this
@@ -24,9 +23,10 @@ App({
     var onGetCompetition = this.onGetCompetition()
     Promise.all([onGetUserInfo, onGetCompetition]).then(res => {
       var openId = that.globalData.openId
-      // var onGetRecCompetition = that.onGetRecCompetition()
+
       var getFavorite = that.getFavorite()
       Promise.all([getFavorite]).then(res => {
+
         that.pretreatData()
         // page callback
         that.globalData.initDone = true
@@ -145,17 +145,14 @@ App({
   pretreatData: function () { // fav->visable
     var that = this
     var data = that.globalData.allCompetitionData
-    //var rec = that.globalData.competitionData
+
     var fav = that.globalData.myFavorite
     var isCollect = that.globalData.isCollect = {}
     for (let i = 0; i < data.length; ++i) {
       var oId = that.getObjectId(data[i].id)
       data[i].objectId = oId
     }
-    //for (let i = 0; i < rec.length; ++i) {
-    //  var oId = that.getObjectId(rec[i].id)
-    //  rec[i].objectId = oId
-    //}
+
     for (let i = 0; i < fav.length; ++i) {
       var oId = that.getObjectId(fav[i].id)
       isCollect[oId] = true
@@ -221,6 +218,27 @@ App({
     })
   },
   // Favorite end
+  
+  addSearch: function (history) {
+    var that = this
+    var openId = this.globalData.openId
+    console.log(openId)
+    console.log(history)
+    return new Promise(function (resolve, reject) {
+      wx.request({
+        url: that.globalData.url + '/addSearch',
+        method: 'POST',
+        data: {
+          'openId': openId,
+          'type': history,
+        },
+        success: res => {
+          console.log(res)
+          resolve("addSearch : done")
+        }
+      })
+    })
+  },
 
   addSearch: function (history) {
     var that = this

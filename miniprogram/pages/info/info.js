@@ -50,17 +50,22 @@ Page({
     })
     var query = wx.createSelectorQuery();
     query.select("#tabs").boundingClientRect(function (rect) {
-      //console.log(rect.height)
+
+      console.log(rect.height)
       that.setData({
         tabsHeight: rect.height
       })
     }).exec();
     query.select("#search_bar").boundingClientRect(function (rect) {
-      //console.log(rect.height)
+      console.log(rect.height)
       that.setData({
         searchHeight: rect.height
       })
     }).exec();
+
+    // 数据初始化
+    this.pageInit()
+
   },
 
   onShow: function () {
@@ -82,13 +87,21 @@ Page({
     // console.log(this.data.history)
   },
 
+  onHide:function () {
+    this.addSearHis();
+    for (var key in this.data.history) {
+      delete (this.data.history[key]);
+    }
+    console.log(this.data.history)
+  },
+
   pageInit: function () {
     var that = this
     return new Promise(function (resolve, reject) {
       if (app.globalData.initDone) {
         that.setData({
           allCompetition: app.globalData.allCompetitionData,
-          //competition: app.globalData.competitionData,
+
           isCollect: app.globalData.isCollect,
         })
         resolve("pageInit : done")
@@ -97,7 +110,7 @@ Page({
           if (res) {
             that.setData({
               allCompetition: app.globalData.allCompetitionData,
-              //competition: app.globalData.competitionData,
+
               isCollect: app.globalData.isCollect,
             })
             resolve("pageInit : done")
@@ -105,6 +118,7 @@ Page({
         }
       }
     });
+
   },
 
   recInit: function () {
@@ -120,6 +134,7 @@ Page({
         competition: app.globalData.competitionData,
       })
     })
+
   },
 
   // card start
@@ -217,7 +232,8 @@ Page({
     // console.log(this.data.value)
     this.filter();
     this.saveHistory();
-    // this.addSearHis();
+    this.addSearHis();
+
   },
   onClear(e) {
     // console.log('onClear', e)
@@ -272,9 +288,10 @@ Page({
     for (let i = 0; i < tmp.length; ++i) {
       if (tmp[i] == "") {
         continue
-      } else if (his[tmp[i]] == undefined) {
+      }else if (his[tmp[i]] == undefined) {
+
         his[tmp[i]] = 1
-      } else {
+      } else  {
         his[tmp[i]] += 1
       }
     }
