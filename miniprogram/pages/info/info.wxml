@@ -11,7 +11,6 @@
 <wux-wing-blank size="default">
   <!-- 推荐比赛 start -->
   <view wx:if="{{current == 0}}">
-
     <scroll-view scroll-y="true" style="height:{{windowHeight-tabsHeight}}px;">
       <view wx:for="{{competition}}">
         <wux-card title="{{item.competitionName}}" thumb="{{item.thumb}}" thumb-style="border-radius: 50%;" bindtap="InToGame1" data-id="{{index}}">
@@ -31,24 +30,6 @@
         <wux-white-space size="small" />
       </view>
     </scroll-view>
-
-    <view wx:for="{{competition}}">
-      <wux-card title="{{item.competitionName}}" thumb="{{item.thumb}}" thumb-style="border-radius: 50%;" bindtap="InToGame1" data-id="{{index}}">
-        <!-- 收藏 -->
-        <view slot="extra" class="column center" catchtap="clickCollect" data-objectId="{{item.objectId}}">
-          <wux-icon type="md-star" size="28" color="{{isCollect[item.objectId]? '#F1E821': 'gray'}}" />
-          <text style="font-size:12px; color:gray;">收藏</text>
-        </view>
-        <view slot="body">
-          <text style="font-size:15px; color:red;">截止时间：</text>
-          <text style="color:gray;">{{item.endTime}}</text>
-        </view>
-        <view slot="footer">
-          <text wx:for="{{item.type}}" wx:for-item="label">{{label}}</text>
-        </view>
-      </wux-card>
-      <wux-white-space size="small" />
-    </view>
   </view>
   <!-- 推荐比赛 end -->
 
@@ -58,8 +39,8 @@
     <!-- 搜索框 -->
     <wux-search-bar clear value="{{ value }}" controlled placeholder="Search" bind:change="onChange" bind:focus="onFocus" bind:blur="onBlur" bind:confirm="onConfirm" bind:clear="onClear" bind:cancel="onCancel" id='search_bar' />
     <scroll-view scroll-y="true" style="height:{{windowHeight-tabsHeight-searchHeight}}px;">
-      <view wx:for="{{allCompetition}}">
-        <wux-card title="{{item.competitionName}}" thumb="{{item.thumb}}" thumb-style="border-radius: 50%;" bindtap="InToGame2" data-id="{{index}}" wx:if='{{!item.isHidden}}'>
+      <view wx:for="{{allCompetition}}" wx:if='{{!item.isHidden}}'>
+        <wux-card title="{{item.competitionName}}" thumb="{{item.thumb}}" thumb-style="border-radius: 50%;" bindtap="InToGame2" data-id="{{index}}">
           <!-- 收藏 -->
           <view slot="extra" class="column center" catchtap="clickCollect" data-objectId="{{item.objectId}}">
             <wux-icon type="md-star" size="28" color="{{isCollect[item.objectId]? '#F1E821': 'gray'}}" />

@@ -24,9 +24,9 @@ App({
     var onGetCompetition = this.onGetCompetition()
     Promise.all([onGetUserInfo, onGetCompetition]).then(res => {
       var openId = that.globalData.openId
-      var onGetRecCompetition = that.onGetRecCompetition()
+      // var onGetRecCompetition = that.onGetRecCompetition()
       var getFavorite = that.getFavorite()
-      Promise.all([onGetRecCompetition, getFavorite]).then(res => {
+      Promise.all([getFavorite]).then(res => {
         that.pretreatData()
         // page callback
         that.globalData.initDone = true
@@ -145,17 +145,17 @@ App({
   pretreatData: function () { // fav->visable
     var that = this
     var data = that.globalData.allCompetitionData
-    var rec = that.globalData.competitionData
+    //var rec = that.globalData.competitionData
     var fav = that.globalData.myFavorite
     var isCollect = that.globalData.isCollect = {}
     for (let i = 0; i < data.length; ++i) {
       var oId = that.getObjectId(data[i].id)
       data[i].objectId = oId
     }
-    for (let i = 0; i < rec.length; ++i) {
-      var oId = that.getObjectId(rec[i].id)
-      rec[i].objectId = oId
-    }
+    //for (let i = 0; i < rec.length; ++i) {
+    //  var oId = that.getObjectId(rec[i].id)
+    //  rec[i].objectId = oId
+    //}
     for (let i = 0; i < fav.length; ++i) {
       var oId = that.getObjectId(fav[i].id)
       isCollect[oId] = true
