@@ -66,6 +66,9 @@ Page({
     }, {
       title: '理科知识',
       value: '12',
+    }, {
+        title: '数学建模',
+        value: '13',
     }],
 
     fileList: []

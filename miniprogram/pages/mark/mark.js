@@ -1,6 +1,6 @@
 // miniprogram/pages/mark/mark.js
 const app = getApp()
-
+var that=this
 Page({
 
   /**
@@ -17,60 +17,14 @@ Page({
    
   },
 
-  del: function (res) {
-    var that = this
-    wx.showModal({
-      title: '提示',
-      content: '确定删除吗？',
-      cancelText: '否',
-      confirmText: '是',
-    success(res){
-       if(res.confirm)
-      {
-        console.log('成功')
 
-        //有问题
-         var openId = this.globalData.openId
-         return new Promise(function (resolve, reject) {
-           wx.request({
-             url: that.globalData.url + '/delFavorite',
-             method: 'POST',
-             data: {
-               'openId': openId,
-               'objectId': objectId,
-             },
-             success: res => {
-               console.log(res)
-               resolve("delFavorite : done")
-             }
-           })
-         })
-      }
-    }
-  })
-},
-    
-   
   
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    var that = this;
-    new Promise(function (resolve, reject) {
-      wx.request({
-        url: that.globalData.url + '/getFavorite',
-        method: 'POST',
-        data: {
-          'openId': that.globalData.openId,
-        },
-        success: res => {
-          that.globalData.myFavorite = res.data
-          resolve(res.data)
-        }
-      })
-    })
+   
   },
 
   /**
@@ -80,14 +34,101 @@ Page({
 
   },
 
+
+
+
+  myfavInit: function () {
+    var that = this
+    var myfav = that.data.myFavoriteList
+    for (let i = 0; i < myfav.length; ++i) {
+      var oId = app.getObjectId(myfav[i].id)
+      myfav[i].objectId = oId
+    }
+  },
+
+
+  del: function (e) {
+    var that = this
+    var id = e.currentTarget.dataset.id
+    console.log(id)
+    var objectId = this.data.myFavoriteList[id].objectId
+    console.log('我', objectId)
+    var isCollect = app.globalData.isCollect;
+    console.log('成', isCollect)
+    wx.showModal({
+      title: '提示',
+      content: '确定删除吗？',
+      cancelText: '否',
+      confirmText: '是',
+      success(res) {
+        if (res.confirm) {
+        new Promise(function (resolve, reject) {
+        app.delFavorite(objectId).then(res => {
+          delete isCollect[objectId]
+          resolve("success")
+        }).catch(err => {
+          reject("fail")
+          }).then(res => {
+            that.setData({
+              isCollect: isCollect,
+            })
+          })
+          console.log('功', isCollect)
+    }),
+         that.onShow();
+        }
+      }
+    })
+  },
+
+ 
+  /*delFavorite: function (objectId) {
+    var that = this
+    return new Promise(function (resolve, reject) {
+      wx.request({
+        url: app.globalData.url + '/delFavorite',
+        method: 'POST',
+        data: {
+          'openId': app.globalData.openId,
+          'objectId': objectId,
+        },
+        success: res => {
+          console.log(res)
+        }
+      })
+    })
+  },*/
+
+
+
+
+
+
   /**
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+    var that = this;
+    new Promise(function (resolve, reject) {
+      wx.request({
+        url: app.globalData.url + '/getFavorite',
+        method: 'POST',
+        data: {
+          'openId': app.globalData.openId,
+        },
+        success: res => {
+          app.globalData.myFavorite = res.data
+          resolve(res.data)
+        }
+      })
+    })
+    
     this.setData({
       myFavoriteList: app.globalData.myFavorite
     })
+    that.myfavInit()
+    console.log('你', this.data.myFavoriteList)
+
   },
 
   InToGame2: function (e) {
@@ -102,7 +143,7 @@ Page({
    * 生命周期函数--监听页面隐藏
    */
   onHide: function () {
-
+    
   },
 
   /**

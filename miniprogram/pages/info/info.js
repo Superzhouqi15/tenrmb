@@ -11,7 +11,7 @@ Page({
     hasUserInfo: false,
 
     // card start
-    competition: [[]],
+    competition: [],
     allCompetition: [],
     // card end
 
@@ -50,6 +50,7 @@ Page({
     })
     var query = wx.createSelectorQuery();
     query.select("#tabs").boundingClientRect(function (rect) {
+
       console.log(rect.height)
       that.setData({
         tabsHeight: rect.height
@@ -64,10 +65,26 @@ Page({
 
     // 数据初始化
     this.pageInit()
+
   },
 
   onShow: function () {
+  
 
+    // 数据初始化
+    //getRecCompetition
+
+    this.recInit()
+    this.pageInit()
+
+  },
+
+  onHide: function () {
+    this.addSearHis();
+    for (var key in this.data.history) {
+      delete (this.data.history[key]);
+    }
+    // console.log(this.data.history)
   },
 
   onHide:function () {
@@ -84,7 +101,7 @@ Page({
       if (app.globalData.initDone) {
         that.setData({
           allCompetition: app.globalData.allCompetitionData,
-          competition: app.globalData.competitionData,
+
           isCollect: app.globalData.isCollect,
         })
         resolve("pageInit : done")
@@ -93,7 +110,7 @@ Page({
           if (res) {
             that.setData({
               allCompetition: app.globalData.allCompetitionData,
-              competition: app.globalData.competitionData,
+
               isCollect: app.globalData.isCollect,
             })
             resolve("pageInit : done")
@@ -101,6 +118,23 @@ Page({
         }
       }
     });
+
+  },
+
+  recInit: function () {
+    var that = this
+    var onGetRecCompetition = app.onGetRecCompetition()
+    Promise.all([onGetRecCompetition]).then(res => {
+      var rec = app.globalData.competitionData
+      for (let i = 0; i < rec.length; ++i) {
+        var oId = app.getObjectId(rec[i].id)
+        rec[i].objectId = oId
+      }
+      that.setData({
+        competition: app.globalData.competitionData,
+      })
+    })
+
   },
 
   // card start
@@ -149,6 +183,7 @@ Page({
       this.setData({
         isCollect: isCollect,
       })
+      
       var text = isCollect[objectId] ? '已收藏' : '已取消收藏';
       wx.showToast({
         title: text,
@@ -197,7 +232,8 @@ Page({
     // console.log(this.data.value)
     this.filter();
     this.saveHistory();
-   // this.addSearHis();
+    this.addSearHis();
+
   },
   onClear(e) {
     // console.log('onClear', e)
@@ -253,6 +289,7 @@ Page({
       if (tmp[i] == "") {
         continue
       }else if (his[tmp[i]] == undefined) {
+
         his[tmp[i]] = 1
       } else  {
         his[tmp[i]] += 1
