@@ -14,12 +14,14 @@ Page({
    */
 
   onLoad: function(options) {
-    console.log(app.globalData)
-    var id = options.id
+    var id = options.id;
+    var target = options.target
+    //console.log(target)
+
     this.setData({
       index: id
-    }),
-      this.pageInit();
+    });
+    this.pageInit();
   },
 
   /**
@@ -72,21 +74,23 @@ Page({
   },
 
   pageInit: function () {
-    var that = this;
-    wx.request({
-      url: app.globalData.url + '/recommend',
-      method: 'POST',
-      data: {
-        'openId': app.globalData.openId,
-      },
-      success: res => {
-        that.setData({
-          dat: res.data
-        })
-      },
-      fail: res => {
-        reject("onGetRecCompetition : fail")
+
+    var that = this
+    if (app.globalData.initDone) {
+      that.setData({
+        dat: app.globalData.competitionData,
+      })
+    } else {
+      app.initCallback = res => {
+        if (res) {
+          //console.log(app.globalData.competitionData)
+          that.setData({
+            competition: app.globalData.competitionData,
+            allCompetition: app.globalData.allCompetitionData,
+            isCollect: app.globalData.isCollect,
+          })
+        }
       }
-    })
+    }
   }
 })

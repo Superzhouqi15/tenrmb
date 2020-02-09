@@ -18,7 +18,7 @@ Page({
   onLoad: function (options) {
     var id = options.id;
     var target=options.target
-    console.log(target)
+    //console.log(target)
 
     this.setData({
       index: id
@@ -111,7 +111,7 @@ Page({
     } else {
       app.initCallback = res => {
         if (res) {
-          console.log(app.globalData.allCompetitionData)
+          //console.log(app.globalData.allCompetitionData)
           that.setData({
             competition: app.globalData.allCompetitionData,
             allCompetition: app.globalData.allCompetitionData,
