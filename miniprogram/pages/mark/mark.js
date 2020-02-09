@@ -16,8 +16,6 @@ Page({
     myFavoriteList: [],
    
   },
-
-
   
 
   /**
@@ -35,8 +33,6 @@ Page({
   },
 
 
-
-
   myfavInit: function () {
     var that = this
     var myfav = that.data.myFavoriteList
@@ -50,11 +46,9 @@ Page({
   del: function (e) {
     var that = this
     var id = e.currentTarget.dataset.id
-    console.log(id)
     var objectId = this.data.myFavoriteList[id].objectId
-    console.log('我', objectId)
     var isCollect = app.globalData.isCollect;
-    console.log('成', isCollect)
+   
     wx.showModal({
       title: '提示',
       content: '确定删除吗？',
@@ -73,36 +67,12 @@ Page({
               isCollect: isCollect,
             })
           })
-          console.log('功', isCollect)
     }),
          that.onShow();
         }
       }
     })
   },
-
- 
-  /*delFavorite: function (objectId) {
-    var that = this
-    return new Promise(function (resolve, reject) {
-      wx.request({
-        url: app.globalData.url + '/delFavorite',
-        method: 'POST',
-        data: {
-          'openId': app.globalData.openId,
-          'objectId': objectId,
-        },
-        success: res => {
-          console.log(res)
-        }
-      })
-    })
-  },*/
-
-
-
-
-
 
   /**
    * 生命周期函数--监听页面显示
@@ -117,18 +87,15 @@ Page({
           'openId': app.globalData.openId,
         },
         success: res => {
-          app.globalData.myFavorite = res.data
           resolve(res.data)
+          app.globalData.myFavorite = res.data
+          that.setData({
+            myFavoriteList: app.globalData.myFavorite
+          })
+          that.myfavInit()
         }
       })
     })
-    
-    this.setData({
-      myFavoriteList: app.globalData.myFavorite
-    })
-    that.myfavInit()
-    console.log('你', this.data.myFavoriteList)
-
   },
 
   InToGame2: function (e) {
