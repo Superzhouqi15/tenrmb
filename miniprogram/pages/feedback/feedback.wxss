@@ -1,0 +1,8 @@
+/* miniprogram/pages/feedback/feedback.wxss */
+.border{
+  background-color:white;
+  margin: 10px;
+  padding: 10px;
+  box-shadow: 2px 2px 5px 5px gainsboro; 
+  border-radius: 5%
+}

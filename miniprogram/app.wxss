@@ -1,0 +1,7 @@
+.button{
+  width: 375rpx;
+  background-color: #ffffff;
+  text-align: center;
+  margin-top: 400rpx;
+
+}

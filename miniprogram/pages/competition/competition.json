@@ -1,0 +1,18 @@
+{
+  "usingComponents": {
+    "wux-cell-group": "../../dist/cell-group/index",
+    "wux-cell": "../../dist/cell/index",
+    "wux-input": "../../dist/input/index",
+    "wux-icon": "../../dist/icon/index",
+    "wux-button": "../../dist/button/index",
+    "wux-toast": "../../dist/toast/index",
+    "wux-segmented-control": "../../dist/segmented-control/index",
+    "wux-date-picker": "../../dist/date-picker/index",
+    "wux-textarea": "../../dist/textarea/index",
+    "wux-popup-select": "../../dist/popup-select/index",
+    "wux-upload": "../../dist/upload/index",
+    "wux-form": "../../dist/form/index",
+    "wux-field": "../../dist/field/index"
+  },
+  "navigationBarTitleText": "赛事信息"
+}

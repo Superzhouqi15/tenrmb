@@ -1,0 +1,24 @@
+/* miniprogram/pages/baidu/baidu.wxss */
+page{
+ background-color: ghostwhite;
+
+}
+
+.picker{
+  width: 100%;
+  display: fixed;
+  left: 90px;
+  font-size: 24rpx;
+  text-align: left;
+}
+
+
+
+.submit{
+  margin-top:  30px;
+  
+}
+
+.right{
+  text-align: right;
+}

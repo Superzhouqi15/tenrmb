@@ -1,0 +1,38 @@
+<!--miniprogram/pages/mark/mark.wxml-->
+<!--没有收藏比赛-->
+<view wx:if="{{myFavoriteList.length == 0}}"> 
+     <view class='imagesize'>
+        <image src="../../icon/kong.png" class='in-image'   >
+        </image>
+      </view>
+      <view class="text">
+        <text>还没有收藏比赛哟</text>
+      </view>
+</view>
+
+
+<!--有收藏比赛-->
+<view wx:else>
+<wux-wing-blank size="default">
+  <view wx:for="{{myFavoriteList}}">
+  <!-- 右滑动删除 -->
+  <wux-swipe-action autoClose right="{{ right }}" bind:click="del" data-id="{{index}}" data-objectId="{{item.objectId}}" >
+     
+      <view class="demo-item">  
+      <wux-card title="{{item.competitionName}}" thumb="{{item.thumb}}" thumb-style="border-radius: 50%;" bindtap="InToGame3" data-id="{{index}}" >
+        <view slot="body">
+          <text style="font-size:15px; color:red;">截止时间：</text>
+          <text style="color:gray;">{{item.endTime}}</text>
+        </view>
+        <view slot="footer">
+          <text wx:for="{{item.type}}" wx:for-item="label" style="margin-right:5px;">{{label}}</text>
+        </view>
+      </wux-card>
+      <wux-white-space size="small" />
+   </view>
+</wux-swipe-action>
+</view>
+</wux-wing-blank>
+</view>
+
+  

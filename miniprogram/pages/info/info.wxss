@@ -1,0 +1,21 @@
+/* miniprogram/pages/profile/profile.wxss */
+@import '../../dist/styles/index.wxss';
+
+page{
+  height: 100%;
+  width: 100%;
+  background-color: ghostwhite;
+  /* position: fixed; */
+}
+
+.column {
+  display:flex; 
+  flex-direction:column; 
+}
+
+.center {
+  text-align: center;
+}
+
+
+
