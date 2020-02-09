@@ -14,18 +14,24 @@ Page({
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function(options) {
+
+  onLoad: function (options) {
     var id = options.id;
+    var target=options.target
+    console.log(target)
+
     this.setData({
       index: id
     });
     this.pageInit();
   },
 
-  downloadFile: function() {
+
+  downloadFile: function () {
     wx.downloadFile({
       url: this.data.dat[this.data.index].filePath,
-      success: function(res) {
+      success: function (res) {
+
 
         var filePath = res.tempFilePath
 
@@ -34,7 +40,7 @@ Page({
           filePath: filePath,
 
 
-          success: function(res) {
+          success: function (res) {
             console.log(filePath)
 
             console.log('打开文档成功')
@@ -94,7 +100,9 @@ Page({
 
   },
 
+
   pageInit: function() {
+
     var that = this
     if (app.globalData.initDone) {
       that.setData({
