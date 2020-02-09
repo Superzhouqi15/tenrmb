@@ -40,7 +40,7 @@
     <wux-search-bar clear value="{{ value }}" controlled placeholder="Search" bind:change="onChange" bind:focus="onFocus" bind:blur="onBlur" bind:confirm="onConfirm" bind:clear="onClear" bind:cancel="onCancel" id='search_bar' />
     <scroll-view scroll-y="true" style="height:{{windowHeight-tabsHeight-searchHeight}}px;">
 
-      <view wx:for="{{allCompetition}}"><<<<<<< master
+      <view wx:for="{{allCompetition}}">
         <wux-card title="{{item.competitionName}}" thumb="{{item.thumb}}" thumb-style="border-radius: 50%;" bindtap="InToGame2" data-id="{{index}}" wx:if='{{!item.isHidden}}'>
 
           <!-- 收藏 -->
