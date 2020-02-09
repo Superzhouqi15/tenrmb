@@ -3,12 +3,12 @@
   <view class="page__bd">
     <wux-cell-group title="赛事详情">
       <wux-cell hover-class="none">
-        <wux-input placeholder="请输入赛事名称" label="赛事名称" bind:change="onChange1">
+        <wux-input class="right" placeholder="请输入赛事名称" label="赛事名称" bind:change="onChange1">
           <image style="width: 20px; height: 20px; margin-right: 5px" src="/icon/competition.png" />
         </wux-input>
       </wux-cell>
       <wux-cell hover-class="none">
-        <wux-input placeholder="请输入举办单位" label="举办单位" bind:change="onChange2">
+        <wux-input  class="right" placeholder="请输入举办单位" label="举办单位" bind:change="onChange2">
           <image style="width: 20px; height: 20px; margin-right: 5px" src="/icon/organization.png" />
         </wux-input>
       </wux-cell>
@@ -35,7 +35,7 @@
   <view class="page__bd">
     <wux-cell-group title="比赛对象">
       <wux-cell hover-class="none">
-        <wux-input placeholder="请输入比赛对象" label="比赛对象" bind:change="onChange3">
+        <wux-input class="right" placeholder="请输入比赛对象" label="比赛对象" bind:change="onChange3">
           <image style="width: 20px; height: 20px; margin-right: 5px" src="/icon/student.png" />
         </wux-input>
       </wux-cell>

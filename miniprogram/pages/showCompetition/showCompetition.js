@@ -18,12 +18,24 @@ Page({
   onLoad: function (options) {
     var id = options.id;
     var target=options.target
-    //console.log(target)
-
     this.setData({
       index: id
     });
-    this.pageInit();
+    
+    if(target==1) //推荐
+    {
+      this.pageInit1();
+    }
+   else if (target == 2) //全部
+    {
+      this.pageInit2();
+    }
+    else if (target == 3) //收藏
+     {
+      this.pageInit3();
+    }
+
+    
   },
 
 
@@ -100,8 +112,26 @@ Page({
 
   },
 
+  pageInit1: function () {
+    var that = this;
+    wx.request({
+      url: app.globalData.url + '/recommend',
+      method: 'POST',
+      data: {
+        'openId': app.globalData.openId,
+      },
+      success: res => {
+        that.setData({
+          dat: res.data
+        })
+      },
+      fail: res => {
+        reject("onGetRecCompetition : fail")
+      }
+    })
+  },
 
-  pageInit: function() {
+  pageInit2: function() {
 
     var that = this
     if (app.globalData.initDone) {
@@ -111,7 +141,7 @@ Page({
     } else {
       app.initCallback = res => {
         if (res) {
-          //console.log(app.globalData.allCompetitionData)
+          console.log(app.globalData.allCompetitionData)
           that.setData({
             competition: app.globalData.allCompetitionData,
             allCompetition: app.globalData.allCompetitionData,
@@ -120,5 +150,28 @@ Page({
         }
       }
     }
+  },
+
+  pageInit3: function () {
+    var that = this;
+    wx.request({
+      url: app.globalData.url + '/getFavorite',
+      method: 'POST',
+      data: {
+        'openId': app.globalData.openId,
+      },
+      success: res => {
+        that.setData({
+          dat: res.data
+        })
+      },
+      fail: res => {
+        reject("onGetMyFavCompetition : fail")
+      }
+    })
   }
+
 })
+
+
+

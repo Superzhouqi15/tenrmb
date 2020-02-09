@@ -3,13 +3,13 @@
 <wux-cell-group>
         <wux-cell hover-class="none">
         <wux-input label="您的邮箱（选填）" bind:change="onChange1">
-          <image style="width: 20px; height: 20px; margin-right: 5px" src="/icon/邮箱.png" />
+          <image style="width: 20px; height: 20px; margin-right: 5px" src="/icon/em.png" />
         </wux-input>
       </wux-cell>
 
         <wux-cell hover-class="none">
           <wux-textarea rows="4" placeholder="*请输入反馈内容" bind:change="onChange2" >
-            <image style="width: 20px; height: 20px; margin-right: 5px" src="/icon/反馈.png" />
+            <image style="width: 20px; height: 20px; margin-right: 5px" src="/icon/fk.png" />
           </wux-textarea> 
         </wux-cell>
   </wux-cell-group>

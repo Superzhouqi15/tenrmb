@@ -49,11 +49,14 @@ Page({
     })
     var query = wx.createSelectorQuery();
     query.select("#tabs").boundingClientRect(function (rect) {
+
+      console.log(rect.height)
       that.setData({
         tabsHeight: rect.height
       })
     }).exec();
     query.select("#search_bar").boundingClientRect(function (rect) {
+      console.log(rect.height)
       that.setData({
         searchHeight: rect.height
       })
@@ -84,7 +87,18 @@ Page({
 
   onHide: function () {
     this.addSearHis();
+    for (var key in this.data.history) {
+      delete (this.data.history[key]);
+    }
     // console.log(this.data.history)
+  },
+
+  onHide:function () {
+    this.addSearHis();
+    for (var key in this.data.history) {
+      delete (this.data.history[key]);
+    }
+    console.log(this.data.history)
   },
 
   pageInit: function () {
@@ -130,14 +144,14 @@ Page({
     var id = e.currentTarget.dataset.id
     console.log(id)
     wx.navigateTo({
-      url: '../showRecCompetition/showRecCompetition?id=' + id,
+      url: '../showCompetition/showCompetition?id=' + id+'&target='+1,
     })
   },
   InToGame2: function (e) {
     var id = e.currentTarget.dataset.id
     console.log(id)
     wx.navigateTo({
-      url: '../showCompetition/showCompetition?id=' + id,
+      url: '../showCompetition/showCompetition?id=' + id+'&target='+2,
     })
   },
   // card end
@@ -171,7 +185,7 @@ Page({
       this.setData({
         isCollect: isCollect,
       })
-
+      
       var text = isCollect[objectId] ? '已收藏' : '已取消收藏';
       wx.showToast({
         title: text,
@@ -196,7 +210,6 @@ Page({
     console.log(his)
     return new Promise(function (resolve, reject) {
       app.addSearch(his).then(res => {
-        that.data.history = {};
         resolve("success")
       }).catch(err => {
         reject("fail")
@@ -221,7 +234,8 @@ Page({
     // console.log(this.data.value)
     this.filter();
     this.saveHistory();
-   this.addSearHis();
+    this.addSearHis();
+
   },
   onClear(e) {
     // console.log('onClear', e)
@@ -278,10 +292,10 @@ Page({
     for (let i = 0; i < tmp.length; ++i) {
       if (tmp[i] == "") {
         continue
-      } else if (his[tmp[i]] == undefined) {
+      }else if (his[tmp[i]] == undefined) {
 
         his[tmp[i]] = 1
-      } else {
+      } else  {
         his[tmp[i]] += 1
       }
     }

@@ -98,11 +98,11 @@ Page({
     })
   },
 
-  InToGame2: function (e) {
+  InToGame3: function (e) {
     var id = e.currentTarget.dataset.id
     console.log(id)
     wx.navigateTo({
-      url: '../showCompetition/showCompetition?id=' + id,
+      url: '../showCompetition/showCompetition?id=' + id + '&target=' + 3,
     })
   },
 

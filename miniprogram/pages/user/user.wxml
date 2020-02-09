@@ -8,8 +8,8 @@
 </view>
  
   <wux-cell-group>
-            <wux-cell thumb="../../icon/发布比赛.png" title="发布比赛" is-link url="/pages/competition/competition"open-type="navigateTo"></wux-cell>
-             <wux-cell thumb="../../icon/我的收藏.png" title="我的收藏" is-link url="/pages/mark/mark"open-type="navigateTo"></wux-cell>
-              <wux-cell thumb="../../icon/我要反馈.png" title="我要反馈" is-link url="/pages/feedback/feedback"open-type="navigateTo"></wux-cell>
-               <wux-cell thumb="../../icon/关于我们.png" title="关于我们" is-link url="/pages/aboutUs/aboutUs"open-type="navigateTo"></wux-cell>
+            <wux-cell thumb="../../icon/comp.png" title="发布比赛" is-link url="/pages/competition/competition"open-type="navigateTo"></wux-cell>
+             <wux-cell thumb="../../icon/sc.png" title="我的收藏" is-link url="/pages/mark/mark"open-type="navigateTo"></wux-cell>
+              <wux-cell thumb="../../icon/wofankui.png" title="我要反馈" is-link url="/pages/feedback/feedback"open-type="navigateTo"></wux-cell>
+               <wux-cell thumb="../../icon/aboutus.png" title="关于我们" is-link url="/pages/aboutUs/aboutUs"open-type="navigateTo"></wux-cell>
     </wux-cell-group>

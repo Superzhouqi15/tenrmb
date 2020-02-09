@@ -50,6 +50,10 @@ Page({
       }
     })
 
+    wx.showToast({
+      title: '已成功提交反馈',
+      icon: "none"
+    })
   },
 
   /**
