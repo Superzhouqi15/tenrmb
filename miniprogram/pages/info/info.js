@@ -63,20 +63,27 @@ Page({
       })
     }).exec();
 
-    // 数据初始化
-    this.pageInit()
-
+    // 数据
+    this.pageInit().then(res => {
+      this.recInit()
+    })
   },
 
   onShow: function () {
-  
-
-    // 数据初始化
-    //getRecCompetition
-
-    this.recInit()
-    this.pageInit()
-
+    var that = this
+    if (app.globalData.initDone) { 
+      // isCollect
+      that.setData({
+        isCollect: app.globalData.isCollect,
+      })
+      // update allCom
+      app.onGetCompetition().then(res => {
+        console.log("all", res)
+        that.setData({
+          allCompetition: res,
+        })
+      })
+    }
   },
 
   onHide: function () {
@@ -101,7 +108,6 @@ Page({
       if (app.globalData.initDone) {
         that.setData({
           allCompetition: app.globalData.allCompetitionData,
-
           isCollect: app.globalData.isCollect,
         })
         resolve("pageInit : done")
@@ -110,7 +116,6 @@ Page({
           if (res) {
             that.setData({
               allCompetition: app.globalData.allCompetitionData,
-
               isCollect: app.globalData.isCollect,
             })
             resolve("pageInit : done")
@@ -134,7 +139,6 @@ Page({
         competition: app.globalData.competitionData,
       })
     })
-
   },
 
   // card start
@@ -249,7 +253,7 @@ Page({
   },
   filter: function () {
     var that = this
-    var val = this.data.value
+    var val = this.data.value.trim()
     var ac = this.data.allCompetition
 
     for (let i = 0; i < ac.length; ++i) {
@@ -280,6 +284,8 @@ Page({
     var data = this.data.allCompetition
     var his = this.data.history
     var tmp = []
+    // 输入为空时不保存
+    if(this.data.value.trim()=='') return null;
     for (let i = 0; i < data.length; ++i) {
       if (!data[i].isHidden) {
         tmp = tmp.concat(data[i].type)

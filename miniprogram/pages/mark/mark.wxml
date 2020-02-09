@@ -1,4 +1,5 @@
 <!--miniprogram/pages/mark/mark.wxml-->
+<<<<<<< HEAD
 <!--没有收藏比赛-->
 <view wx:if="{{myFavoriteList.length == 0}}"> 
      <view class='imagesize'>
@@ -15,11 +16,20 @@
 <view wx:else>
 <wux-wing-blank size="default">
   <view wx:for="{{myFavoriteList}}">
+=======
+<wux-wing-blank size="default">
+  <view wx:for="{{myFavoriteList}}">
+
+>>>>>>> 5851d51a3dcbe295c5e4ffd6cc25164810531080
   <!-- 右滑动删除 -->
   <wux-swipe-action autoClose right="{{ right }}" bind:click="del" data-id="{{index}}" data-objectId="{{item.objectId}}" >
      
       <view class="demo-item">  
+<<<<<<< HEAD
       <wux-card title="{{item.competitionName}}" thumb="{{item.thumb}}" thumb-style="border-radius: 50%;" bindtap="InToGame3" data-id="{{index}}" >
+=======
+      <wux-card title="{{item.competitionName}}" thumb="{{item.thumb}}" thumb-style="border-radius: 50%;" bindtap="InToGame2"  >
+>>>>>>> 5851d51a3dcbe295c5e4ffd6cc25164810531080
         <view slot="body">
           <text style="font-size:15px; color:red;">截止时间：</text>
           <text style="color:gray;">{{item.endTime}}</text>
@@ -33,6 +43,10 @@
 </wux-swipe-action>
 </view>
 </wux-wing-blank>
+<<<<<<< HEAD
 </view>
+=======
+
+>>>>>>> 5851d51a3dcbe295c5e4ffd6cc25164810531080
 
   

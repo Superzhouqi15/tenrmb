@@ -37,7 +37,6 @@ Page({
       return;
     }
    
-
     wx.request({
       url: app.globalData.url + '/feedback',
       method: 'POST',

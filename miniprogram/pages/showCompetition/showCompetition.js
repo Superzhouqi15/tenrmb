@@ -18,6 +18,7 @@ Page({
   onLoad: function (options) {
     var id = options.id;
     var target=options.target
+<<<<<<< HEAD
     this.setData({
       index: id
     });
@@ -36,6 +37,14 @@ Page({
     }
 
     
+=======
+    //console.log(target)
+
+    this.setData({
+      index: id
+    });
+    this.pageInit();
+>>>>>>> 5851d51a3dcbe295c5e4ffd6cc25164810531080
   },
 
 
@@ -112,6 +121,7 @@ Page({
 
   },
 
+<<<<<<< HEAD
   pageInit1: function () {
     var that = this;
     wx.request({
@@ -132,6 +142,10 @@ Page({
   },
 
   pageInit2: function() {
+=======
+
+  pageInit: function() {
+>>>>>>> 5851d51a3dcbe295c5e4ffd6cc25164810531080
 
     var that = this
     if (app.globalData.initDone) {
@@ -141,7 +155,11 @@ Page({
     } else {
       app.initCallback = res => {
         if (res) {
+<<<<<<< HEAD
           console.log(app.globalData.allCompetitionData)
+=======
+          //console.log(app.globalData.allCompetitionData)
+>>>>>>> 5851d51a3dcbe295c5e4ffd6cc25164810531080
           that.setData({
             competition: app.globalData.allCompetitionData,
             allCompetition: app.globalData.allCompetitionData,
@@ -150,6 +168,7 @@ Page({
         }
       }
     }
+<<<<<<< HEAD
   },
 
   pageInit3: function () {
@@ -175,3 +194,7 @@ Page({
 
 
 
+=======
+  }
+})
+>>>>>>> 5851d51a3dcbe295c5e4ffd6cc25164810531080

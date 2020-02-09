@@ -98,11 +98,19 @@ Page({
     })
   },
 
+<<<<<<< HEAD
   InToGame3: function (e) {
     var id = e.currentTarget.dataset.id
     console.log(id)
     wx.navigateTo({
       url: '../showCompetition/showCompetition?id=' + id + '&target=' + 3,
+=======
+  InToGame2: function (e) {
+    var id = e.currentTarget.dataset.id
+    console.log(id)
+    wx.navigateTo({
+      url: '../showCompetition/showCompetition?id=' + id,
+>>>>>>> 5851d51a3dcbe295c5e4ffd6cc25164810531080
     })
   },
 
