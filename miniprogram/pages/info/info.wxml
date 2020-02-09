@@ -30,7 +30,6 @@
         <wux-white-space size="small" />
       </view>
     </scroll-view>
-<<<<<<< HEAD
 
     <view wx:for="{{competition}}">
       <wux-card title="{{item.competitionName}}" thumb="{{item.thumb}}" thumb-style="border-radius: 50%;" bindtap="InToGame1" data-id="{{index}}">
@@ -49,8 +48,6 @@
       </wux-card>
       <wux-white-space size="small" />
     </view>
-=======
->>>>>>> 5851d51a3dcbe295c5e4ffd6cc25164810531080
   </view>
   <!-- 推荐比赛 end -->
 
@@ -62,10 +59,6 @@
     <scroll-view scroll-y="true" style="height:{{windowHeight-tabsHeight-searchHeight}}px;">
       <view wx:for="{{allCompetition}}" wx:if='{{!item.isHidden}}'>
         <wux-card title="{{item.competitionName}}" thumb="{{item.thumb}}" thumb-style="border-radius: 50%;" bindtap="InToGame2" data-id="{{index}}">
-<<<<<<< HEAD
-=======
-
->>>>>>> 5851d51a3dcbe295c5e4ffd6cc25164810531080
           <!-- 收藏 -->
           <view slot="extra" class="column center" catchtap="clickCollect" data-objectId="{{item.objectId}}">
             <wux-icon type="md-star" size="28" color="{{isCollect[item.objectId]? '#F1E821': 'gray'}}" />
