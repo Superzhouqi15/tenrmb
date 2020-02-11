@@ -77,9 +77,11 @@ Page({
       })
       // update allCom
       app.onGetCompetition().then(res => {
-        console.log("all", res)
+        // console.log("update")
+        app.pretreatData()
+        console.log("all", app.globalData.allCompetitionData)
         that.setData({
-          allCompetition: res,
+          allCompetition: app.globalData.allCompetitionData,
         })
       })
     }
@@ -235,7 +237,6 @@ Page({
     this.filter();
     this.saveHistory();
     this.addSearHis();
-
   },
   onClear(e) {
     // console.log('onClear', e)
