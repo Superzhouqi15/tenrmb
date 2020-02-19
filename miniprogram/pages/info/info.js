@@ -49,14 +49,11 @@ Page({
     })
     var query = wx.createSelectorQuery();
     query.select("#tabs").boundingClientRect(function (rect) {
-
-      console.log(rect.height)
       that.setData({
         tabsHeight: rect.height
       })
     }).exec();
     query.select("#search_bar").boundingClientRect(function (rect) {
-      console.log(rect.height)
       that.setData({
         searchHeight: rect.height
       })
@@ -79,7 +76,6 @@ Page({
       app.onGetCompetition().then(res => {
         // console.log("update")
         app.pretreatData()
-        console.log("all", app.globalData.allCompetitionData)
         that.setData({
           allCompetition: app.globalData.allCompetitionData,
         })
@@ -139,6 +135,7 @@ Page({
         competition: app.globalData.competitionData,
       })
     })
+    console.log('推荐',this.data.competition)
   },
 
   // card start

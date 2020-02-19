@@ -75,12 +75,11 @@ Page({
   },
 
   onChange(e) {
-    console.log('onChange', e)
+
     this.setData({
       fileList: e.detail.fileList
     })
-    console.log(this.data.fileList)
-    console.log(this.data.fileList[0].url)
+
     const { file } = e.detail
     if (file.status === 'uploading') {
       this.setData({
@@ -96,12 +95,12 @@ Page({
 
 
   onComplete(e) {
-    console.log('onComplete', e)
+
     wx.hideLoading()
   },
 
   onPreview(e) {
-    console.log('onPreview', e)
+
     const { file, fileList } = e.detail
     wx.previewImage({
       current: file.url,
@@ -111,23 +110,23 @@ Page({
 
 
   onConfirm1(e) {
-    console.log(this.data.time1)
+
     const { index } = e.currentTarget.dataset
     this.setValue1(e.detail, index)
-    console.log(`onConfirm${index}`, e.detail)
+
 
   },
 
   onConfirm2(e) {
     const { index } = e.currentTarget.dataset
     this.setValue2(e.detail, index)
-    console.log(`onConfirm${index}`, e.detail)
+
   },
 
   onConfirm3(e) {
     const { index } = e.currentTarget.dataset
     this.setValue3(e.detail, index)
-    console.log(`onConfirm${index}`, e.detail)
+
   },
 
   setValue1(values, key, mode) {
@@ -153,12 +152,12 @@ Page({
       label: values.displayValue,
       [`displayValue${key}`]: values.label,
     })
-    console.log(this.data.label)
+
   },
 
   onValueChange(e) {
     const { index } = e.currentTarget.dataset
-    console.log(`onValueChange${index}`, e.detail)
+
   },
 
 
@@ -200,12 +199,13 @@ Page({
         'method': this.data.method,
       },
       success: res => {
-        console.log(res.data)
+  
       }
     })
-console.log(this.data.fileList.length)
+
+
     for (var i = 0; i < this.data.fileList.length; i++) {
-      console.log(this.data.fileList[i].url)
+
       wx.uploadFile({
         url: app.globalData.url + '/upload',
         filePath: this.data.fileList[i].url,
@@ -217,26 +217,12 @@ console.log(this.data.fileList.length)
           'type': 'image'
         },
         success: (result) => {
-          console.log(result)
+
         },
-        fail: (result) => {console.log(result) }
+        fail: (result) => {c}
       });
     }
-    wx.uploadFile({
-      url: app.globalData.url + '/upload',
-      filePath: this.data.filePath,
-      name: 'file',
-      formData: {
-        'competitionName': this.data.title,
-        'introduction': this.data.introduction,
-        'fileName': this.data.fileName,
-        'type': 'file'
-      },
-      success: (result) => {
-        console.log(result)
-      },
-      fail: (result) => { console.log(result) }
-    });
+
     app.globalData.allCompetitionData.push({
       title: this.data.title,
       organization: this.data.organization,
@@ -251,7 +237,7 @@ console.log(this.data.fileList.length)
 
     $wuxToast().show({
       type: 'success',
-      duration: 1500,
+      duration: 1000,
       color: '#fff',
       text: '发布成功'
     }),
@@ -269,7 +255,6 @@ console.log(this.data.fileList.length)
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    console.log(this.data)
   },
 
   /**
@@ -322,7 +307,6 @@ console.log(this.data.fileList.length)
   },
 
   bindDateChange: function (e) {
-    console.log('picker发送选择改变，携带值为', e.detail.value)
     this.setData({
       value3: e.detail.value,
       date: e.detail.value
@@ -335,9 +319,7 @@ console.log(this.data.fileList.length)
       count: 1,
       type: "file",
       success(res){
-        console.log(res)
         var temp = res.tempFiles[0];
-        console.log(temp)
         that.setData({
           filePath: temp.path,
           fileName: temp.name
@@ -349,16 +331,16 @@ console.log(this.data.fileList.length)
 
   onChange1: function (e) {
 
-    console.log(e.detail.value)
+
     this.setData({
       title: e.detail.value
     })
-    console.log(this.data.title)
+
   },
 
   onChange2: function (e) {
 
-    console.log(e.detail)
+
     this.setData({
       organization: e.detail.value
     })
@@ -366,14 +348,14 @@ console.log(this.data.fileList.length)
 
   onChange3: function (e) {
 
-    console.log(e.detail)
+
     this.setData({
       member: e.detail.value
     })
   },
 
   onChange4: function (e) {
-    console.log(e.detail)
+
     this.setData({
       method: e.detail.value
     })
@@ -381,7 +363,6 @@ console.log(this.data.fileList.length)
 
   onChange5: function (e) {
 
-    console.log(e.detail)
     this.setData({
       introduction: e.detail.value
     })

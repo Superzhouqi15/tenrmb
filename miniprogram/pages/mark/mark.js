@@ -66,9 +66,10 @@ Page({
             that.setData({
               isCollect: isCollect,
             })
+            that.onShow();
           })
-    }),
-         that.onShow();
+    })
+         
         }
       }
     })

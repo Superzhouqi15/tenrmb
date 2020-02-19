@@ -1,6 +1,7 @@
 App({
   globalData: {
     url: "http://www.tuppy.pub:8099",
+    // url: "http://localhost:8099",
     openId: "",
     newUser: false
   },
@@ -69,7 +70,6 @@ App({
                 resolve(res.data)
               },
               fail: res => {
-                console.log(res)
                 reject("getOpenId : fail")
               }
             })
@@ -115,7 +115,6 @@ App({
           'openId': that.globalData.openId
         },
         success: res => {
-          console.log(res.data)
           that.globalData.competitionData = res.data
           resolve(res.data)
         },
@@ -152,15 +151,12 @@ App({
       var oId = that.getObjectId(data[i].id)
       data[i].objectId = oId
     }
-    //for (let i = 0; i < rec.length; ++i) {
-    //  var oId = that.getObjectId(rec[i].id)
-    //  rec[i].objectId = oId
-    //}
+
     for (let i = 0; i < fav.length; ++i) {
       var oId = that.getObjectId(fav[i].id)
       isCollect[oId] = true
     }
-    // console.log(isCollect)
+
   },
   // Competition end
 
@@ -196,7 +192,7 @@ App({
           'objectId': objectId,
         },
         success: res => {
-          console.log(res)
+
           resolve("addFavorite : done")
         }
       })
@@ -214,7 +210,7 @@ App({
           'objectId': objectId,
         },
         success: res => {
-          console.log(res)
+  
           resolve("delFavorite : done")
         }
       })
@@ -236,7 +232,7 @@ App({
           'type': history,
         },
         success: res => {
-          console.log(res)
+
           resolve("addSearch : done")
         }
       })
@@ -257,7 +253,7 @@ App({
           'type': history,
         },
         success: res => {
-          console.log(res)
+
           resolve("addSearch : done")
         }
       })

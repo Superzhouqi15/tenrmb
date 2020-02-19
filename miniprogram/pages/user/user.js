@@ -67,7 +67,7 @@ Page({
 
 
   mine_func: function(){
-    console.log("我是图标");
+ 
   },
 
   //关于我们的弹窗
