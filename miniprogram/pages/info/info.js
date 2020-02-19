@@ -21,17 +21,17 @@ Page({
     // search-bar end
 
     // tabs start
-    current: '1',
+    current: '0',
     tabs: [{
-      key: '0',
-      title: '推荐比赛',
-      content: 'Content of tab 1',
-    },
-    {
-      key: '1',
-      title: '全部比赛',
-      content: 'Content of tab 2',
-    },
+        key: '0',
+        title: '推荐比赛',
+        content: 'Content of tab 1',
+      },
+      {
+        key: '1',
+        title: '全部比赛',
+        content: 'Content of tab 2',
+      },
     ],
     // tabs end
   },
@@ -40,7 +40,7 @@ Page({
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function (options) {
+  onLoad: function(options) {
     // console.log(this.data)
     var that = this
     // 样式
@@ -48,16 +48,12 @@ Page({
       windowHeight: wx.getSystemInfoSync().windowHeight,
     })
     var query = wx.createSelectorQuery();
-    query.select("#tabs").boundingClientRect(function (rect) {
+    query.select("#tabs").boundingClientRect(function(rect) {
       that.setData({
         tabsHeight: rect.height
       })
     }).exec();
-    query.select("#search_bar").boundingClientRect(function (rect) {
-      that.setData({
-        searchHeight: rect.height
-      })
-    }).exec();
+
 
     // 数据
     this.pageInit().then(res => {
@@ -65,9 +61,9 @@ Page({
     })
   },
 
-  onShow: function () {
+  onShow: function() {
     var that = this
-    if (app.globalData.initDone) { 
+    if (app.globalData.initDone) {
       // isCollect
       that.setData({
         isCollect: app.globalData.isCollect,
@@ -83,25 +79,13 @@ Page({
     }
   },
 
-  onHide: function () {
-    this.addSearHis();
-    for (var key in this.data.history) {
-      delete (this.data.history[key]);
-    }
+  onHide: function() {
     // console.log(this.data.history)
   },
 
-  onHide:function () {
-    this.addSearHis();
-    for (var key in this.data.history) {
-      delete (this.data.history[key]);
-    }
-    console.log(this.data.history)
-  },
-
-  pageInit: function () {
+  pageInit: function() {
     var that = this
-    return new Promise(function (resolve, reject) {
+    return new Promise(function(resolve, reject) {
       if (app.globalData.initDone) {
         that.setData({
           allCompetition: app.globalData.allCompetitionData,
@@ -122,7 +106,7 @@ Page({
     });
   },
 
-  recInit: function () {
+  recInit: function() {
     var that = this
     var onGetRecCompetition = app.onGetRecCompetition()
     Promise.all([onGetRecCompetition]).then(res => {
@@ -139,14 +123,14 @@ Page({
   },
 
   // card start
-  InToGame1: function (e) {
+  InToGame1: function(e) {
     var id = e.currentTarget.dataset.id
     console.log(id)
     wx.navigateTo({
       url: '../showCompetition/showCompetition?id=' + id+'&target='+1,
     })
   },
-  InToGame2: function (e) {
+  InToGame2: function(e) {
     var id = e.currentTarget.dataset.id
     console.log(id)
     wx.navigateTo({
@@ -156,13 +140,13 @@ Page({
   // card end
 
   // collect start
-  clickCollect: function (e) {
+  clickCollect: function(e) {
     var that = this
     var objectId = e.currentTarget.dataset.objectid
     var current = this.data.current
     var isCollect = app.globalData.isCollect;
     // console.log(objectId)
-    new Promise(function (resolve, reject) {
+    new Promise(function(resolve, reject) {
       if (isCollect[objectId]) {
         app.delFavorite(objectId).then(res => {
           delete isCollect[objectId]
@@ -202,12 +186,12 @@ Page({
   // collect end
 
   // search-bar start
-  addSearHis: function () {
+  addSearHis: function() {
     var that = this
     var his = []
     his = Object.keys(this.data.history)
     console.log(his)
-    return new Promise(function (resolve, reject) {
+    return new Promise(function(resolve, reject) {
       app.addSearch(his).then(res => {
         resolve("success")
       }).catch(err => {
@@ -247,7 +231,7 @@ Page({
     this.onClear()
     this.filter()
   },
-  filter: function () {
+  filter: function() {
     var that = this
     var val = this.data.value.trim()
     var ac = this.data.allCompetition
@@ -275,13 +259,13 @@ Page({
       allCompetition: ac,
     })
   },
-  saveHistory: function () { // label 未改成数组
+  saveHistory: function() { // label 未改成数组
     var that = this
     var data = this.data.allCompetition
     var his = this.data.history
     var tmp = []
     // 输入为空时不保存
-    if(this.data.value.trim()=='') return null;
+    if (this.data.value.trim() == '') return null;
     for (let i = 0; i < data.length; ++i) {
       if (!data[i].isHidden) {
         tmp = tmp.concat(data[i].type)
@@ -307,10 +291,19 @@ Page({
   // tabs start
   onChangeTab(e) {
     // console.log('onChange', e)
+    var that = this
     var key = e.detail.key
     this.setData({
       current: key,
     })
+    if (this.data.current == '1') {
+      var query = wx.createSelectorQuery();
+      query.select("#search_bar").boundingClientRect(function(rect) {
+        that.setData({
+          searchHeight: rect.height
+        })
+      }).exec();
+    }
   },
   // tabs end
 
