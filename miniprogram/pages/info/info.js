@@ -21,7 +21,7 @@ Page({
     // search-bar end
 
     // tabs start
-    current: '1',
+    current: '0',
     tabs: [{
       key: '0',
       title: '推荐比赛',
