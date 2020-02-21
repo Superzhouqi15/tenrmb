@@ -5,7 +5,7 @@ App({
     openId: "",
     newUser: false,
     //identity表示身份是游客'0'还是用户'1'，然后判断是否能够进行相关操作
-    identity:'0'
+    identity:'1'
   },
 
   onLaunch: function () {
@@ -143,6 +143,9 @@ App({
       })
     })
   },
+  tranDate: function (time) {
+    return new Date(time.replace(/-/g, '/')).getTime();
+  },
   pretreatData: function () { // fav->visable
     var that = this
     var data = that.globalData.allCompetitionData
@@ -152,6 +155,20 @@ App({
     for (let i = 0; i < data.length; ++i) {
       var oId = that.getObjectId(data[i].id)
       data[i].objectId = oId
+
+      
+      let endTime = this.tranDate(data[i].endTime);
+      let thisDate = new Date();
+      // 获取当前时间，格式为 2018-9-10 20:08
+      let currentTime = thisDate.getFullYear() + '-' + (thisDate.getMonth() + 1) + '-' + thisDate.getDate() + ' ' + thisDate.getHours() + ':' + thisDate.getMinutes();
+      let nowTime = this.tranDate(currentTime);
+      // 如果当前时间处于时间段内，返回true，否则返回false
+      if (nowTime > endTime) {
+        data[i].isEnd = "已截止";
+      }
+      else {
+        data[i].isEnd = "未截止";
+      }
     }
 
     for (let i = 0; i < fav.length; ++i) {

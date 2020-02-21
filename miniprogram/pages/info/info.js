@@ -9,7 +9,7 @@ Page({
     emptyFlag: true,
     userInfo: {},
     hasUserInfo: false,
-    
+
     // card start
     competition: [],
     allCompetition: [],
@@ -23,15 +23,15 @@ Page({
     // tabs start
     current: '0',
     tabs: [{
-        key: '0',
-        title: '推荐比赛',
-        content: 'Content of tab 1',
-      },
-      {
-        key: '1',
-        title: '全部比赛',
-        content: 'Content of tab 2',
-      },
+      key: '0',
+      title: '推荐比赛',
+      content: 'Content of tab 1',
+    },
+    {
+      key: '1',
+      title: '全部比赛',
+      content: 'Content of tab 2',
+    },
     ],
     // tabs end
   },
@@ -40,7 +40,7 @@ Page({
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function(options) {
+  onLoad: function (options) {
     // console.log(this.data)
     var that = this
     // 样式
@@ -49,7 +49,7 @@ Page({
       windowHeight: wx.getSystemInfoSync().windowHeight,
     })
     var query = wx.createSelectorQuery();
-    query.select("#tabs").boundingClientRect(function(rect) {
+    query.select("#tabs").boundingClientRect(function (rect) {
       that.setData({
         tabsHeight: rect.height
       })
@@ -59,10 +59,11 @@ Page({
     // 数据
     this.pageInit().then(res => {
       this.recInit()
+      //this.compareTime()
     })
   },
 
-  onShow: function() {
+  onShow: function () {
     var that = this
     if (app.globalData.initDone) {
       // isCollect
@@ -80,13 +81,13 @@ Page({
     }
   },
 
-  onHide: function() {
+  onHide: function () {
     // console.log(this.data.history)
   },
 
-  pageInit: function() {
+  pageInit: function () {
     var that = this
-    return new Promise(function(resolve, reject) {
+    return new Promise(function (resolve, reject) {
       if (app.globalData.initDone) {
         that.setData({
           allCompetition: app.globalData.allCompetitionData,
@@ -107,7 +108,7 @@ Page({
     });
   },
 
-  recInit: function() {
+  recInit: function () {
     var that = this
     var onGetRecCompetition = app.onGetRecCompetition()
     Promise.all([onGetRecCompetition]).then(res => {
@@ -115,91 +116,105 @@ Page({
       for (let i = 0; i < rec.length; ++i) {
         var oId = app.getObjectId(rec[i].id)
         rec[i].objectId = oId
+
+        let endTime = app.tranDate(rec[i].endTime);
+        let thisDate = new Date();
+        // 获取当前时间，格式为 2018-9-10 20:08
+        let currentTime = thisDate.getFullYear() + '-' + (thisDate.getMonth() + 1) + '-' + thisDate.getDate() + ' ' + thisDate.getHours() + ':' + thisDate.getMinutes();
+        let nowTime = app.tranDate(currentTime);
+        // 如果当前时间处于时间段内，返回true，否则返回false
+        if (nowTime > endTime) {
+          rec[i].isEnd = "已截止";
+        }
+        else {
+          rec[i].isEnd = "未截止";
+        }
+      
       }
       that.setData({
         competition: app.globalData.competitionData,
       })
     })
-    console.log('推荐',this.data.competition)
+    console.log('推荐', this.data.competition)
   },
 
   // card start
-  InToGame1: function(e) {
+  InToGame1: function (e) {
     var id = e.currentTarget.dataset.id
     console.log(id)
     wx.navigateTo({
-      url: '../showCompetition/showCompetition?id=' + id+'&target='+1,
+      url: '../showCompetition/showCompetition?id=' + id + '&target=' + 1,
     })
   },
-  InToGame2: function(e) {
+  InToGame2: function (e) {
     var id = e.currentTarget.dataset.id
     console.log(id)
     wx.navigateTo({
-      url: '../showCompetition/showCompetition?id=' + id+'&target='+2,
+      url: '../showCompetition/showCompetition?id=' + id + '&target=' + 2,
     })
   },
   // card end
 
   // collect start
-  clickCollect: function(e) {
-    if(app.globalData.identity==0){
+  clickCollect: function (e) {
+    if (app.globalData.identity == 0) {
       wx.showToast({
         title: '没有注册信息，无法收藏',
         icon: 'none'
       })
     }
-    else{
-    var that = this
-    var objectId = e.currentTarget.dataset.objectid
-    var current = this.data.current
-    var isCollect = app.globalData.isCollect;
-    // console.log(objectId)
-    new Promise(function(resolve, reject) {
-      if (isCollect[objectId]) {
-        app.delFavorite(objectId).then(res => {
-          delete isCollect[objectId]
-          resolve("success")
-        }).catch(err => {
-          reject("fail")
+    else {
+      var that = this
+      var objectId = e.currentTarget.dataset.objectid
+      var current = this.data.current
+      var isCollect = app.globalData.isCollect;
+      // console.log(objectId)
+      new Promise(function (resolve, reject) {
+        if (isCollect[objectId]) {
+          app.delFavorite(objectId).then(res => {
+            delete isCollect[objectId]
+            resolve("success")
+          }).catch(err => {
+            reject("fail")
+          })
+
+        } else {
+          app.addFavorite(objectId).then(res => {
+            isCollect[objectId] = true
+            resolve("success")
+          }).catch(err => {
+            reject("fail")
+          })
+
+        }
+      }).then(res => {
+        this.setData({
+          isCollect: isCollect,
         })
 
-      } else {
-        app.addFavorite(objectId).then(res => {
-          isCollect[objectId] = true
-          resolve("success")
-        }).catch(err => {
-          reject("fail")
+        var text = isCollect[objectId] ? '已收藏' : '已取消收藏';
+        wx.showToast({
+          title: text,
         })
-
-      }
-    }).then(res => {
-      this.setData({
-        isCollect: isCollect,
+      }).catch(err => {
+        console.log('clickCollect : fail > ', err)
+        wx.showToast({
+          title: '失败',
+          icon: 'none',
+        })
       })
-      
-      var text = isCollect[objectId] ? '已收藏' : '已取消收藏';
-      wx.showToast({
-        title: text,
-      })
-    }).catch(err => {
-      console.log('clickCollect : fail > ', err)
-      wx.showToast({
-        title: '失败',
-        icon: 'none',
-      })
-    })
     }
 
   },
   // collect end
 
   // search-bar start
-  addSearHis: function() {
+  addSearHis: function () {
     var that = this
     var his = []
     his = Object.keys(this.data.history)
     console.log(his)
-    return new Promise(function(resolve, reject) {
+    return new Promise(function (resolve, reject) {
       app.addSearch(his).then(res => {
         resolve("success")
       }).catch(err => {
@@ -226,6 +241,7 @@ Page({
     this.filter();
     this.saveHistory();
     this.addSearHis();
+   // this.compareTime()
   },
   onClear(e) {
     // console.log('onClear', e)
@@ -239,7 +255,7 @@ Page({
     this.onClear()
     this.filter()
   },
-  filter: function() {
+  filter: function () {
     var that = this
     var val = this.data.value.trim()
     var ac = this.data.allCompetition
@@ -267,7 +283,7 @@ Page({
       allCompetition: ac,
     })
   },
-  saveHistory: function() { // label 未改成数组
+  saveHistory: function () { // label 未改成数组
     var that = this
     var data = this.data.allCompetition
     var his = this.data.history
@@ -282,10 +298,10 @@ Page({
     for (let i = 0; i < tmp.length; ++i) {
       if (tmp[i] == "") {
         continue
-      }else if (his[tmp[i]] == undefined) {
+      } else if (his[tmp[i]] == undefined) {
 
         his[tmp[i]] = 1
-      } else  {
+      } else {
         his[tmp[i]] += 1
       }
     }
@@ -306,7 +322,7 @@ Page({
     })
     if (this.data.current == '1') {
       var query = wx.createSelectorQuery();
-      query.select("#search_bar").boundingClientRect(function(rect) {
+      query.select("#search_bar").boundingClientRect(function (rect) {
         that.setData({
           searchHeight: rect.height
         })
@@ -315,4 +331,38 @@ Page({
   },
   // tabs end
 
+  //时间是否截止
+  compareTime: function () {
+    wx.showToast({
+      title: 'sdds',
+    })
+    // 转换时间格式，并转换为时间戳
+    function tranDate(time) {
+      return new Date(time.replace(/-/g, '/')).getTime();
+    }
+    var that = this
+    var ac = this.data.allCompetition
+    let isEnd = ""
+    for (let i = 0; i < ac.length; ++i) {
+      // 结束时间
+      let endTime = tranDate(ac[i].endTime);
+      let thisDate = new Date();
+      // 获取当前时间，格式为 2018-9-10 20:08
+      let currentTime = thisDate.getFullYear() + '-' + (thisDate.getMonth() + 1) + '-' + thisDate.getDate() + ' ' + thisDate.getHours() + ':' + thisDate.getMinutes();
+      let nowTime = tranDate(currentTime);
+      // 如果当前时间处于时间段内，返回true，否则返回false
+      if (nowTime > endTime) {
+        isEnd = "已截止";
+      }
+      else {
+        isEnd = "未截止";
+      }
+      ac[i].isEnd = isEnd
+    }
+    app.globalData.allCompetitionData = ac
+    that.setData({
+      allCompetition: ac,
+    })
+    console.log(this.data.allCompetition)
+  },
 })

@@ -26,6 +26,7 @@
           <view slot="body">
             <text style="font-size:15px; color:red;">截止时间：</text>
             <text style="color:gray;">{{item.endTime}}</text>
+            <text style="font-size:13px;color:red;display：flex;margin-left:25px;">{{item.isEnd}}</text>
           </view>
           <view slot="footer">
             <text wx:for="{{item.type}}" wx:for-item="label" style="margin-right:5px;">{{label}}</text>
@@ -56,6 +57,7 @@
           <view slot="body">
             <text style="font-size:15px; color:red;">截止时间：</text>
             <text style="color:gray;">{{item.endTime}}</text>
+            <text style="font-size:13px;color:red;display：flex;margin-left:25px;">{{item.isEnd}}</text>
           </view>
           <view slot="footer">
             <text wx:for="{{item.type}}" wx:for-item="label" style="margin-right:5px;">{{label}}</text>
