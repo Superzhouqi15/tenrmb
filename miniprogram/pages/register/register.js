@@ -33,7 +33,6 @@ Page({
    */
   onSubmit: function (e) {
     app.globalData.user = e.detail.value;
-    console.log(app.globalData.userInfo)
     if (this.data.arr.length !== 0) {
       wx.request({
         url: app.globalData.url + '/newUser',
@@ -58,6 +57,24 @@ Page({
         duration: 2000,
       })
     }
+  },
+
+  /**
+   *跳过
+   */
+  Skip: function (e) {
+    // app.globalData.user = e.detail.value;
+    // wx.request({
+    //   url: app.globalData.url + '/newUser',
+    //   method: 'POST',
+    //   data: {
+    //     "openId": app.globalData.openId,
+    //   },
+    //   success: res => { }
+    // })
+    // wx.switchTab({
+    //   url: '../info/info',
+    // })
   },
 
   //选择标签方法
