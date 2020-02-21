@@ -21,7 +21,7 @@ Page({
     // search-bar end
 
     // tabs start
-    current: '1',
+    current: '0',
     tabs: [{
       key: '0',
       title: '推荐比赛',
@@ -43,56 +43,45 @@ Page({
   onLoad: function (options) {
     // console.log(this.data)
     var that = this
-
     // 样式
     this.setData({
+      identity: app.globalData.identity,
       windowHeight: wx.getSystemInfoSync().windowHeight,
     })
     var query = wx.createSelectorQuery();
     query.select("#tabs").boundingClientRect(function (rect) {
-
-      console.log(rect.height)
       that.setData({
         tabsHeight: rect.height
       })
     }).exec();
-    query.select("#search_bar").boundingClientRect(function (rect) {
-      console.log(rect.height)
-      that.setData({
-        searchHeight: rect.height
-      })
-    }).exec();
 
-    // 数据初始化
-    this.pageInit()
 
+    // 数据
+    this.pageInit().then(res => {
+      this.recInit()
+    })
   },
 
   onShow: function () {
-  
-
-    // 数据初始化
-    //getRecCompetition
-
-    this.recInit()
-    this.pageInit()
-
+    var that = this
+    if (app.globalData.initDone) {
+      // isCollect
+      that.setData({
+        isCollect: app.globalData.isCollect,
+      })
+      // update allCom
+      app.onGetCompetition().then(res => {
+        // console.log("update")
+        app.pretreatData()
+        that.setData({
+          allCompetition: app.globalData.allCompetitionData,
+        })
+      })
+    }
   },
 
   onHide: function () {
-    this.addSearHis();
-    for (var key in this.data.history) {
-      delete (this.data.history[key]);
-    }
     // console.log(this.data.history)
-  },
-
-  onHide:function () {
-    this.addSearHis();
-    for (var key in this.data.history) {
-      delete (this.data.history[key]);
-    }
-    console.log(this.data.history)
   },
 
   pageInit: function () {
@@ -101,7 +90,6 @@ Page({
       if (app.globalData.initDone) {
         that.setData({
           allCompetition: app.globalData.allCompetitionData,
-
           isCollect: app.globalData.isCollect,
         })
         resolve("pageInit : done")
@@ -110,7 +98,6 @@ Page({
           if (res) {
             that.setData({
               allCompetition: app.globalData.allCompetitionData,
-
               isCollect: app.globalData.isCollect,
             })
             resolve("pageInit : done")
@@ -118,7 +105,6 @@ Page({
         }
       }
     });
-
   },
 
   recInit: function () {
@@ -134,7 +120,7 @@ Page({
         competition: app.globalData.competitionData,
       })
     })
-
+    console.log('推荐', this.data.competition)
   },
 
   // card start
@@ -142,60 +128,67 @@ Page({
     var id = e.currentTarget.dataset.id
     console.log(id)
     wx.navigateTo({
-      url: '../showCompetition/showCompetition?id=' + id+'&target='+1,
+      url: '../showCompetition/showCompetition?id=' + id + '&target=' + 1,
     })
   },
   InToGame2: function (e) {
     var id = e.currentTarget.dataset.id
     console.log(id)
     wx.navigateTo({
-      url: '../showCompetition/showCompetition?id=' + id+'&target='+2,
+      url: '../showCompetition/showCompetition?id=' + id + '&target=' + 2,
     })
   },
   // card end
 
   // collect start
   clickCollect: function (e) {
-    var that = this
-    var objectId = e.currentTarget.dataset.objectid
-    var current = this.data.current
-    var isCollect = app.globalData.isCollect;
-    // console.log(objectId)
-    new Promise(function (resolve, reject) {
-      if (isCollect[objectId]) {
-        app.delFavorite(objectId).then(res => {
-          delete isCollect[objectId]
-          resolve("success")
-        }).catch(err => {
-          reject("fail")
+    if (app.globalData.identity == 0) {
+      wx.showToast({
+        title: '没有注册信息，无法收藏',
+        icon: 'none'
+      })
+    }
+    else {
+      var that = this
+      var objectId = e.currentTarget.dataset.objectid
+      var current = this.data.current
+      var isCollect = app.globalData.isCollect;
+      // console.log(objectId)
+      new Promise(function (resolve, reject) {
+        if (isCollect[objectId]) {
+          app.delFavorite(objectId).then(res => {
+            delete isCollect[objectId]
+            resolve("success")
+          }).catch(err => {
+            reject("fail")
+          })
+
+        } else {
+          app.addFavorite(objectId).then(res => {
+            isCollect[objectId] = true
+            resolve("success")
+          }).catch(err => {
+            reject("fail")
+          })
+
+        }
+      }).then(res => {
+        this.setData({
+          isCollect: isCollect,
         })
 
-      } else {
-        app.addFavorite(objectId).then(res => {
-          isCollect[objectId] = true
-          resolve("success")
-        }).catch(err => {
-          reject("fail")
+        var text = isCollect[objectId] ? '已收藏' : '已取消收藏';
+        wx.showToast({
+          title: text,
         })
-
-      }
-    }).then(res => {
-      this.setData({
-        isCollect: isCollect,
+      }).catch(err => {
+        console.log('clickCollect : fail > ', err)
+        wx.showToast({
+          title: '失败',
+          icon: 'none',
+        })
       })
-      
-      var text = isCollect[objectId] ? '已收藏' : '已取消收藏';
-      wx.showToast({
-        title: text,
-      })
-    }).catch(err => {
-      console.log('clickCollect : fail > ', err)
-      wx.showToast({
-        title: '失败',
-        icon: 'none',
-      })
-    })
-
+    }
 
   },
   // collect end
@@ -233,7 +226,6 @@ Page({
     this.filter();
     this.saveHistory();
     this.addSearHis();
-
   },
   onClear(e) {
     // console.log('onClear', e)
@@ -249,7 +241,7 @@ Page({
   },
   filter: function () {
     var that = this
-    var val = this.data.value
+    var val = this.data.value.trim()
     var ac = this.data.allCompetition
 
     for (let i = 0; i < ac.length; ++i) {
@@ -280,6 +272,8 @@ Page({
     var data = this.data.allCompetition
     var his = this.data.history
     var tmp = []
+    // 输入为空时不保存
+    if (this.data.value.trim() == '') return null;
     for (let i = 0; i < data.length; ++i) {
       if (!data[i].isHidden) {
         tmp = tmp.concat(data[i].type)
@@ -288,10 +282,10 @@ Page({
     for (let i = 0; i < tmp.length; ++i) {
       if (tmp[i] == "") {
         continue
-      }else if (his[tmp[i]] == undefined) {
+      } else if (his[tmp[i]] == undefined) {
 
         his[tmp[i]] = 1
-      } else  {
+      } else {
         his[tmp[i]] += 1
       }
     }
@@ -305,10 +299,19 @@ Page({
   // tabs start
   onChangeTab(e) {
     // console.log('onChange', e)
+    var that = this
     var key = e.detail.key
     this.setData({
       current: key,
     })
+    if (this.data.current == '1') {
+      var query = wx.createSelectorQuery();
+      query.select("#search_bar").boundingClientRect(function (rect) {
+        that.setData({
+          searchHeight: rect.height
+        })
+      }).exec();
+    }
   },
   // tabs end
 

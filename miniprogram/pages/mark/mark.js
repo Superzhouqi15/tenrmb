@@ -1,6 +1,6 @@
 // miniprogram/pages/mark/mark.js
 const app = getApp()
-var that=this
+var that = this
 Page({
 
   /**
@@ -14,15 +14,17 @@ Page({
     }],
 
     myFavoriteList: [],
-   
+
   },
-  
+
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-   
+    this.setData({
+      identity: app.globalData.identity,
+    })
   },
 
   /**
@@ -48,7 +50,7 @@ Page({
     var id = e.currentTarget.dataset.id
     var objectId = this.data.myFavoriteList[id].objectId
     var isCollect = app.globalData.isCollect;
-   
+
     wx.showModal({
       title: '提示',
       content: '确定删除吗？',
@@ -56,19 +58,20 @@ Page({
       confirmText: '是',
       success(res) {
         if (res.confirm) {
-        new Promise(function (resolve, reject) {
-        app.delFavorite(objectId).then(res => {
-          delete isCollect[objectId]
-          resolve("success")
-        }).catch(err => {
-          reject("fail")
-          }).then(res => {
-            that.setData({
-              isCollect: isCollect,
+          new Promise(function (resolve, reject) {
+            app.delFavorite(objectId).then(res => {
+              delete isCollect[objectId]
+              resolve("success")
+            }).catch(err => {
+              reject("fail")
+            }).then(res => {
+              that.setData({
+                isCollect: isCollect,
+              })
+              that.onShow();
             })
           })
-    }),
-         that.onShow();
+
         }
       }
     })
@@ -110,7 +113,7 @@ Page({
    * 生命周期函数--监听页面隐藏
    */
   onHide: function () {
-    
+
   },
 
   /**

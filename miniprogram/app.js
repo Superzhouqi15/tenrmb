@@ -1,8 +1,11 @@
 App({
   globalData: {
-    url: "http://www.tuppy.pub:8099",
+    url: "https://www.tuppy.pub/bsj",
+    // url: "http://localhost:8099",
     openId: "",
-    newUser: false
+    newUser: false,
+    //identity表示身份是游客'0'还是用户'1'，然后判断是否能够进行相关操作
+    identity: '0'
   },
 
   onLaunch: function () {
@@ -13,7 +16,7 @@ App({
         traceUser: true,
       })
     }
-    
+
     this.init();
   },
 
@@ -69,7 +72,6 @@ App({
                 resolve(res.data)
               },
               fail: res => {
-                console.log(res)
                 reject("getOpenId : fail")
               }
             })
@@ -115,7 +117,6 @@ App({
           'openId': that.globalData.openId
         },
         success: res => {
-          console.log(res.data)
           that.globalData.competitionData = res.data
           resolve(res.data)
         },
@@ -145,7 +146,7 @@ App({
   pretreatData: function () { // fav->visable
     var that = this
     var data = that.globalData.allCompetitionData
-
+    //var rec = that.globalData.competitionData
     var fav = that.globalData.myFavorite
     var isCollect = that.globalData.isCollect = {}
     for (let i = 0; i < data.length; ++i) {
@@ -157,7 +158,7 @@ App({
       var oId = that.getObjectId(fav[i].id)
       isCollect[oId] = true
     }
-    // console.log(isCollect)
+
   },
   // Competition end
 
@@ -193,7 +194,7 @@ App({
           'objectId': objectId,
         },
         success: res => {
-          console.log(res)
+
           resolve("addFavorite : done")
         }
       })
@@ -211,14 +212,14 @@ App({
           'objectId': objectId,
         },
         success: res => {
-          console.log(res)
+
           resolve("delFavorite : done")
         }
       })
     })
   },
   // Favorite end
-  
+
   addSearch: function (history) {
     var that = this
     var openId = this.globalData.openId
@@ -233,7 +234,7 @@ App({
           'type': history,
         },
         success: res => {
-          console.log(res)
+
           resolve("addSearch : done")
         }
       })
@@ -254,7 +255,7 @@ App({
           'type': history,
         },
         success: res => {
-          console.log(res)
+
           resolve("addSearch : done")
         }
       })
@@ -265,7 +266,7 @@ App({
     var oId = id.timeSecond.toString(16) +
       id.machineIdentifier.toString(16) +
       id.processIdentifier.toString(16) +
-      id.counter.toString(16);
+      ('000000' + id.counter.toString(16)).slice(-6);
     return oId
   },
 })

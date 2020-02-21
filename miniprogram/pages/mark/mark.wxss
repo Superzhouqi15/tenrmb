@@ -2,7 +2,6 @@
 /* miniprogram/pages/profile/profile.wxss */
 
 
-
 page{
   height: 100%;
   width: 100%;
@@ -26,12 +25,12 @@ page{
 }
 
 .imagesize image { 
-  width:600rpx;
-  height:500rpx;
+  width:500rpx;
+  height:600rpx;
 }
 
 .text{
-  padding-top: 50rpx;
+  padding-top: 40rpx;
   text-align: center;
   display: flex;
   flex-direction:column;

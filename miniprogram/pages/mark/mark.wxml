@@ -1,8 +1,19 @@
 <!--miniprogram/pages/mark/mark.wxml-->
 <!--没有收藏比赛-->
+ <view wx:if="{{identity == 0}}" style="text-align: center;">
+      <view class='imagesize'>
+        <image src="../../icon/meiyou.png" class='in-image'   >
+        </image>
+      </view>
+      <view class="text">
+      <text>游客没有收藏功能哟</text>
+      </view>
+  </view>
+
+<view wx:else>
 <view wx:if="{{myFavoriteList.length == 0}}"> 
      <view class='imagesize'>
-        <image src="../../icon/kong.png" class='in-image'   >
+        <image src="../../icon/kk.png" class='in-image'   >
         </image>
       </view>
       <view class="text">
@@ -33,6 +44,7 @@
 </wux-swipe-action>
 </view>
 </wux-wing-blank>
+</view>
 </view>
 
   
