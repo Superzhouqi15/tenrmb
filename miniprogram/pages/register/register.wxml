@@ -50,5 +50,4 @@
 
 <view class ='btn-view'>
   <button class="btn1" bindtap='onSubmit'>提交</button>
-  <button class="btn2" bindtap='Skip'>游客登陆(部分功能受限)</button>
 </view>

@@ -40,15 +40,15 @@ Page({
   },
   click: function () {
     console.log(app.globalData)
-    if (app.globalData.newUser != true) {
+    if (app.globalData.newUser == true) {
+      console.log(app.globalData.userInfo)
+      wx.navigateTo({
+        url: '../Initial/Initial',
+      })
+    } else {
       console.log(this)
       wx.switchTab({
         url: '../info/info',
-      })
-    } else {
-      console.log(app.globalData.userInfo)
-      wx.navigateTo({
-        url: '../register/register',
       })
     } 
   }

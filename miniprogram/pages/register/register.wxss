@@ -38,21 +38,3 @@ overflow: hidden; font-size: 26rpx; color: #808080; float: left; margin: 0 17rpx
   border-radius: 98rpx;
   border:0;
 }
-
-.btn2{  
-  margin-top: 20rpx;
-  width: 90%;
-  background-color:#55beb7;
-  color: white;
-  border-radius: 98rpx;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: center;
-  height:95rpx;
-}
-
-.btn2::after1{
-  border-radius: 98rpx;
-  border:0;
-}

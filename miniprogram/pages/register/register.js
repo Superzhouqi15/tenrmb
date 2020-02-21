@@ -25,14 +25,15 @@ Page({
       { value: '外语比赛', checked: '' },
       { value: '理科知识', checked: '' },
     ],
-    arr: []//标签数组：用来存储选中的值
+    arr: [],//标签数组：用来存储选中的值
+
+    fulldata:app.globalData//全局变量
   },
 
   /**
    * 提交界面
    */
   onSubmit: function (e) {
-    app.globalData.user = e.detail.value;
     if (this.data.arr.length !== 0) {
       wx.request({
         url: app.globalData.url + '/newUser',
@@ -57,24 +58,6 @@ Page({
         duration: 2000,
       })
     }
-  },
-
-  /**
-   *跳过
-   */
-  Skip: function (e) {
-    // app.globalData.user = e.detail.value;
-    // wx.request({
-    //   url: app.globalData.url + '/newUser',
-    //   method: 'POST',
-    //   data: {
-    //     "openId": app.globalData.openId,
-    //   },
-    //   success: res => { }
-    // })
-    // wx.switchTab({
-    //   url: '../info/info',
-    // })
   },
 
   //选择标签方法

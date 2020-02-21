@@ -1,0 +1,50 @@
+.readme{
+  margin:60rpx;
+}
+
+.overview{
+  padding:0 60rpx;
+}
+
+.title-tip {
+  font-size: 40rpx;
+  margin-bottom: 22rpx;
+}
+
+.content {
+  text-indent: 60rpx;
+  font-size: 35rpx;
+  margin-bottom:20rpx;
+}
+
+.cont {
+  font-size: 35rpx;
+  margin-top:60rpx;
+  color:#55beb7;
+}
+
+.btn-view{
+  width:100%;
+  padding:20rpx 0;
+  background-color: white;
+  position: fixed;
+  bottom: 0;
+}
+
+.btn{  
+  margin-top: 20rpx;
+  width: 90%;
+  background-color:#55beb7;
+  color: white;
+  border-radius: 98rpx;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  height:95rpx;
+}
+
+.btn::after1{
+  border-radius: 98rpx;
+  border:0;
+}

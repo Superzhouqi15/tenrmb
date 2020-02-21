@@ -5,7 +5,7 @@ App({
     openId: "",
     newUser: false,
     //identity表示身份是游客还是用户，然后判断是否能够进行相关操作
-    identity:""
+    identity:""//false是游客
   },
 
   onLaunch: function () {
