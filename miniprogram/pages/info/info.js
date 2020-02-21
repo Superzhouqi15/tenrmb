@@ -9,7 +9,7 @@ Page({
     emptyFlag: true,
     userInfo: {},
     hasUserInfo: false,
-
+    
     // card start
     competition: [],
     allCompetition: [],
@@ -45,6 +45,7 @@ Page({
     var that = this
     // 样式
     this.setData({
+      identity: app.globalData.identity,
       windowHeight: wx.getSystemInfoSync().windowHeight,
     })
     var query = wx.createSelectorQuery();
@@ -141,6 +142,13 @@ Page({
 
   // collect start
   clickCollect: function(e) {
+    if(app.globalData.identity==0){
+      wx.showToast({
+        title: '没有注册信息，无法收藏',
+        icon: 'none'
+      })
+    }
+    else{
     var that = this
     var objectId = e.currentTarget.dataset.objectid
     var current = this.data.current
@@ -180,7 +188,7 @@ Page({
         icon: 'none',
       })
     })
-
+    }
 
   },
   // collect end

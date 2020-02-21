@@ -4,8 +4,8 @@ App({
     // url: "http://localhost:8099",
     openId: "",
     newUser: false,
-    //identity表示身份是游客还是用户，然后判断是否能够进行相关操作
-    identity:""
+    //identity表示身份是游客'0'还是用户'1'，然后判断是否能够进行相关操作
+    identity:'0'
   },
 
   onLaunch: function () {

@@ -12,6 +12,10 @@
   <!-- 推荐比赛 start -->
   <view wx:if="{{current == 0}}">
     <scroll-view scroll-y="true" style="height:{{windowHeight-tabsHeight}}px;">
+    <view wx:if="{{identity == 0}}" style="text-align: center;">
+      <text style="font-size:15px;">没有注册信息，无法推荐</text>
+    </view>
+    <view wx:else>
       <view wx:for="{{competition}}">
         <wux-card title="{{item.competitionName}}" thumb="{{item.thumb}}" thumb-style="border-radius: 50%;" bindtap="InToGame1" data-id="{{index}}">
           <!-- 收藏 -->
@@ -29,6 +33,7 @@
         </wux-card>
         <wux-white-space size="small" />
       </view>
+    </view>
     </scroll-view>
   </view>
   <!-- 推荐比赛 end -->
