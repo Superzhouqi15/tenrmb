@@ -1,6 +1,6 @@
 App({
   globalData: {
-    url: "http://www.tuppy.pub:8099",
+    url: "https://www.tuppy.pub/bsj",
     // url: "http://localhost:8099",
     openId: "",
     newUser: false,
