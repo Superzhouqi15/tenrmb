@@ -330,39 +330,4 @@ Page({
     }
   },
   // tabs end
-
-  //时间是否截止
-  compareTime: function () {
-    wx.showToast({
-      title: 'sdds',
-    })
-    // 转换时间格式，并转换为时间戳
-    function tranDate(time) {
-      return new Date(time.replace(/-/g, '/')).getTime();
-    }
-    var that = this
-    var ac = this.data.allCompetition
-    let isEnd = ""
-    for (let i = 0; i < ac.length; ++i) {
-      // 结束时间
-      let endTime = tranDate(ac[i].endTime);
-      let thisDate = new Date();
-      // 获取当前时间，格式为 2018-9-10 20:08
-      let currentTime = thisDate.getFullYear() + '-' + (thisDate.getMonth() + 1) + '-' + thisDate.getDate() + ' ' + thisDate.getHours() + ':' + thisDate.getMinutes();
-      let nowTime = tranDate(currentTime);
-      // 如果当前时间处于时间段内，返回true，否则返回false
-      if (nowTime > endTime) {
-        isEnd = "已截止";
-      }
-      else {
-        isEnd = "未截止";
-      }
-      ac[i].isEnd = isEnd
-    }
-    app.globalData.allCompetitionData = ac
-    that.setData({
-      allCompetition: ac,
-    })
-    console.log(this.data.allCompetition)
-  },
 })
