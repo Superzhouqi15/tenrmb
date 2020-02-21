@@ -3,7 +3,9 @@ App({
     url: "http://www.tuppy.pub:8099",
     // url: "http://localhost:8099",
     openId: "",
-    newUser: false
+    newUser: false,
+    //identity表示身份是游客还是用户，然后判断是否能够进行相关操作
+    identity:""
   },
 
   onLaunch: function () {
