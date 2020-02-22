@@ -5,7 +5,7 @@ App({
     openId: "",
     newUser: false,
     //identity表示身份是游客'0'还是用户'1'，然后判断是否能够进行相关操作
-    identity:'1'
+    identity: 0
   },
 
   onLaunch: function () {
@@ -95,6 +95,8 @@ App({
         success: res => {
           if (res.data == "") {
             that.globalData.newUser = true;
+          } else {
+            that.globalData.identity = 1;
           }
           resolve(that.globalData.newUser)
         },

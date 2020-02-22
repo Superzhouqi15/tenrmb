@@ -1,0 +1,25 @@
+<view class='readme'>
+  <view class='overview'>
+  <view class='title-tip'>亲爱的用户：</view>
+  <view class='content'>
+    您好！欢迎您使用百赛居。
+  </view>
+  <view class='content'>
+    本小程序旨在为您提供最新、最有用的各类比赛信息，囊括文科、理科、
+    创新创业等各项竞赛。
+  </view>
+  <view class='content'>
+    您可以选择注册（选择您感兴趣的比赛类别）和游客登陆的方式进入。
+  </view>
+  <view class='cont'>
+    请注意：
+    如果您选择游客登陆的形式，您将无法体验到我们的一部分功能，如：
+    收藏您喜爱的比赛、根据您感兴趣的比赛进行推荐等。
+  </view>
+  </view>
+</view>
+
+<view class ='btn-view'>
+  <button class="btn" bindtap='onSubmit'>注册</button>
+  <button class="btn" bindtap='skip'>游客登陆</button>
+</view>

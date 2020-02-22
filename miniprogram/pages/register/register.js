@@ -25,15 +25,15 @@ Page({
       { value: '外语比赛', checked: '' },
       { value: '理科知识', checked: '' },
     ],
-    arr: []//标签数组：用来存储选中的值
+    arr: [],//标签数组：用来存储选中的值
+
+    fulldata: app.globalData//全局变量
   },
 
   /**
    * 提交界面
    */
   onSubmit: function (e) {
-    app.globalData.user = e.detail.value;
-    console.log(app.globalData.userInfo)
     if (this.data.arr.length !== 0) {
       wx.request({
         url: app.globalData.url + '/newUser',
@@ -42,7 +42,9 @@ Page({
           "openId": app.globalData.openId,
           "type": this.data.arr
         },
-        success: res => {}
+        success: res => {
+          app.globalData.identity = 1;
+        }
       })
       wx.showToast({
         title: "注册成功",
@@ -52,7 +54,7 @@ Page({
         url: '../info/info',
       })
     }
-    else{
+    else {
       wx.showToast({
         title: "请至少选择一个",
         duration: 2000,
