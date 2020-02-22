@@ -16,7 +16,7 @@ App({
         traceUser: true,
       })
     }
-    
+
     this.init();
   },
 
@@ -238,7 +238,7 @@ App({
     })
   },
   // Favorite end
-  
+
   addSearch: function (history) {
     var that = this
     var openId = this.globalData.openId

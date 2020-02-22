@@ -15,23 +15,6 @@
     </wux-cell-group>
   </view>
 
-
-  <view class="page__bd">
-    <wux-cell-group title="赛事时间">
-
-      <wux-date-picker class="ding" mode="datetime" value="{{time1 }}" lang="zh_CN" data-index="1" data-mode="datetime" bind:confirm="onConfirm1" minDate="2000-01-01 00:00:00" maxDate="2050-01-01 23:59:59">
-        <wux-cell thumb="/icon/time.png" title="开始时间" is-link extra="{{ displayValue1 }}">
-        </wux-cell>
-      </wux-date-picker>
-
-
-      <wux-date-picker class="ding" mode="datetime" value="{{ time2 }}" lang="zh_CN" data-index="3" data-mode="datetime" bind:confirm="onConfirm2" minDate="2000-01-01 00:00:00" maxDate="2050-01-01 23:59:59">
-        <wux-cell thumb="/icon/time.png" title="截止时间" is-link extra="{{ displayValue3 }}">
-        </wux-cell>
-      </wux-date-picker>
-    </wux-cell-group>
-  </view>
-
   <view class="page__bd">
     <wux-cell-group title="比赛对象">
       <wux-cell hover-class="none">
@@ -66,6 +49,23 @@
         </wux-field>
       </wux-cell>
     </wux-cell-group>
+
+     <view class="page__bd">
+    <wux-cell-group title="赛事时间">
+
+      <wux-date-picker class="ding" mode="datetime" value="{{time1 }}" lang="zh_CN" data-index="1" data-mode="datetime" bind:confirm="onConfirm1" minDate="2000-01-01 00:00:00" maxDate="2050-01-01 23:59:59">
+        <wux-cell thumb="/icon/time.png" title="开始时间" is-link extra="{{ displayValue1 }}">
+        </wux-cell>
+      </wux-date-picker>
+
+
+      <wux-date-picker class="ding" mode="datetime" value="{{ time2 }}" lang="zh_CN" data-index="3" data-mode="datetime" bind:confirm="onConfirm2" minDate="2000-01-01 00:00:00" maxDate="2050-01-01 23:59:59">
+        <wux-cell thumb="/icon/time.png" title="截止时间" is-link extra="{{ displayValue3 }}">
+        </wux-cell>
+      </wux-date-picker>
+    </wux-cell-group>
+  </view>
+
 
     <wux-cell-group title="相关配图(最多4张)">
       <wux-upload listType="picture-card" defaultFileList="{{ fileList }}" max="4" url="/saveImage" bind:change="onChange" bind:complete="onComplete" bind:preview="onPreview">

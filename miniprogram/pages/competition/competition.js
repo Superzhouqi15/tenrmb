@@ -67,8 +67,8 @@ Page({
       title: '理科知识',
       value: '12',
     }, {
-        title: '数学建模',
-        value: '13',
+      title: '数学建模',
+      value: '13',
     }],
 
     fileList: []
@@ -137,7 +137,7 @@ Page({
     })
 
   },
- 
+
   setValue2(values, key, mode) {
     this.setData({
       time2: values.value,
@@ -199,7 +199,6 @@ Page({
         'method': this.data.method,
       },
       success: res => {
-  
       }
     })
 
@@ -213,7 +212,7 @@ Page({
         formData: {
           'competitionName': this.data.title,
           'introduction': this.data.introduction,
-          'fileName':'',
+          'fileName': '',
           'type': 'image'
         },
         success: (result) => {
@@ -313,7 +312,7 @@ Page({
     })
   },
 
-  uploadFile: function(){
+  uploadFile: function () {
     var that = this
     wx.chooseMessageFile({
       count: 1,
