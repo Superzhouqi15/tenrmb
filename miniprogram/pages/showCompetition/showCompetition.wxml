@@ -4,7 +4,6 @@
   <wux-cell-group title="赛事详情">
     <wux-cell thumb="/icon/competition.png" title="赛事名称" extra="{{dat[index].competitionName}}"></wux-cell>
     <wux-cell thumb="/icon/organization.png" title="举办单位" extra="{{dat[index].organization}}"></wux-cell>
-    <wux-cell thumb="/icon/publisher.png" title="发布者" extra="{{dat[index].publisher}}"></wux-cell>
   </wux-cell-group>
 
   <wux-cell-group title="赛事简介">
@@ -30,15 +29,29 @@
   <wux-cell-group title="赛事相关时间">
     <wux-cell thumb="/icon/time.png" title="开始时间" extra="{{dat[index].startTime}}"></wux-cell>
     <wux-cell thumb="/icon/time.png" title="截止时间" extra="{{dat[index].endTime}}"></wux-cell>
-    <wux-cell thumb="/icon/label.png" title="类别标签" extra="{{dat[index].label}}"></wux-cell>
+    <wux-cell thumb="/icon/label.png" title="类别标签" extra="{{dat[index].type}}"></wux-cell>
   </wux-cell-group>
 
   <wux-cell-group title="赛事配图">
-    <wux-cell extra="内容"></wux-cell>
-  </wux-cell-group>
-  <wux-cell-group title="赛事文件">
-    <wux-cell extra="内容">
-    <button bindtap="downloadFile">下载文件</button>
+    <wux-cell>
+    <scroll-view scroll-x="true">
+    <view class="Wrap" scoll-x="true">
+    <block wx:for="{{dat[index].imagePathList}}" wx:for-item="item" wx:for-index="id" wx:key="this">
+    <view class="Item">
+    <image class="Item_img" src="{{item}}" data-index="{{id}}" mode="aspectFill"></image>
+    </view>
+    </block>
+    </view>
+    </scroll-view>
     </wux-cell>
+  </wux-cell-group>
+
+  <wux-cell-group title="赛事文件">
+    <block wx:if="{{dat[index].filePath !==''}}">
+    <wux-button block clear type="positive">
+    <wux-icon type="ios-paper" size="16" bindtap="downloadFile"/>
+    <wxs src='../../wxs/utils.wxs' module='tools'/>
+    {{tools.substring(dat[index].filePath,32)}}</wux-button>
+    </block>
   </wux-cell-group>
 </view>

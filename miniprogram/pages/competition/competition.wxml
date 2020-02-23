@@ -77,9 +77,9 @@
       <wux-cell hover-class="none">
         <wux-field name="textarea">
           <wux-textarea rows="1" maxlength="1000" disabled placeholder="{{fileName}}"/>
+          <wux-button block class="submit" bind:click="uploadFile">上传文件(从聊天选取)</wux-button>
         </wux-field>
       </wux-cell>
-      <wux-button block class="submit" bind:click="uploadFile">上传文件</wux-button>
     </wux-cell-group>
 
   </view>

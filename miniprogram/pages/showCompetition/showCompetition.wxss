@@ -10,3 +10,7 @@ page{
   color: #d4d1d1;
   font-size: 12px
 }
+
+.Wrap{height:160rpx; width:100%; display: flex; display: -webkit-box; flex-direction: column;} 
+.Item{ width: 160rpx; height: 160rpx; flex: 1;} 
+.Item_img{ width: 160rpx; height: 160rpx;}

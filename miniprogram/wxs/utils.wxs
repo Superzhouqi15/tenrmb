@@ -1,0 +1,7 @@
+var substring = function (val, start) {
+  if (val.length == 0 || val == undefined) {
+    return;
+  }
+  return val.substring(start);
+}
+module.exports.substring = substring;

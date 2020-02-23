@@ -3,6 +3,8 @@
     "wux-cell-group": "../../dist/cell-group/index",
     "wux-cell": "../../dist/cell/index",
     "wux-textarea": "../../dist/textarea/index",
-    "wux-field": "../../dist/field/index"
+    "wux-field": "../../dist/field/index",
+    "wux-icon": "../../dist/icon/index",
+    "wux-button": "../../dist/button/index"
   }
 }

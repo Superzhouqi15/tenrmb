@@ -34,7 +34,6 @@ Page({
      {
       this.pageInit3();
     }
-
     
   },
 
