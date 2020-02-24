@@ -218,7 +218,7 @@ Page({
         success: (result) => {
 
         },
-        fail: (result) => {c}
+        fail: (result) => { c }
       });
     }
 
@@ -317,7 +317,7 @@ Page({
     wx.chooseMessageFile({
       count: 1,
       type: "file",
-      success(res){
+      success(res) {
         var temp = res.tempFiles[0];
         that.setData({
           filePath: temp.path,

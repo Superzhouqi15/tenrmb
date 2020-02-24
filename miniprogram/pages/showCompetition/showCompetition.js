@@ -39,10 +39,11 @@ Page({
 
 
   downloadFile: function () {
+    console.log(this.data.dat[this.data.index].filePath)
     wx.downloadFile({
       url: this.data.dat[this.data.index].filePath,
       success: function (res) {
-
+        console.log(res)
 
         var filePath = res.tempFilePath
 
@@ -52,10 +53,14 @@ Page({
 
 
           success: function (res) {
+            console.log(res)
             console.log(filePath)
 
             console.log('打开文档成功')
 
+          },
+          fail: function(res){
+            console.log(res)
           }
         })
       }

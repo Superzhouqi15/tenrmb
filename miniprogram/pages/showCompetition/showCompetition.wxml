@@ -48,8 +48,8 @@
 
   <wux-cell-group title="赛事文件">
     <block wx:if="{{dat[index].filePath !==''}}">
-    <wux-button block clear type="positive">
-    <wux-icon type="ios-paper" size="16" bindtap="downloadFile"/>
+    <wux-button block clear type="positive" bindtap="downloadFile">
+    <wux-icon type="ios-paper" size="16" />
     <wxs src='../../wxs/utils.wxs' module='tools'/>
     {{tools.substring(dat[index].filePath,32)}}</wux-button>
     </block>
