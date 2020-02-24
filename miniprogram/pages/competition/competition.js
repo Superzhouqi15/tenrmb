@@ -14,6 +14,7 @@ Page({
    * 页面的初始数据
    */
   data: {
+    identity: app.globalData.identity,
     title: '',
     organization: '',
     member: '',
@@ -95,8 +96,14 @@ Page({
 
 
   onComplete(e) {
-
-    wx.hideLoading()
+    wx.showLoading({
+      title: '上传图片中....',
+    })
+    setTimeout(
+      function () {
+        wx.hideLoading()
+      }, 1000
+    )
   },
 
   onPreview(e) {
@@ -323,8 +330,17 @@ Page({
           filePath: temp.path,
           fileName: temp.name
         })
+        wx.showLoading({
+          title: '上传文件中....',
+        })
+        setTimeout(
+          function () {
+            wx.hideLoading()
+          }, 1000
+        )
       }
     })
+    
   },
 
 

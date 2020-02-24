@@ -109,33 +109,36 @@ Page({
   },
 
   recInit: function () {
-    var that = this
-    var onGetRecCompetition = app.onGetRecCompetition()
-    Promise.all([onGetRecCompetition]).then(res => {
-      var rec = app.globalData.competitionData
-      for (let i = 0; i < rec.length; ++i) {
-        var oId = app.getObjectId(rec[i].id)
-        rec[i].objectId = oId
+    if(app.globalData.identity != 0){
+      var that = this
+      var onGetRecCompetition = app.onGetRecCompetition()
+      Promise.all([onGetRecCompetition]).then(res => {
+        var rec = app.globalData.competitionData
+        for (let i = 0; i < rec.length; ++i) {
+          var oId = app.getObjectId(rec[i].id)
+          rec[i].objectId = oId
 
-        let endTime = app.tranDate(rec[i].endTime);
-        let thisDate = new Date();
-        // 获取当前时间，格式为 2018-9-10 20:08
-        let currentTime = thisDate.getFullYear() + '-' + (thisDate.getMonth() + 1) + '-' + thisDate.getDate() + ' ' + thisDate.getHours() + ':' + thisDate.getMinutes();
-        let nowTime = app.tranDate(currentTime);
-        // 如果当前时间处于时间段内，返回true，否则返回false
-        if (nowTime > endTime) {
-          rec[i].isEnd = "已截止";
+          let endTime = app.tranDate(rec[i].endTime);
+          let thisDate = new Date();
+          // 获取当前时间，格式为 2018-9-10 20:08
+          let currentTime = thisDate.getFullYear() + '-' + (thisDate.getMonth() + 1) + '-' + thisDate.getDate() + ' ' + thisDate.getHours() + ':' + thisDate.getMinutes();
+          let nowTime = app.tranDate(currentTime);
+          // 如果当前时间处于时间段内，返回true，否则返回false
+          if (nowTime > endTime) {
+            rec[i].isEnd = "已截止";
+          }
+          else {
+            rec[i].isEnd = "未截止";
+          }
+
         }
-        else {
-          rec[i].isEnd = "未截止";
-        }
-      
-      }
-      that.setData({
-        competition: app.globalData.competitionData,
+        that.setData({
+          competition: app.globalData.competitionData,
+        })
       })
-    })
-    console.log('推荐', this.data.competition)
+      console.log('推荐', this.data.competition)
+    }
+   
   },
 
   // card start
@@ -159,7 +162,7 @@ Page({
   clickCollect: function (e) {
     if (app.globalData.identity == 0) {
       wx.showToast({
-        title: '没有注册信息，无法收藏',
+        title: '游客无法收藏比赛',
         icon: 'none'
       })
     }

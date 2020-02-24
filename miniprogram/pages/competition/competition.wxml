@@ -1,5 +1,13 @@
-<view class="page">
+<view wx:if="{{identity == 0}}" style="text-align: center;">
+      <view class='imagesize'>
+        <image src="../../icon/meiyou.png" class='in-image'/>
+      </view>
+      <view class="text">
+        <text>游客不能发布比赛哟</text>
+      </view>
+</view>
 
+<view wx:else>
   <view class="page__bd">
     <wux-cell-group title="赛事详情">
       <wux-cell hover-class="none">
@@ -24,6 +32,16 @@
       </wux-cell>
     </wux-cell-group>
 
+    
+
+  <wux-cell-group title="比赛简介">
+      <wux-cell hover-class="none">
+        <wux-field name="textarea">
+          <wux-textarea rows="3" maxlength="1000" bind:change="onChange5" />
+        </wux-field>
+      </wux-cell>
+    </wux-cell-group>
+
 
     <wux-cell-group title="报名方式">
       <wux-cell hover-class="none">
@@ -33,22 +51,16 @@
       </wux-cell>
     </wux-cell-group>
 
-    <wux-cell-group title="比赛类别">
+    
+
+<wux-cell-group title="比赛类别">
       <wux-popup-select value="{{ labelValue}}" options="{{ options3 }}" multiple max="3" data-index="4" bind:confirm="onConfirm3" bind:valueChange="onValueChange">
         <wux-cell thumb="/icon/label.png" title="比赛类别" is-link extra="{{ displayValue4 }}"></wux-cell>
       </wux-popup-select>
     </wux-cell-group>
 
 
-
-
-    <wux-cell-group title="比赛简介">
-      <wux-cell hover-class="none">
-        <wux-field name="textarea">
-          <wux-textarea rows="3" maxlength="1000" bind:change="onChange5" />
-        </wux-field>
-      </wux-cell>
-    </wux-cell-group>
+    
 
      <view class="page__bd">
     <wux-cell-group title="赛事时间">
@@ -77,7 +89,7 @@
       <wux-cell hover-class="none">
         <wux-field name="textarea">
           <wux-textarea rows="1" maxlength="1000" disabled placeholder="{{fileName}}"/>
-          <wux-button block class="submit" bind:click="uploadFile">上传文件(从聊天选取)</wux-button>
+          <wux-button block class="submit" bind:click="uploadFile" >上传文件(从聊天选取)</wux-button>
         </wux-field>
       </wux-cell>
     </wux-cell-group>
@@ -86,4 +98,5 @@
 
   <wux-toast id="wux-toast" />
   <wux-button block type="positive" class="submit" bind:click="showToast">发布比赛</wux-button>
+
 </view>
