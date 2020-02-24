@@ -1,11 +1,12 @@
 // miniprogram/pages/index/index.js
+const app = getApp()
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-
+    
   },
 
   /**
@@ -78,9 +79,18 @@ Page({
   },
 
   launchGame: function () {
-    wx.navigateTo({
-      url: '../competition/competition',
-    })
+    console.log('游客', app.globalData.identity)
+    if (app.globalData.identity == 0) {
+      wx.showToast({
+        title: '游客无法发布比赛',
+        icon: 'none'
+      })
+    }else{
+      wx.navigateTo({
+        url: '../competition/competition',
+      })
+    }
+    
   },
 
   feedback: function () {

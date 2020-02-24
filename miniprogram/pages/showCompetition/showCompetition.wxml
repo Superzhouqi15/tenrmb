@@ -36,9 +36,9 @@
     <wux-cell>
     <scroll-view scroll-x="true">
     <view class="Wrap" scoll-x="true">
-    <block wx:for="{{dat[index].imagePathList}}" wx:for-item="item" wx:for-index="id" wx:key="this">
+    <block wx:for="{{dat[index].imagePathList}}" wx:for-item="item" wx:for-index="id" wx:key="this" >
     <view class="Item">
-    <image class="Item_img" src="{{item}}" data-index="{{id}}" mode="aspectFill"></image>
+    <image class="Item_img" src="{{item}}" data-src="{{item}}" data-list="{{dat[index].imagePathList}}" data-index="{{id}}" mode="aspectFill" bindtap="onPreview" ></image>
     </view>
     </block>
     </view>

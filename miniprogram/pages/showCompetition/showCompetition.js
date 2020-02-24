@@ -173,6 +173,16 @@ Page({
         reject("onGetMyFavCompetition : fail")
       }
     })
+  },
+
+  onPreview(event) {
+    console.log(event.currentTarget.dataset.src)
+    let currentUrl = event.currentTarget.dataset.src
+    let imgList = event.currentTarget.dataset.list;//获取data-list
+    wx.previewImage({
+      current: currentUrl, // 当前显示图片的http链接
+      urls: imgList // 需要预览的图片http链接列表
+    })
   }
 
 })
